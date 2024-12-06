@@ -1,0 +1,24 @@
+name: Format Check
+
+on:
+    push:
+        branches: ["master"]
+    pull_request:
+        branches: ["master"]
+
+permissions:
+    contents: read
+
+jobs:
+    eslint-check:
+        name: Format Check
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 18
+            - name: Install Packages
+              run: npm install
+            - name: Prettier
+              run: npm run check-format
