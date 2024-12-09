@@ -1,6 +1,4 @@
-/*
-scr/app/styles/Navbar.css
-*/
+/* scr/app/styles/Navbar.css */
 .navbar {
     background: rgba(51, 51, 51, 0.9);
     position: fixed;
@@ -124,4 +122,52 @@ scr/app/styles/Navbar.css
 .language-selector select:hover {
     background-color: #444;
     color: #ddd;
+}
+
+.audio-player {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1002;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.audio-control {
+    background: #333;
+    border: 1px solid #555;
+    border-radius: 50%;
+    padding: 7px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.audio-control:hover {
+    background-color: #444;
+    transform: scale(1.1);
+}
+
+.play-icon {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px; /* Reduce font size to make the icon smaller */
+    transition: color 0.3s ease;
+}
+
+.play-icon.playing {
+    color: #FFD93D;
+}
+
+.play-icon.playing {
+    color: rgba(77, 154, 255, 0.7);
+}
+
+.navbar-link.active {
+    color: var(--active-color);
+    background-color: rgba(255, 255, 255, 0.1);
 }

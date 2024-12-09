@@ -1,4 +1,3 @@
-// src/app/concerts/page.tsx
 import Navigation from '../components/Navbar';
 import '../styles/page.css';
 
