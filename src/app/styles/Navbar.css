@@ -1,0 +1,105 @@
+/*
+scr/app/styles/Navbar.css
+*/
+.navbar {
+    background: rgba(51, 51, 51, 0.9);
+    position: fixed;
+    width: 220px;
+    height: 100vh;
+    left: -250px;
+    top: 0;
+    z-index: 1000;
+    transition: left 0.3s ease;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar.active {
+    left: 0;
+}
+
+.navbar-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    height: 100%;
+}
+
+.navbar-logo {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.navbar-toggle {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.bar {
+    height: 3px;
+    width: 25px;
+    background-color: #fff;
+    margin: 3px;
+    transition: all 0.3s ease;
+}
+
+.navbar-toggle.active .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.navbar-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar-toggle.active .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+.navbar-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+}
+
+.navbar-list {
+    list-style: none;
+    margin: 5px 0;
+}
+
+.navbar-link {
+    color: white;
+    padding: 12px 15px;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.navbar-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.navbar-link.active {
+    letter-spacing: 0.5px;
+    transform: translateX(5px);
+}
+
+.navbar-link.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: currentColor;
+    border-radius: 0 2px 2px 0;
+}

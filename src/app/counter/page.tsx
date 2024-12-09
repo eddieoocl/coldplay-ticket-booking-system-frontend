@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import type { RootState } from "@/lib/store";
 import { useDispatch, useSelector } from "react-redux";
@@ -47,7 +47,7 @@ export default function Counter() {
                 aria-label="Decrement value"
                 onClick={() => dispatch(decrement())}
             >
-                Decrement
+                <Decrement></Decrement>
             </button>
             <span> {counter} </span>
             <button

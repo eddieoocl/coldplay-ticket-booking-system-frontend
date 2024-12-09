@@ -1,12 +1,14 @@
-// src/app/page.tsx
-import Navigation from './components/Navbar';
-import './styles/page.css';
+// src/app/concerts/page.tsx
+import Navigation from '../components/Navbar';
+import '../styles/page.css';
 
-export default function Home() {
+const Concert = () => {
     return (
         <div className="home-container">
             <div className="home-background"></div>
             <Navigation />
         </div>
     );
-}
+};
+
+export default Concert;
