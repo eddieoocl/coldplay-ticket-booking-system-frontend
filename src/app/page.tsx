@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
     return (
@@ -48,6 +51,9 @@ export default function Home() {
                         Read our docs
                     </a>
                 </div>
+                <Link href="/payment" className="text-blue-500 hover:underline">
+                    Go to Payment Page
+                </Link>
             </main>
             <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
                 <a
