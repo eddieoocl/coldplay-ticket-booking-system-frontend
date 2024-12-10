@@ -1,0 +1,15 @@
+/* src/app/styles/VideoPlayer.css */
+.video-player-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto; /* 改用 auto 來確保水平置中 */
+    width: 80%; /* 與 concert list 保持一致的寬度 */
+}
+
+.video-player {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}

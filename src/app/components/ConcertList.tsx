@@ -1,3 +1,4 @@
+// src/app/components/ConcertList.tsx
 "use client";
 
 import React from "react";
@@ -5,16 +6,11 @@ import { useRouter } from "next/navigation";
 import { useGetConcertsQuery } from "@/lib/api/apiSlice";
 import "../styles/ConcertList.css";
 
-const getRandomColor = () => {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-};
+interface ConcertListProps {
+    className?: string;
+}
 
-const ConcertList: React.FC = () => {
+const ConcertList: React.FC<ConcertListProps> = ({ className }) => {
     const router = useRouter();
     const { data: concerts, error, isLoading } = useGetConcertsQuery();
 
@@ -26,7 +22,7 @@ const ConcertList: React.FC = () => {
     };
 
     return (
-        <div className="concert-list-container">
+        <div className={`concert-list-container ${className}`}>
             <h1 className="title">MUSIC of the SPHERES</h1>
             <div className="grid">
                 {concerts?.map((concert, index) => {
@@ -35,20 +31,13 @@ const ConcertList: React.FC = () => {
                         <div key={index} className="item">
                             <div className="item-text">
                                 <div className="item-title">
-                                    {month}{" "}
-                                    <span style={{ color: getRandomColor() }}>
-                                        {day}
-                                    </span>
+                                    {month} <span>{day}</span>
                                 </div>
                                 <div className="item-year">{concert.year}</div>
                             </div>
                             <div className="item-venue">
-                                <div style={{ color: getRandomColor() }}>
-                                    {concert.venue}
-                                </div>
-                                <div className="item-location">
-                                    {concert.location}
-                                </div>
+                                <div>{concert.venue}</div>
+                                <div className="item-location">{concert.location}</div>
                             </div>
                             <div className="item-status">
                                 <button
