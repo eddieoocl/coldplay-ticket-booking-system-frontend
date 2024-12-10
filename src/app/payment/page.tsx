@@ -105,12 +105,12 @@ export default function PaymentPage() {
                 {/* Image display - Add Credit Cards and PayPal images */}
                 <div className="flex gap-8 mb-4">
                     <img
-                        src="/images/CreditCard.jpg"
+                        src="/image/CreditCard.jpg"
                         alt="Credit Cards"
                         className="w-25 h-20 object-cover"
                     />
                     <img
-                        src="/images/PayPal.jpg"
+                        src="/image/PayPal.jpg"
                         alt="PayPal"
                         className="w-25 h-20 object-cover"
                     />
