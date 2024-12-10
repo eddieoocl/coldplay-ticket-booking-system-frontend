@@ -1,36 +1,151 @@
 /* scr/app/styles/page.css */
 .home-container {
-    position: relative;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    padding: 2rem 0;
 }
 
-.home-background {
+/* 視頻區段樣式 */
+.hero-section {
+    width: 100%;
+    height: 65vh;
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px 30px 0 0;
+    box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    margin-top: -50px;
+}
+
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.85);
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to top, transparent, rgba(0, 0, 0, 0.4));
+    z-index: 1;
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5));
+}
+
+/* 圖片區段樣式 */
+.image-section {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 60px;
+}
+
+.image-background {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("/image/home-page-bg.jpg");
+    background-image: url('/image/home-page-bg.jpg');
     background-size: cover;
     background-position: center;
-    filter: blur(4px);
+    filter: brightness(0.8);
     z-index: -1;
 }
 
+/* 添加漸變遮罩 */
+.image-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.3) 0%,
+            rgba(0, 0, 0, 0.4) 30%,
+            rgba(0, 0, 0, 0.6) 60%,
+            rgba(0, 0, 0, 0.7) 90%,
+            rgba(0, 0, 0, 1.0) 100%
+    );
+}
+
+/* 添加底部模糊效果 */
+.image-background::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(0, 0, 0, 0.8)
+    );
+    backdrop-filter: blur(5px);
+}
+
+.content-wrapper {
+    position: relative;
+    padding-top: 40px;
+    z-index: 1;
+}
+
+/* 內容區段樣式 */
 .concert-container {
     display: flex;
     justify-content: center;
     width: 100%;
-    z-index: 2;
+    padding: 2rem 0;
+    margin: 20px 0;
+    border-radius: 15px;
 }
 
 .video-container {
     display: flex;
     justify-content: center;
     width: 100%;
-    z-index: 1;
+    padding: 2rem 0;
 }
+
+.video-player-container {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    backdrop-filter: blur(5px);
+}
+
+/* 添加響應式設計 */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 50vh;
+        border-radius: 20px 20px 0 0;
+        margin-top: -30px;
+    }
+
+    .concert-container {
+        margin: 10px;
+    }
+
+    .image-background::after {
+        height: 40%; /* 在手機上增加模糊區域 */
+    }
+}
+
+
+
