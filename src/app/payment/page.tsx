@@ -13,6 +13,11 @@ export default function PaymentPage() {
     const [timeLeft, setTimeLeft] = useState(600); // 10 minutes in seconds
     const [totalAmount, setTotalAmount] = useState(0); // Initialize total amount
 
+    const cardNumberRegex = /^\d{16}$/;
+    const expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/; // MM/YY
+    const cvvRegex = /^\d{3}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Email format
+
     useEffect(() => {
         // Fetch total amount from the backend
         fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/payments/total-amount`)
@@ -33,16 +38,20 @@ export default function PaymentPage() {
 
     const handlePayment = () => {
         if (paymentMethod === "creditCard") {
-            if (cardDetails.cardNumber && cardDetails.expiry && cardDetails.cvv) {
+            if (
+                cardNumberRegex.test(cardDetails.cardNumber) &&
+                expiryRegex.test(cardDetails.expiry) &&
+                cvvRegex.test(cardDetails.cvv)
+            ) {
                 setPaymentSuccess(true);
             } else {
-                alert("Please provide complete credit card information");
+                alert("Please provide valid credit card information");
             }
         } else if (paymentMethod === "paypal") {
-            if (cardDetails.paypalAccount) {
+            if (emailRegex.test(cardDetails.paypalAccount)) {
                 setPaymentSuccess(true);
             } else {
-                alert("Please enter PayPal account information");
+                alert("Please enter a valid PayPal email address");
             }
         } else {
             alert("Please choose a payment method");
