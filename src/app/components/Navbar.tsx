@@ -1,12 +1,17 @@
-// src/app/components/Navbar.tsx
 "use client";
 
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
+import React, { useEffect, useState, useContext } from "react";
 import { usePathname } from "next/navigation";
-import { useTranslation } from "react-i18next";
-import i18n from "../../i18n";
+import NavbarToggle from "./NavbarToggle";
+import NavbarMenu from "@/app/components/NarbarMenu";
+import LanguageSelector from "./LanguageSelector";
+import AudioPlayer from "./AudioPlayer";
 import "../styles/Navbar.css";
+
+export const UserInteractionContext = React.createContext({
+    hasInteracted: false,
+    setHasInteracted: (value: boolean) => {}
+});
 
 interface MenuItem {
     name: string;
@@ -15,10 +20,12 @@ interface MenuItem {
 }
 
 const Navbar = () => {
-    const { t } = useTranslation();
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { hasInteracted, setHasInteracted } = useContext(UserInteractionContext);
     const pathname = usePathname();
+
+    const playOnPaths = ["/concerts", "/my-tickets"];
 
     const menuItems: MenuItem[] = [
         { name: "Home", path: "/", color: "#FF6B6B" },
@@ -34,52 +41,30 @@ const Navbar = () => {
         setActiveIndex(currentIndex);
     }, [pathname]);
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
-
-    const changeLanguage = (lng: string) => {
-        i18n.changeLanguage(lng);
+    const handleGlobalClick = () => {
+        if (!hasInteracted) {
+            setHasInteracted(true);
+        }
     };
 
     return (
-        <>
-            <div className={`navbar-toggle ${isMenuOpen ? "active" : ""}`} onClick={toggleMenu}>
-                <div className="bar"></div>
-                <div className="bar"></div>
-                <div className="bar"></div>
-            </div>
-            <nav className={`navbar ${isMenuOpen ? "active" : ""}`}>
-                <div className="navbar-container">
-                    <ul className="navbar-menu">
-                        {menuItems.map((item, index) => (
-                            <li key={index} className="navbar-list">
-                                <Link
-                                    href={item.path}
-                                    className={`navbar-link ${pathname === item.path ? "active" : ""}`}
-                                    style={{
-                                        color: pathname === item.path ? item.color : "white",
-                                        backgroundColor: pathname === item.path ? "rgba(255, 255, 255, 0.1)" : "transparent",
-                                    }}
-                                    onClick={() => {
-                                        setActiveIndex(index);
-                                        setIsMenuOpen(false);
-                                    }}
-                                >
-                                    {t(item.name)}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                    <div className="language-selector">
-                        <select onChange={(e) => changeLanguage(e.target.value)} defaultValue={i18n.language}>
-                            <option value="en">English</option>
-                            <option value="zh">中文</option>
-                        </select>
+        <UserInteractionContext.Provider value={{ hasInteracted, setHasInteracted }}>
+            <div onClick={handleGlobalClick}>
+                <NavbarToggle isMenuOpen={isMenuOpen} toggleMenu={() => setIsMenuOpen(!isMenuOpen)} />
+                <nav className={`navbar ${isMenuOpen ? "active" : ""}`}>
+                    <div className="navbar-container">
+                        <NavbarMenu
+                            menuItems={menuItems}
+                            pathname={pathname}
+                            setActiveIndex={setActiveIndex}
+                            setIsMenuOpen={setIsMenuOpen}
+                        />
+                        <LanguageSelector />
+                        <AudioPlayer playOnPaths={playOnPaths} />
                     </div>
-                </div>
-            </nav>
-        </>
+                </nav>
+            </div>
+        </UserInteractionContext.Provider>
     );
 };
 
