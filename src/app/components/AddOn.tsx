@@ -9,14 +9,18 @@ const AddOn: React.FC = (props) => {
     const { id, name, amount, description, price } = commodity;
     const [commodityAmount, setCommodityAmount] = React.useState(amount);
 
-    console.log("addon",commodity)
-
     //todo the amount reduce to 0,alert ,agree then remove
     const updateAmount = (newAmount) => {
-        if (newAmount <= 0) {
-            setAddOns((prevAddOns) =>
-                prevAddOns.filter((add_on) => add_on.id !== id)
-            );
+        if (newAmount < 0) {
+            alert("Amount cannot be negative.");
+            return;
+        }
+        if (newAmount === 0) {
+            if (window.confirm("Amount is zero. Do you want to remove this item?")) {
+                setAddOns((prevAddOns) =>
+                    prevAddOns.filter((add_on) => add_on.id !== id)
+                );
+            }
         } else {
             setCommodityAmount(newAmount);
             setAddOns((prevAddOns) =>
