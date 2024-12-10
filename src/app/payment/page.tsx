@@ -1,6 +1,5 @@
 "use client";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function PaymentPage() {
     const [paymentMethod, setPaymentMethod] = useState("");
@@ -11,9 +10,28 @@ export default function PaymentPage() {
         paypalAccount: "",
     });
     const [paymentSuccess, setPaymentSuccess] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(600); // 10 minutes in seconds
+    const [totalAmount, setTotalAmount] = useState(0); // Initialize total amount
+
+    useEffect(() => {
+        // Fetch total amount from the backend
+        fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/payments/total-amount`)
+            .then((response) => response.json())
+            .then((data) => setTotalAmount(data))
+            .catch((error) => console.error("Error fetching total amount:", error));
+
+        if (timeLeft === 0) {
+            window.location.reload();
+        }
+
+        const timer = setInterval(() => {
+            setTimeLeft((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
+        }, 1000);
+
+        return () => clearInterval(timer);
+    }, [timeLeft]);
 
     const handlePayment = () => {
-        // 模拟支付验证逻辑
         if (paymentMethod === "creditCard") {
             if (cardDetails.cardNumber && cardDetails.expiry && cardDetails.cvv) {
                 setPaymentSuccess(true);
@@ -31,18 +49,23 @@ export default function PaymentPage() {
         }
     };
 
+    const formatTime = (seconds) => {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${minutes}:${remainingSeconds < 10 ? "0" : ""}${remainingSeconds}`;
+    };
+
     return (
         <div className="flex flex-col items-center justify-center min-h-screen p-4 sm:p-10">
             <h1 className="text-2xl font-bold mb-6">Payment page</h1>
             <div className="w-full max-w-md border p-4 rounded-md shadow-md bg-white">
-                {/* 订单详情 */}
+                {/* Order details */}
                 <div className="mb-4">
-                    <h2 className="text-lg font-semibold">Order details</h2>
-                    <p>Product: The first test product</p>
-                    <p>amount of money：¥0.01</p>
+                    <h2 className="text-lg font-semibold">Your order</h2>
+                    <p>Amount of money: ${totalAmount ? totalAmount.toFixed(2) : "0.00"}</p>
                 </div>
 
-                {/* 支付方式选择 */}
+                {/* Payment method selection */}
                 <div className="mb-4">
                     <h2 className="text-lg font-semibold">Choose payment method</h2>
                     <div className="flex gap-4">
@@ -69,21 +92,21 @@ export default function PaymentPage() {
                     </div>
                 </div>
 
-                {/* 图片展示 - 添加 Credit Cards 和 PayPal 图片 */}
+                {/* Image display - Add Credit Cards and PayPal images */}
                 <div className="flex gap-8 mb-4">
                     <img
                         src="/images/CreditCard.jpg"
                         alt="Credit Cards"
-                        className="w-25 h-20 object-cover" // 设置图片宽高一致
+                        className="w-25 h-20 object-cover"
                     />
                     <img
                         src="/images/PayPal.jpg"
                         alt="PayPal"
-                        className="w-25 h-20 object-cover" // 设置图片宽高一致
+                        className="w-25 h-20 object-cover"
                     />
                 </div>
 
-                {/* 支付详情输入 */}
+                {/* Payment details input */}
                 {paymentMethod === "creditCard" && (
                     <div className="mb-4">
                         <h2 className="text-lg font-semibold">Enter credit card information</h2>
@@ -136,7 +159,10 @@ export default function PaymentPage() {
                     </div>
                 )}
 
-                {/* 提交按钮 */}
+                {/* Submit button */}
+                <div className="mb-4 text-center">
+                    <p>Remaining Payment Time: {formatTime(timeLeft)}</p>
+                </div>
                 <button
                     className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
                     onClick={handlePayment}
@@ -145,14 +171,14 @@ export default function PaymentPage() {
                 </button>
             </div>
 
-            {/* 支付成功弹窗 */}
+            {/* Payment success modal */}
             {paymentSuccess && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                     <div className="bg-white p-6 rounded shadow-md">
-                        <h2 className="text-lg font-bold mb-4">pay success！</h2>
-                        <p>Order No：123456789</p>
-                        <p>Payment method：{paymentMethod === "creditCard" ? "Credit Cards Accepted" : "PayPal payment"}</p>
-                        <p>amount of money：¥0.01</p>
+                        <h2 className="text-lg font-bold mb-4">Payment successful!</h2>
+                        <p>Order No: 123456789</p>
+                        <p>Payment method: {paymentMethod === "creditCard" ? "Credit Cards Accepted" : "PayPal payment"}</p>
+                        <p>Amount of money: ${totalAmount.toFixed(2)}</p>
                         <button
                             className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
                             onClick={() => setPaymentSuccess(false)}
