@@ -2,6 +2,7 @@ import type { Test } from "@/types/model/Test";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { Concert } from "@/types/model/Concert";
 import type { ConcertDetailData } from "@/types/model/ConcertDetailData";
+import type TicketTypeResponse from "@/types/model/TicketTypeResponse";
 
 export const apiSlice = createApi({
     reducerPath: "api",
@@ -28,9 +29,16 @@ export const apiSlice = createApi({
         getOrderById: builder.query<OrderResponse, { id: string }>({
             query: ({ id }) => `/orders/${id}`,
         }),
-        getTicketTypeById: builder.query<OrderResponse, { id: string }>({
+        getTicketTypeById: builder.query<TicketTypeResponse, { id: string }>({
             query: ({ id }) => `/ticket-types/concert/${id}`,
         }),
+        createOrder: builder.mutation<OrderResponse, Omit<OrderResponse, "id">>({
+            query: (body) => ({
+                url: "/orders",
+                method: "POST",
+                body,
+            }),
+        }
     }),
 });
 
@@ -41,4 +49,5 @@ export const {
     useGetConcertByIdQuery,
     useGetOrderByIdQuery,
     useGetTicketTypeByIdQuery,
+    useCreateOrderMutation,
 } = apiSlice;
