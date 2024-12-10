@@ -1,3 +1,4 @@
+// scr/app/components/navbar/AudioPlayer.tsx
 import React, { useRef, useState, useEffect } from "react";
 import { FaPlay, FaPause } from "react-icons/fa";
 import { usePathname } from "next/navigation";

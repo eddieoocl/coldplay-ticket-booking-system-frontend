@@ -1,6 +1,6 @@
-// src/app/components/LanguageSelector.tsx
+// src/app/components/navbar/LanguageSelector.tsx
 import React from "react";
-import i18n from "../../i18n";
+import i18n from "../../../i18n";
 
 const LanguageSelector: React.FC = () => {
     const changeLanguage = (lng: string) => {

@@ -1,4 +1,4 @@
-// src/app/components/NavbarToggle.tsx
+// src/app/components/navbar/NavbarToggle.tsx
 import React from "react";
 
 interface NavbarToggleProps {

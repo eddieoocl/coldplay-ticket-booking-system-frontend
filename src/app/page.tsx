@@ -1,5 +1,5 @@
 // src/app/page.tsx
-import Navigation from './components/Navbar';
+import Navigation from './components/navbar/Navbar';
 import './styles/page.css';
 
 export default function Home() {

@@ -1,5 +1,5 @@
 // scr/app/my-tickets/page.tsx
-import Navigation from '../components/Navbar';
+import Navigation from '../components/navbar/Navbar';
 import '../styles/page.css';
 
 const Page = () => {

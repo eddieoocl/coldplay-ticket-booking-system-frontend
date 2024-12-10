@@ -1,3 +1,4 @@
+// scr/app/components/navbar/AudioPlayer.tsx
 import React from "react";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";

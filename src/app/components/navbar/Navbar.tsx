@@ -1,12 +1,13 @@
+// scr/app/components/navbar/Navbar.tsx
 "use client";
 
 import React, { useEffect, useState, useContext } from "react";
 import { usePathname } from "next/navigation";
 import NavbarToggle from "./NavbarToggle";
-import NavbarMenu from "@/app/components/NarbarMenu";
+import NavbarMenu from "@/app/components/navbar/NarbarMenu";
 import LanguageSelector from "./LanguageSelector";
 import AudioPlayer from "./AudioPlayer";
-import "../styles/Navbar.css";
+import "../../styles/Navbar.css";
 
 export const UserInteractionContext = React.createContext({
     hasInteracted: false,
