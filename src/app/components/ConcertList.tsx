@@ -4,6 +4,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { useGetConcertsQuery } from "@/lib/api/apiSlice";
+import { useTranslation } from "react-i18next";
 import "../styles/ConcertList.css";
 
 interface ConcertListProps {
@@ -13,6 +14,7 @@ interface ConcertListProps {
 const ConcertList: React.FC<ConcertListProps> = ({ className }) => {
     const router = useRouter();
     const { data: concerts, error, isLoading } = useGetConcertsQuery();
+    const { t } = useTranslation();
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error loading concerts</div>;
@@ -44,7 +46,7 @@ const ConcertList: React.FC<ConcertListProps> = ({ className }) => {
                                     className="more-detail-button"
                                     onClick={() => handleMoreDetail(concert.concertId)}
                                 >
-                                    More Detail
+                                    {t('More Detail')}
                                 </button>
                                 {concert.status}
                             </div>
