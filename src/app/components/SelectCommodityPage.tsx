@@ -8,20 +8,27 @@ import TotalCount from "@/app/components/TotalCount";
 import Ticket from "@/app/components/Ticket";
 import AddOn from "@/app/components/AddOn";
 import { redirect } from "next/navigation";
-import { useGetTicketTypeByIdQuery } from "@/lib/api/apiSlice";
+import { useCreateOrderMutation, useGetTicketTypeByIdQuery } from "@/lib/api/apiSlice";
 
 
 //todo set timer
 const SelectCommodityPage: React.FC = () => {
-    const { data: ticketsType    ,name,price } = useGetTicketTypeByIdQuery({ id:2 as string });
-    console.log("data",typeof ticketsType);
+    const { data: ticketsType, name, price } = useGetTicketTypeByIdQuery({ id: 2 as string });
     const [tickets, setTickets] = useState([]);
     const [add_ons, setAddOns] = useState(data.add_ons);
     const [personal_information, setPersonalInformation] = useState(data.personal_information);
-    console.log("Ticket",tickets);
-    function handleClick() {
-            redirect(`/confirm-order`);
+
+    function handleNext() {
+        const order = {
+            userId:1,
+            phoneNumber: 1234567890,
+            MerchandiseInfo: add_ons,
+            TicketInfo: personal_information,
+        }
+        // useCreateOrderMutation(order);
+        redirect(`/confirm-order`);
     }
+
     function handleReturn() {
         redirect(`/concert/2`);
     }
@@ -31,15 +38,18 @@ const SelectCommodityPage: React.FC = () => {
             <div className="commodity-container">
                 {
                     ticketsType && Object.keys(ticketsType).map((key) => (
-                    <Ticket key={ticketsType[key].id} commodity={ticketsType[key]} setTickets={setTickets} setPersonalInformation={setPersonalInformation}/>
+                        <Ticket key={ticketsType[key].id} commodity={ticketsType[key]} setTickets={setTickets}
+                                setPersonalInformation={setPersonalInformation} />
                     ))
                 }
                 <TotalCount tickets={tickets}></TotalCount>
             </div>
-            <PersonalInformationPage tickets={tickets} personal_information={personal_information} setPersonalInformation={setPersonalInformation} />
+            <PersonalInformationPage tickets={tickets} personal_information={personal_information}
+                                     setPersonalInformation={setPersonalInformation} />
             <div className="commodity-container">
                 <div>
-                    <button className="side-button" onClick={() => window.location.href = "/ConfirmLoading"}>More Add-Ons
+                    <button className="side-button" onClick={() => window.location.href = "/ConfirmLoading"}>More
+                        Add-Ons
                     </button>
                 </div>
                 {add_ons.map((add_on) => (
@@ -48,12 +58,12 @@ const SelectCommodityPage: React.FC = () => {
 
                 <TotalCount add_ons={add_ons}></TotalCount>
             </div>
-            <TotalCount tickets={data.tickets} add_ons={add_ons} />
+            <TotalCount tickets={tickets} add_ons={add_ons} />
 
             {/*todo commit call api*/}
             <div className="button-container">
                 <button onClick={handleReturn}>Return</button>
-                <button onClick={handleClick}>Next</button>
+                <button onClick={handleNext}>Next</button>
             </div>
         </div>
     );

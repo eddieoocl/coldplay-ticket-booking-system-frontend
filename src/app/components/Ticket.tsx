@@ -20,9 +20,8 @@ const Ticket: React.FC<{ commodity: TicketTypeResponse }> = (props) => {
                     ...prevInfo,
                     {
                         typeId: id,
-                        ticket_type: name,
-                        first_name: "",
-                        last_name: "",
+                        ticketType: name,
+                        moviegoer: "",
                         phone: "",
                         email: "",
                     },
@@ -34,7 +33,6 @@ const Ticket: React.FC<{ commodity: TicketTypeResponse }> = (props) => {
             }
             setCommodityAmount(newAmount);
             setTickets((prevTickets) => {
-                console.log("prevTickets", prevTickets);
                 if (prevTickets.length === 0 || !prevTickets.some(ticket => ticket.id === id)) {
                     return [...prevTickets, { ...commodity, amount: newAmount }];
                 }

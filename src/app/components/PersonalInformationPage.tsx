@@ -1,5 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { info } from "next/dist/build/output/log";
 
 //todo personal_information props type is not defined
 const PersonalInformationPage: React.FC = (props) => {
@@ -23,12 +24,13 @@ const PersonalInformationPage: React.FC = (props) => {
                                 <td>
                                     <input
                                         type="text"
-                                        value={information.ticket_type}
+                                        value={information.ticketType}
+                                        readOnly
                                         onChange={(e) => {
                                             const newInfo = [
                                                 ...personal_information,
                                             ];
-                                            newInfo[index].ticket_type =
+                                            newInfo[index].ticketType =
                                                 e.target.value;
                                             setPersonalInformation(newInfo);
                                         }}
@@ -37,24 +39,13 @@ const PersonalInformationPage: React.FC = (props) => {
                                 <td>
                                     <input
                                         type="text"
-                                        value={information.first_name}
+                                        value={information.moviegoer}
+                                        readOnly={readOnly}
                                         onChange={(e) => {
                                             const newInfo = [
                                                 ...personal_information,
                                             ];
-                                            newInfo[index].first_name =
-                                                e.target.value;
-                                            setPersonalInformation(newInfo);
-                                        }}
-                                    />{" "}
-                                    <input
-                                        type="text"
-                                        value={information.last_name}
-                                        onChange={(e) => {
-                                            const newInfo = [
-                                                ...personal_information,
-                                            ];
-                                            newInfo[index].last_name =
+                                            newInfo[index].moviegoer =
                                                 e.target.value;
                                             setPersonalInformation(newInfo);
                                         }}
@@ -64,6 +55,7 @@ const PersonalInformationPage: React.FC = (props) => {
                                     <input
                                         type="text"
                                         value={information.phone}
+                                        readOnly={readOnly}
                                         onChange={(e) => {
                                             const newInfo = [
                                                 ...personal_information,
@@ -78,6 +70,7 @@ const PersonalInformationPage: React.FC = (props) => {
                                     <input
                                         type="text"
                                         value={information.email}
+                                        readOnly={readOnly}
                                         onChange={(e) => {
                                             const newInfo = [
                                                 ...personal_information,
@@ -92,14 +85,6 @@ const PersonalInformationPage: React.FC = (props) => {
                         ))}
                     </tbody>
                 </table>
-                {!readOnly && (
-                    <button
-                        className="side-button"
-                        onClick={() => (window.location.href = "/information")}
-                    >
-                        edit
-                    </button>
-                )}
             </div>
         </div>
     );
