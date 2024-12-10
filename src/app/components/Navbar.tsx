@@ -7,10 +7,11 @@ import NavbarMenu from "@/app/components/NarbarMenu";
 import LanguageSelector from "./LanguageSelector";
 import AudioPlayer from "./AudioPlayer";
 import "../styles/Navbar.css";
+import Login from "../components/Login";
 
 export const UserInteractionContext = React.createContext({
     hasInteracted: false,
-    setHasInteracted: (value: boolean) => {}
+    setHasInteracted: (value: boolean) => {},
 });
 
 interface MenuItem {
@@ -22,7 +23,9 @@ interface MenuItem {
 const Navbar = () => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { hasInteracted, setHasInteracted } = useContext(UserInteractionContext);
+    const { hasInteracted, setHasInteracted } = useContext(
+        UserInteractionContext
+    );
     const pathname = usePathname();
 
     const playOnPaths = ["/concerts", "/my-tickets"];
@@ -37,7 +40,9 @@ const Navbar = () => {
     ];
 
     useEffect(() => {
-        const currentIndex = menuItems.findIndex(item => item.path === pathname);
+        const currentIndex = menuItems.findIndex(
+            (item) => item.path === pathname
+        );
         setActiveIndex(currentIndex);
     }, [pathname]);
 
@@ -48,9 +53,14 @@ const Navbar = () => {
     };
 
     return (
-        <UserInteractionContext.Provider value={{ hasInteracted, setHasInteracted }}>
+        <UserInteractionContext.Provider
+            value={{ hasInteracted, setHasInteracted }}
+        >
             <div onClick={handleGlobalClick}>
-                <NavbarToggle isMenuOpen={isMenuOpen} toggleMenu={() => setIsMenuOpen(!isMenuOpen)} />
+                <NavbarToggle
+                    isMenuOpen={isMenuOpen}
+                    toggleMenu={() => setIsMenuOpen(!isMenuOpen)}
+                />
                 <nav className={`navbar ${isMenuOpen ? "active" : ""}`}>
                     <div className="navbar-container">
                         <NavbarMenu
@@ -60,6 +70,7 @@ const Navbar = () => {
                             setIsMenuOpen={setIsMenuOpen}
                         />
                         <LanguageSelector />
+                        <Login />
                         <AudioPlayer playOnPaths={playOnPaths} />
                     </div>
                 </nav>

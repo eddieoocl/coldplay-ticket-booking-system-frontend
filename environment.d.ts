@@ -3,7 +3,14 @@
 declare global {
     namespace NodeJS {
         interface ProcessEnv {
-            NEXT_PUBLIC_BACKEND_URL: string;
+            NEXT_PUBLIC_API_URL: string;
+            NEXTAUTH_URL: string;
+            NEXTAUTH_SECRET: string;
+            KEYCLOAK_LOCAL_URL: string;
+            KEYCLOAK_PUBLIC_URL: string;
+            KEYCLOAK_CLIENT_ID: string;
+            KEYCLOAK_CLIENT_SECRET: string;
+            KEYCLOAK_REALM: string;
         }
     }
 }
