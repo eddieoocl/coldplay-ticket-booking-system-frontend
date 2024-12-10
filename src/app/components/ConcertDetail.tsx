@@ -1,24 +1,22 @@
 "use client";
 
 import React from "react";
-import { useParams } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { useGetConcertByIdQuery } from "@/lib/api/apiSlice";
 import "../styles/ConcertDetail.css";
 import Image from "next/image";
 
 const ConcertDetail: React.FC = () => {
+    const router = useRouter();
     const { id } = useParams();
-    const {
-        data: concert,
-        error,
-        isLoading,
-    } = useGetConcertByIdQuery({ id: id as string });
+    const { data: concert, error, isLoading } = useGetConcertByIdQuery({ id: id as string });
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error loading concert details</div>;
 
     return (
         <div className="app">
+            <button className="back-button" onClick={() => router.back()}>Back</button>
             <div className="content">
                 <div className="date">{concert?.date}</div>
                 <div className="divider" />

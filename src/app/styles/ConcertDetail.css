@@ -84,3 +84,14 @@ body {
   background-color: gray;
   margin: 1.5rem 0; /* 增加 margin */
 }
+.back-button {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: #f59e0b;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
