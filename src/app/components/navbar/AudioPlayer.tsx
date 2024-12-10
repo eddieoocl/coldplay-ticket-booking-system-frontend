@@ -20,7 +20,8 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ playOnPaths }) => {
 
     useEffect(() => {
         if (audioRef.current && !isPlaying && playOnPaths.includes(pathname)) {
-            audioRef.current.play()
+            audioRef.current
+                .play()
                 .then(() => {
                     setIsPlaying(true);
                 })
@@ -38,14 +39,14 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ playOnPaths }) => {
             const handlePause = () => setIsPlaying(false);
             const handlePlay = () => setIsPlaying(true);
 
-            audio.addEventListener('ended', handleEnded);
-            audio.addEventListener('pause', handlePause);
-            audio.addEventListener('play', handlePlay);
+            audio.addEventListener("ended", handleEnded);
+            audio.addEventListener("pause", handlePause);
+            audio.addEventListener("play", handlePlay);
 
             return () => {
-                audio.removeEventListener('ended', handleEnded);
-                audio.removeEventListener('pause', handlePause);
-                audio.removeEventListener('play', handlePlay);
+                audio.removeEventListener("ended", handleEnded);
+                audio.removeEventListener("pause", handlePause);
+                audio.removeEventListener("play", handlePlay);
             };
         }
     }, []);
@@ -79,12 +80,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ playOnPaths }) => {
                     <FaPlay className="play-icon" />
                 )}
             </button>
-            <audio
-                ref={audioRef}
-                src="/audio/yellow.mp3"
-                loop
-                preload="auto"
-            />
+            <audio ref={audioRef} src="/audio/yellow.mp3" loop preload="auto" />
         </div>
     );
 };

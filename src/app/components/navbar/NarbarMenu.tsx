@@ -15,7 +15,12 @@ interface NavbarMenuProps {
     setIsMenuOpen: (isOpen: boolean) => void;
 }
 
-const NavbarMenu: React.FC<NavbarMenuProps> = ({ menuItems, pathname, setActiveIndex, setIsMenuOpen }) => {
+const NavbarMenu: React.FC<NavbarMenuProps> = ({
+    menuItems,
+    pathname,
+    setActiveIndex,
+    setIsMenuOpen,
+}) => {
     const { t } = useTranslation();
 
     return (
@@ -25,7 +30,14 @@ const NavbarMenu: React.FC<NavbarMenuProps> = ({ menuItems, pathname, setActiveI
                     <Link
                         href={item.path}
                         className={`navbar-link ${pathname === item.path ? "active" : ""}`}
-                        style={{ '--active-color': pathname === item.path ? item.color : 'white' } as React.CSSProperties}
+                        style={
+                            {
+                                "--active-color":
+                                    pathname === item.path
+                                        ? item.color
+                                        : "white",
+                            } as React.CSSProperties
+                        }
                         onClick={() => {
                             setActiveIndex(index);
                             setIsMenuOpen(false);

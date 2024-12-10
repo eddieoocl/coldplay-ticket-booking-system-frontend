@@ -1,6 +1,6 @@
 // src/app/profile/page.tsx
-import Navbar from '../components/navbar/Navbar';
-import '../styles/page.css';
+import Navbar from "../components/navbar/Navbar";
+import "../styles/page.css";
 
 const UserProfile = () => {
     return (

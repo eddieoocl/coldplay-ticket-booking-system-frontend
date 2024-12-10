@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import type { RootState } from "@/lib/store";
 import { useDispatch, useSelector } from "react-redux";

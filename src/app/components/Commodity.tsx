@@ -12,7 +12,11 @@ const Commodity: React.FC = (props) => {
             <div className="commodity-info">
                 <p className="commodity-name">
                     {name}
-                    {seating &&<span className="commodity-seating">Seating Type: {seating}</span>}
+                    {seating && (
+                        <span className="commodity-seating">
+                            Seating Type: {seating}
+                        </span>
+                    )}
                 </p>
                 <p className="commodity-description">{description}</p>
             </div>
@@ -22,12 +26,15 @@ const Commodity: React.FC = (props) => {
                 <p>Total: {total}</p>
             </div>
             <div>
-                <button onClick={() => setCommodityAmount(commodityAmount + 1)}>+</button>
-                <button onClick={() => setCommodityAmount(commodityAmount - 1)}>-</button>
+                <button onClick={() => setCommodityAmount(commodityAmount + 1)}>
+                    +
+                </button>
+                <button onClick={() => setCommodityAmount(commodityAmount - 1)}>
+                    -
+                </button>
             </div>
-
         </div>
     );
 };
 
-export default Commodity
+export default Commodity;

@@ -12,9 +12,8 @@ const TotalCount: React.FC = (props) => {
         return items.reduce((acc, item) => acc + item.amount, 0);
     };
     const calculateTotalFee = (items) => {
-        return items.reduce((acc, item) => acc + (item.price * item.amount), 0);
+        return items.reduce((acc, item) => acc + item.price * item.amount, 0);
     };
-
 
     useEffect(() => {
         const calculateTotals = () => {
@@ -22,13 +21,13 @@ const TotalCount: React.FC = (props) => {
             var totalAddOnAmount = 0;
             var totalTicketFee = 0;
             var totalAddOnFee = 0;
-            if(tickets){
-                 totalTicketAmount= calculateTotalAmount(tickets);
-                 totalTicketFee = calculateTotalFee(tickets);
+            if (tickets) {
+                totalTicketAmount = calculateTotalAmount(tickets);
+                totalTicketFee = calculateTotalFee(tickets);
             }
-            if(add_ons){
-                    totalAddOnAmount = calculateTotalAmount(add_ons);
-                    totalAddOnFee = calculateTotalFee(add_ons);
+            if (add_ons) {
+                totalAddOnAmount = calculateTotalAmount(add_ons);
+                totalAddOnFee = calculateTotalFee(add_ons);
             }
             const totalAmount = totalTicketAmount + totalAddOnAmount;
             const totalVal = totalTicketFee + totalAddOnFee;

@@ -5,20 +5,22 @@ import React from "react";
 //todo addon props type is not defined
 const AddOn: React.FC = (props) => {
     const { commodity, setAddOns } = props;
-    const {readOnly} = props;
+    const { readOnly } = props;
     const { id, name, amount, description, price } = commodity;
     const [commodityAmount, setCommodityAmount] = React.useState(amount);
 
     //todo the amount reduce to 0,alert ,agree then remove
     const updateAmount = (newAmount) => {
         if (newAmount <= 0) {
-            setAddOns((prevAddOns) => prevAddOns.filter((add_on) => add_on.id !== id));
+            setAddOns((prevAddOns) =>
+                prevAddOns.filter((add_on) => add_on.id !== id)
+            );
         } else {
             setCommodityAmount(newAmount);
             setAddOns((prevAddOns) =>
                 prevAddOns.map((add_on) =>
-                    add_on.id === id ? { ...add_on, amount: newAmount } : add_on,
-                ),
+                    add_on.id === id ? { ...add_on, amount: newAmount } : add_on
+                )
             );
         }
     };
@@ -38,10 +40,20 @@ const AddOn: React.FC = (props) => {
                 <p>Total: ${total}</p>
             </div>
             {!readOnly && (
-            <div className="button-container">
-                <button className="round-button" onClick={() => updateAmount(commodityAmount + 1)}>+</button>
-                <button className="round-button" onClick={() => updateAmount(commodityAmount - 1)}>-</button>
-            </div>
+                <div className="button-container">
+                    <button
+                        className="round-button"
+                        onClick={() => updateAmount(commodityAmount + 1)}
+                    >
+                        +
+                    </button>
+                    <button
+                        className="round-button"
+                        onClick={() => updateAmount(commodityAmount - 1)}
+                    >
+                        -
+                    </button>
+                </div>
             )}
         </div>
     );

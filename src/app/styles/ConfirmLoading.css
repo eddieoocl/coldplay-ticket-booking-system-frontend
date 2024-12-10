@@ -14,8 +14,8 @@
 .spinner-border {
     width: 3rem;
     height: 3rem;
-    border: 0.3em solid #9370DB;
-    border-top: 0.3em solid #BA55D3;
+    border: 0.3em solid #9370db;
+    border-top: 0.3em solid #ba55d3;
     border-radius: 50%;
     animation: spin 0.75s linear infinite;
 }

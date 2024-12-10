@@ -1,6 +1,6 @@
 // src/app/components/ConcertItem.tsx
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+import React from "react";
+import { useTranslation } from "react-i18next";
 
 interface Concert {
     date: string;
@@ -37,7 +37,7 @@ const ConcertItem: React.FC<ConcertItemProps> = ({ concert, onMoreDetail }) => {
                     className="more-detail-button"
                     onClick={() => onMoreDetail(concert.concertId)}
                 >
-                    {t('More Detail')}
+                    {t("More Detail")}
                 </button>
                 {concert.status}
             </div>

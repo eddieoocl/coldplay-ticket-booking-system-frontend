@@ -12,8 +12,10 @@ import AddOn from "@/app/components/AddOn";
 const ConfirmOrderPage: React.FC = () => {
     const [tickets, setTickets] = useState(data.tickets);
     const [add_ons, setAddOns] = useState(data.add_ons);
-    const [personal_information, setPersonalInformation] = useState(data.personal_information);
-    const readyOnly=true;
+    const [personal_information, setPersonalInformation] = useState(
+        data.personal_information
+    );
+    const readyOnly = true;
 
     return (
         <div className="confirm-order-page">
@@ -25,20 +27,35 @@ const ConfirmOrderPage: React.FC = () => {
             </div>
             <div className="commodity-container">
                 {tickets.map((ticket) => (
-                    <Ticket key={ticket.id} commodity={ticket}  readOnly={readyOnly}/>
+                    <Ticket
+                        key={ticket.id}
+                        commodity={ticket}
+                        readOnly={readyOnly}
+                    />
                 ))}
                 <TotalCount tickets={tickets}></TotalCount>
             </div>
             <div className="commodity-container">
-                    {add_ons.map((add_on) => (
-                        <AddOn key={add_on.id} commodity={add_on} setAddOns={setAddOns} readOnly={readyOnly}/>
-                    ))}
+                {add_ons.map((add_on) => (
+                    <AddOn
+                        key={add_on.id}
+                        commodity={add_on}
+                        setAddOns={setAddOns}
+                        readOnly={readyOnly}
+                    />
+                ))}
                 <TotalCount add_ons={add_ons}></TotalCount>
             </div>
-            <PersonalInformationPage personal_information={personal_information} setPersonalInformation={setPersonalInformation} readOnly={readyOnly}/>
+            <PersonalInformationPage
+                personal_information={personal_information}
+                setPersonalInformation={setPersonalInformation}
+                readOnly={readyOnly}
+            />
             <TotalCount tickets={tickets} add_ons={add_ons} />
             <div className="button-container">
-                <button onClick={() => window.location.href = "/payment"}>pay now</button>
+                <button onClick={() => (window.location.href = "/payment")}>
+                    pay now
+                </button>
             </div>
         </div>
     );

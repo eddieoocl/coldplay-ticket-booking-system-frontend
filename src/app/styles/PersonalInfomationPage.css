@@ -1,6 +1,6 @@
 .personal-info-container {
     /*background-color: rgba(0, 0, 0, 0.8); !* Add transparency *!*/
-    color: #BA55D3;
+    color: #ba55d3;
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
@@ -12,7 +12,7 @@
 .personal-info-container h1 {
     font-size: 1.5rem;
     margin-bottom: 10px;
-    color: #9370DB;
+    color: #9370db;
 }
 
 .personal-info-container p {

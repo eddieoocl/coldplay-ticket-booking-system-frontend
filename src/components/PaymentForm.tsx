@@ -1,59 +1,68 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const PaymentForm: React.FC = () => {
-    const [paymentMethod, setPaymentMethod] = useState('');
-    const [cardNumber, setCardNumber] = useState('');
-    const [expiryDate, setExpiryDate] = useState('');
-    const [cvv, setCvv] = useState('');
-    const [paypalAccount, setPaypalAccount] = useState('');
-    const [error, setError] = useState('');
+    const [paymentMethod, setPaymentMethod] = useState("");
+    const [cardNumber, setCardNumber] = useState("");
+    const [expiryDate, setExpiryDate] = useState("");
+    const [cvv, setCvv] = useState("");
+    const [paypalAccount, setPaypalAccount] = useState("");
+    const [error, setError] = useState("");
     const [amount, setAmount] = useState(0);
-    const [ticketType, setTicketType] = useState('');
-    const [orderNumber, setOrderNumber] = useState('');
+    const [ticketType, setTicketType] = useState("");
+    const [orderNumber, setOrderNumber] = useState("");
 
     useEffect(() => {
         // Fetch the payment amount, ticket type, and order number from the backend
-        fetch('/api/payment-details')
-            .then(response => response.json())
-            .then(data => {
+        fetch("/api/payment-details")
+            .then((response) => response.json())
+            .then((data) => {
                 setAmount(data.amount);
                 setTicketType(data.ticketType);
                 setOrderNumber(data.orderNumber);
             })
-            .catch(error => setError('Failed to fetch payment details.'));
+            .catch((error) => setError("Failed to fetch payment details."));
     }, []);
 
-    const handlePaymentMethodChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handlePaymentMethodChange = (
+        e: React.ChangeEvent<HTMLSelectElement>
+    ) => {
         setPaymentMethod(e.target.value);
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         // Validate payment details
-        if (paymentMethod === 'creditCard' && (!cardNumber || !expiryDate || !cvv)) {
-            setError('Please fill in all required fields.');
+        if (
+            paymentMethod === "creditCard" &&
+            (!cardNumber || !expiryDate || !cvv)
+        ) {
+            setError("Please fill in all required fields.");
             return;
         }
-        if (paymentMethod === 'paypal' && !paypalAccount) {
-            setError('Please enter your PayPal account number.');
+        if (paymentMethod === "paypal" && !paypalAccount) {
+            setError("Please enter your PayPal account number.");
             return;
         }
         // Process payment securely
         // On successful payment, navigate to confirmation page
-        history.push('/confirmation');
+        history.push("/confirmation");
     };
 
     return (
         <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="paymentMethod">Payment Method:</label>
-                <select id="paymentMethod" value={paymentMethod} onChange={handlePaymentMethodChange}>
+                <select
+                    id="paymentMethod"
+                    value={paymentMethod}
+                    onChange={handlePaymentMethodChange}
+                >
                     <option value="">Select a payment method</option>
                     <option value="creditCard">Credit Card</option>
                     <option value="paypal">PayPal</option>
                 </select>
             </div>
-            {paymentMethod === 'creditCard' && (
+            {paymentMethod === "creditCard" && (
                 <div>
                     <div>
                         <label htmlFor="cardNumber">Card Number:</label>
@@ -84,9 +93,11 @@ const PaymentForm: React.FC = () => {
                     </div>
                 </div>
             )}
-            {paymentMethod === 'paypal' && (
+            {paymentMethod === "paypal" && (
                 <div>
-                    <label htmlFor="paypalAccount">PayPal Account Number:</label>
+                    <label htmlFor="paypalAccount">
+                        PayPal Account Number:
+                    </label>
                     <input
                         type="text"
                         id="paypalAccount"
@@ -107,7 +118,7 @@ const PaymentForm: React.FC = () => {
                 <label>Order Number:</label>
                 <p>{orderNumber}</p>
             </div>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {error && <p style={{ color: "red" }}>{error}</p>}
             <button type="submit">Submit Payment</button>
         </form>
     );

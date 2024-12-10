@@ -4,7 +4,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    border-bottom: 1px solid #9370DB;
+    border-bottom: 1px solid #9370db;
     /*background-color: #000;*/
     color: #fff;
     overflow: auto;
@@ -18,7 +18,7 @@
 .order-entry .commodity-name {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #BA55D3;
+    color: #ba55d3;
 }
 
 .order-entry .commodity-description {
@@ -44,7 +44,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #BA55D3;
+    background-color: #ba55d3;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -56,5 +56,5 @@
 }
 
 .round-button:hover {
-    background-color: #9370DB;
+    background-color: #9370db;
 }

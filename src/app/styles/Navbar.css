@@ -92,7 +92,7 @@
 }
 
 .navbar-link.active::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 0;
@@ -116,7 +116,9 @@
     padding: 5px 10px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
 
 .language-selector select:hover {
@@ -145,7 +147,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
 }
 
 .audio-control:hover {
@@ -160,7 +164,7 @@
 }
 
 .play-icon.playing {
-    color: #FFD93D;
+    color: #ffd93d;
 }
 
 .play-icon.playing {
