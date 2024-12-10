@@ -7,10 +7,14 @@ import PersonalInformationPage from "@/app/components/PersonalInformationPage";
 import TotalCount from "@/app/components/TotalCount";
 import Ticket from "@/app/components/Ticket";
 import AddOn from "@/app/components/AddOn";
+import { useGetConcertByIdQuery, useGetOrderByIdQuery } from "@/lib/api/apiSlice";
 
 //todo set timer
 const ConfirmOrderPage: React.FC = () => {
+    const { data: orderData} = useGetOrderByIdQuery({ id: 1 as string });
+    console.log("orderData", orderData);
     const [tickets, setTickets] = useState(data.tickets);
+    console.log("tickets", tickets);
     const [add_ons, setAddOns] = useState(data.add_ons);
     const [personal_information, setPersonalInformation] = useState(
         data.personal_information
@@ -22,8 +26,9 @@ const ConfirmOrderPage: React.FC = () => {
             {/*todo get order information from backend*/}
             <div className="commodity-container">
                 <h1>Order Information</h1>
-                <p>Order Id:xxxx</p>
-                <p>Order time:xxxx</p>
+                <p>Order Id:{orderData.orderId}</p>
+                <p>Order time:{orderData.orderTime}</p>
+                <p>Order status:{orderData.orderStatus}</p>
             </div>
             <div className="commodity-container">
                 {tickets.map((ticket) => (

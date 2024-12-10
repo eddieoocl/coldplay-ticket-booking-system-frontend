@@ -38,7 +38,7 @@ export const apiSlice = createApi({
                 method: "POST",
                 body,
             }),
-        }
+        }),
     }),
 });
 
