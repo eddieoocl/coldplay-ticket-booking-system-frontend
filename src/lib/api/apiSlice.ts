@@ -25,6 +25,9 @@ export const apiSlice = createApi({
         getConcertById: builder.query<ConcertDetailData, { id: string }>({
             query: ({ id }) => `/concerts/${id}`,
         }),
+        getOrderById: builder.query<OrderResponse, { id: string }>({
+            query: ({ id }) => `/orders/${id}`,
+        }),
     }),
 });
 
@@ -33,4 +36,5 @@ export const {
     useCreateTestMutation,
     useGetConcertsQuery,
     useGetConcertByIdQuery,
+    useGetOrderByIdQuery,
 } = apiSlice;
