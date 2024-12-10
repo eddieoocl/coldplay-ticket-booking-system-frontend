@@ -1,55 +1,45 @@
-import React from "react";
-import { useRouter } from "next/navigation";
-import "../styles/ConcertList.css";
-import type { Concert } from "@/types/model/Concert";
+// src/app/components/ConcertItem.tsx
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+
+interface Concert {
+    date: string;
+    year: string;
+    venue: string;
+    location: string;
+    status: string;
+    concertId: string;
+}
 
 interface ConcertItemProps {
     concert: Concert;
+    onMoreDetail: (id: string) => void;
 }
 
-const getRandomColor = () => {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-};
-
-const ConcertItem: React.FC<ConcertItemProps> = ({ concert }) => {
-    const router = useRouter();
+const ConcertItem: React.FC<ConcertItemProps> = ({ concert, onMoreDetail }) => {
+    const { t } = useTranslation();
     const [month, day] = concert.date.split(" ");
-
-    const handleMoreDetail = (id: string) => {
-        router.push(`/concert/${id}`);
-    };
 
     return (
         <div className="item">
             <div className="item-text">
                 <div className="item-title">
-                    {month}{" "}
-                    <span style={{ color: getRandomColor() }}>{day}</span>
+                    {month} <span>{day}</span>
                 </div>
                 <div className="item-year">{concert.year}</div>
             </div>
             <div className="item-venue">
-                <div style={{ color: getRandomColor() }}>{concert.venue}</div>
+                <div>{concert.venue}</div>
                 <div className="item-location">{concert.location}</div>
             </div>
             <div className="item-status">
                 <button
                     className="more-detail-button"
-                    onClick={() => handleMoreDetail(concert.concertId)}
+                    onClick={() => onMoreDetail(concert.concertId)}
                 >
-                    More Detail
+                    {t('More Detail')}
                 </button>
-                <button
-                    className="more-detail-button"
-                    onClick={() => handleMoreDetail(concert.concertId)}
-                >
-                    {concert.status}
-                </button>
+                {concert.status}
             </div>
         </div>
     );

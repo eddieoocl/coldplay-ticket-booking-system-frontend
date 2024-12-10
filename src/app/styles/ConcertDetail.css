@@ -5,12 +5,12 @@ body {
   color: white;
   text-align: center;
 }
-.navbar {
-  display: flex;
-  justify-content: center;
-  padding: 1.5rem; /* 增加 padding */
-  background-color: #001f3f;
-}
+/*.navbar {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  padding: 1.5rem; !* 增加 padding *!*/
+/*  background-color: #001f3f;*/
+/*}*/
 .navbar-list {
   list-style: none;
   display: flex;
