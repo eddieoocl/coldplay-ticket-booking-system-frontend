@@ -8,13 +8,17 @@ import TotalCount from "@/app/components/TotalCount";
 import Ticket from "@/app/components/Ticket";
 import AddOn from "@/app/components/AddOn";
 import { redirect } from "next/navigation";
+import { useGetTicketTypeByIdQuery } from "@/lib/api/apiSlice";
+
 
 //todo set timer
 const SelectCommodityPage: React.FC = () => {
-    const [tickets, setTickets] = useState(data.ticketsType);
+    const { data: ticketsType    ,name,price } = useGetTicketTypeByIdQuery({ id:2 as string });
+    console.log("data",typeof ticketsType);
+    const [tickets, setTickets] = useState([]);
     const [add_ons, setAddOns] = useState(data.add_ons);
     const [personal_information, setPersonalInformation] = useState(data.personal_information);
-
+    console.log("Ticket",tickets);
     function handleClick() {
             redirect(`/confirm-order`);
     }
@@ -25,9 +29,11 @@ const SelectCommodityPage: React.FC = () => {
     return (
         <div className="confirm-order-page">
             <div className="commodity-container">
-                {tickets.map((ticket) => (
-                    <Ticket key={ticket.id} commodity={ticket} setTickets={setTickets} setPersonalInformation={setPersonalInformation}/>
-                ))}
+                {
+                    ticketsType && Object.keys(ticketsType).map((key) => (
+                    <Ticket key={ticketsType[key].id} commodity={ticketsType[key]} setTickets={setTickets} setPersonalInformation={setPersonalInformation}/>
+                    ))
+                }
                 <TotalCount tickets={tickets}></TotalCount>
             </div>
             <PersonalInformationPage tickets={tickets} personal_information={personal_information} setPersonalInformation={setPersonalInformation} />
@@ -42,7 +48,7 @@ const SelectCommodityPage: React.FC = () => {
 
                 <TotalCount add_ons={add_ons}></TotalCount>
             </div>
-            <TotalCount tickets={tickets} add_ons={add_ons} />
+            <TotalCount tickets={data.tickets} add_ons={add_ons} />
 
             {/*todo commit call api*/}
             <div className="button-container">
