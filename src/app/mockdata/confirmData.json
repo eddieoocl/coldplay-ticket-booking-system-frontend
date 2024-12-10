@@ -1,0 +1,24 @@
+{
+  "userId": 1,
+  "phoneNumber": "19521000390",
+  "ticketInfo": [
+    {
+      "ticketTypeId": 10001,
+      "moviegoer": "tony"
+    },
+    {
+      "ticketTypeId": 10002,
+      "moviegoer": "benny"
+    }
+  ],
+  "merchandiseInfo": [
+    {
+      "merchandiseId": 1001,
+      "count": 3
+    },
+    {
+      "merchandiseId": 1002,
+      "count": 10
+    }
+  ]
+}

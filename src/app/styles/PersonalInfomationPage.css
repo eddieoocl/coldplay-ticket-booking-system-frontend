@@ -1,0 +1,32 @@
+.personal-info-container {
+    /*background-color: rgba(0, 0, 0, 0.8); !* Add transparency *!*/
+    color: #BA55D3;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.personal-info-container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #9370DB;
+}
+
+.personal-info-container p {
+    margin: 5px 0;
+    font-size: 1rem; /* Ensure reasonable size */
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
