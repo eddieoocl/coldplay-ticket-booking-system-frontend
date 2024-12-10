@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@/app/styles/ConfirmOrderPage.css";
 import data from "../mockdata/data.json";
@@ -7,17 +7,17 @@ import PersonalInformationPage from "@/app/components/PersonalInformationPage";
 import TotalCount from "@/app/components/TotalCount";
 import Ticket from "@/app/components/Ticket";
 import AddOn from "@/app/components/AddOn";
+import confirmData from "../mockdata/orderData.json";
 import { useGetConcertByIdQuery, useGetOrderByIdQuery } from "@/lib/api/apiSlice";
 
 //todo set timer
 const ConfirmOrderPage: React.FC = () => {
-    const { data: orderData} = useGetOrderByIdQuery({ id: 1 as string });
-    console.log("orderData", orderData);
+    // const { data: orderData} = useGetOrderByIdQuery({ id: 1 as string });
+    const orderData = confirmData;
     const [tickets, setTickets] = useState(data.tickets);
-    console.log("tickets", tickets);
     const [add_ons, setAddOns] = useState(data.add_ons);
     const [personal_information, setPersonalInformation] = useState(
-        data.personal_information
+        data.personal_information,
     );
     const readyOnly = true;
 
@@ -52,7 +52,7 @@ const ConfirmOrderPage: React.FC = () => {
                 <TotalCount add_ons={add_ons}></TotalCount>
             </div>
             <PersonalInformationPage
-                personal_information={personal_information}
+                personal_information={orderData.ticketInfo}
                 setPersonalInformation={setPersonalInformation}
                 readOnly={readyOnly}
             />
