@@ -1,6 +1,7 @@
 import type { Test } from "@/types/model/Test";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { Concert } from "@/types/model/Concert";
+import type { ConcertDetailData } from "@/types/model/ConcertDetailData";
 
 export const apiSlice = createApi({
     reducerPath: "api",
@@ -21,8 +22,15 @@ export const apiSlice = createApi({
         getConcerts: builder.query<Concert[], void>({
             query: () => "/concerts",
         }),
+        getConcertById: builder.query<ConcertDetailData, { id: string }>({
+            query: ({ id }) => `/concerts/${id}`,
+        }),
     }),
 });
 
-export const { useGetTestQuery, useCreateTestMutation, useGetConcertsQuery } =
-    apiSlice;
+export const {
+    useGetTestQuery,
+    useCreateTestMutation,
+    useGetConcertsQuery,
+    useGetConcertByIdQuery,
+} = apiSlice;
