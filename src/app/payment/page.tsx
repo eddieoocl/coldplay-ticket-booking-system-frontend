@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import './page.css';
+import "./page.css";
 
 export default function PaymentPage() {
     const [paymentMethod, setPaymentMethod] = useState("");
@@ -18,24 +18,6 @@ export default function PaymentPage() {
     const expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/; // MM/YY
     const cvvRegex = /^\d{3}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Email format
-
-    useEffect(() => {
-        // Fetch total amount from the backend
-        fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/payments/total-amount`)
-            .then((response) => response.json())
-            .then((data) => setTotalAmount(data))
-            .catch((error) => console.error("Error fetching total amount:", error));
-
-        if (timeLeft === 0) {
-            window.location.reload();
-        }
-
-        const timer = setInterval(() => {
-            setTimeLeft((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
-        }, 1000);
-
-        return () => clearInterval(timer);
-    }, [timeLeft]);
 
     const handlePayment = () => {
         if (paymentMethod === "creditCard") {
@@ -72,12 +54,17 @@ export default function PaymentPage() {
                 {/* Order details */}
                 <div className="mb-4">
                     <h2 className="text-lg font-semibold">Your order</h2>
-                    <p>Amount of money: ${totalAmount ? totalAmount.toFixed(2) : "0.00"}</p>
+                    <p>
+                        Amount of money: $
+                        {totalAmount ? totalAmount.toFixed(2) : "0.00"}
+                    </p>
                 </div>
 
                 {/* Payment method selection */}
                 <div className="mb-4">
-                    <h2 className="text-lg font-semibold">Choose payment method</h2>
+                    <h2 className="text-lg font-semibold">
+                        Choose payment method
+                    </h2>
                     <div className="flex gap-4">
                         <label className="flex items-center gap-2">
                             <input
@@ -85,7 +72,9 @@ export default function PaymentPage() {
                                 name="paymentMethod"
                                 value="creditCard"
                                 checked={paymentMethod === "creditCard"}
-                                onChange={(e) => setPaymentMethod(e.target.value)}
+                                onChange={(e) =>
+                                    setPaymentMethod(e.target.value)
+                                }
                             />
                             Credit Cards Accepted
                         </label>
@@ -95,7 +84,9 @@ export default function PaymentPage() {
                                 name="paymentMethod"
                                 value="paypal"
                                 checked={paymentMethod === "paypal"}
-                                onChange={(e) => setPaymentMethod(e.target.value)}
+                                onChange={(e) =>
+                                    setPaymentMethod(e.target.value)
+                                }
                             />
                             PayPal payment
                         </label>
@@ -119,7 +110,9 @@ export default function PaymentPage() {
                 {/* Payment details input */}
                 {paymentMethod === "creditCard" && (
                     <div className="mb-4">
-                        <h2 className="text-lg font-semibold">Enter credit card information</h2>
+                        <h2 className="text-lg font-semibold">
+                            Enter credit card information
+                        </h2>
                         <div className="flex flex-col gap-2">
                             <input
                                 type="text"
@@ -127,7 +120,10 @@ export default function PaymentPage() {
                                 className="border p-2 rounded"
                                 value={cardDetails.cardNumber}
                                 onChange={(e) =>
-                                    setCardDetails({ ...cardDetails, cardNumber: e.target.value })
+                                    setCardDetails({
+                                        ...cardDetails,
+                                        cardNumber: e.target.value,
+                                    })
                                 }
                             />
                             <input
@@ -136,7 +132,10 @@ export default function PaymentPage() {
                                 className="border p-2 rounded"
                                 value={cardDetails.expiry}
                                 onChange={(e) =>
-                                    setCardDetails({ ...cardDetails, expiry: e.target.value })
+                                    setCardDetails({
+                                        ...cardDetails,
+                                        expiry: e.target.value,
+                                    })
                                 }
                             />
                             <input
@@ -145,7 +144,10 @@ export default function PaymentPage() {
                                 className="border p-2 rounded"
                                 value={cardDetails.cvv}
                                 onChange={(e) =>
-                                    setCardDetails({ ...cardDetails, cvv: e.target.value })
+                                    setCardDetails({
+                                        ...cardDetails,
+                                        cvv: e.target.value,
+                                    })
                                 }
                             />
                         </div>
@@ -154,7 +156,9 @@ export default function PaymentPage() {
 
                 {paymentMethod === "paypal" && (
                     <div className="mb-4">
-                        <h2 className="text-lg font-semibold">Enter PayPal account</h2>
+                        <h2 className="text-lg font-semibold">
+                            Enter PayPal account
+                        </h2>
                         <div className="flex flex-col gap-2">
                             <input
                                 type="text"
@@ -162,7 +166,10 @@ export default function PaymentPage() {
                                 className="border p-2 rounded"
                                 value={cardDetails.paypalAccount}
                                 onChange={(e) =>
-                                    setCardDetails({ ...cardDetails, paypalAccount: e.target.value })
+                                    setCardDetails({
+                                        ...cardDetails,
+                                        paypalAccount: e.target.value,
+                                    })
                                 }
                             />
                         </div>
@@ -185,9 +192,16 @@ export default function PaymentPage() {
             {paymentSuccess && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                     <div className="abc bg-white p-6 rounded shadow-md">
-                        <h2 className="text-lg font-bold mb-4">Payment successful!</h2>
+                        <h2 className="text-lg font-bold mb-4">
+                            Payment successful!
+                        </h2>
                         <p>Order No: 123456789</p>
-                        <p>Payment method: {paymentMethod === "creditCard" ? "Credit Cards Accepted" : "PayPal payment"}</p>
+                        <p>
+                            Payment method:{" "}
+                            {paymentMethod === "creditCard"
+                                ? "Credit Cards Accepted"
+                                : "PayPal payment"}
+                        </p>
                         <p>Amount of money: ${totalAmount.toFixed(2)}</p>
                         <button
                             className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
