@@ -1,18 +1,22 @@
-/* src/app/payment/page.module.css */
+/* src/app/payment/page.css */
 .paymentPage {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('/images/Payment.jpg');
+    /*background-image: url('/images/Payment.jpg');*/
     background-size: cover;
+    background: #ffffff;
     background-position: center;
+    color: black;
 }
 
 .paymentFormContainer {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(24, 24, 24, 0.8);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #000000;
     line-height: 2; /* Increased line spacing */
 }
+

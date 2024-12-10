@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import './page.css';
 
 export default function PaymentPage() {
     const [paymentMethod, setPaymentMethod] = useState("");
@@ -65,7 +66,7 @@ export default function PaymentPage() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen p-4 sm:p-10">
+        <div className="flex flex-col items-center justify-center min-h-screen p-4 sm:p-10 paymentPage">
             <h1 className="text-2xl font-bold mb-6">Payment page</h1>
             <div className="w-full max-w-md border p-4 rounded-md shadow-md bg-white">
                 {/* Order details */}
@@ -183,7 +184,7 @@ export default function PaymentPage() {
             {/* Payment success modal */}
             {paymentSuccess && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                    <div className="bg-white p-6 rounded shadow-md">
+                    <div className="abc bg-white p-6 rounded shadow-md">
                         <h2 className="text-lg font-bold mb-4">Payment successful!</h2>
                         <p>Order No: 123456789</p>
                         <p>Payment method: {paymentMethod === "creditCard" ? "Credit Cards Accepted" : "PayPal payment"}</p>
