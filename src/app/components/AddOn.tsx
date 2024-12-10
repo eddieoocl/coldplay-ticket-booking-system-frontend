@@ -9,6 +9,8 @@ const AddOn: React.FC = (props) => {
     const { id, name, amount, description, price } = commodity;
     const [commodityAmount, setCommodityAmount] = React.useState(amount);
 
+    console.log("addon",commodity)
+
     //todo the amount reduce to 0,alert ,agree then remove
     const updateAmount = (newAmount) => {
         if (newAmount <= 0) {
