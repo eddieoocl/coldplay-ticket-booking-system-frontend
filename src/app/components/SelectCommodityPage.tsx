@@ -7,12 +7,20 @@ import PersonalInformationPage from "@/app/components/PersonalInformationPage";
 import TotalCount from "@/app/components/TotalCount";
 import Ticket from "@/app/components/Ticket";
 import AddOn from "@/app/components/AddOn";
+import { redirect } from "next/navigation";
 
 //todo set timer
 const SelectCommodityPage: React.FC = () => {
     const [tickets, setTickets] = useState(data.ticketsType);
     const [add_ons, setAddOns] = useState(data.add_ons);
     const [personal_information, setPersonalInformation] = useState(data.personal_information);
+
+    function handleClick() {
+            redirect(`/confirm-order`);
+    }
+    function handleReturn() {
+        redirect(`/concert/2`);
+    }
 
     return (
         <div className="confirm-order-page">
@@ -38,8 +46,8 @@ const SelectCommodityPage: React.FC = () => {
 
             {/*todo commit call api*/}
             <div className="button-container">
-                <button onClick={() => window.location.href = "/concert"}>Return</button>
-                <button onClick={() => window.location.href = "/confirm"}>Next</button>
+                <button onClick={handleReturn}>Return</button>
+                <button onClick={handleClick}>Next</button>
             </div>
         </div>
     );
