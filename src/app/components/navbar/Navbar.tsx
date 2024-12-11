@@ -70,9 +70,9 @@ const Navbar = () => {
                             setIsMenuOpen={setIsMenuOpen}
                         />
                         <div className="right-section">
-                            <LanguageSelector/>
-                            <AudioPlayer playOnPaths={playOnPaths}/>
-                            <Login/>
+                            <LanguageSelector />
+                            <AudioPlayer playOnPaths={playOnPaths} />
+                            <Login />
                         </div>
                     </div>
                 </nav>
