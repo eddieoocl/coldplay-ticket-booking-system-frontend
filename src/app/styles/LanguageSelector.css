@@ -1,0 +1,9 @@
+/* LanguageSelector.css */
+.custom-select {
+  width: 100%;
+}
+
+.custom-option {
+  background-color: #1f2937; /* Dark background */
+  color: #ffffff; /* White text */
+}

@@ -16,7 +16,7 @@ export default function ConcertDetails() {
     return (
         <div>
             <Navbar />
-            <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 pt-20">
+            <div className="min-h-[80vh] bg-gradient-to-b from-black to-gray-900 pt-20">
                 <div className="container mx-auto px-4 py-16">
                     <div className="bg-gray-800 rounded-lg shadow-2xl overflow-hidden">
                         <div className="relative h-96">

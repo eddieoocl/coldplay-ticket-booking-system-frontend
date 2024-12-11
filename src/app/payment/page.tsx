@@ -66,6 +66,7 @@ export default function PaymentPage() {
             }
         } else if (paymentMethod === "paypal") {
             if (emailRegex.test(cardDetails.paypalAccount)) {
+                handleUpdateOrderStatus("PAID");
                 setPaymentSuccess(true);
             } else {
                 alert("Please enter a valid PayPal email address");
@@ -231,11 +232,11 @@ export default function PaymentPage() {
                             className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
                             onClick={() => {
                                 setPaymentSuccess(false);
-                                window.open(`/ticket/${orderId}`);
+                                window.open(`/order?orderId=${orderId}`);
                                 router.push("/");
                             }}
                         >
-                            Go to Ticket
+                            Go to get Ticket
                         </button>
                     </div>
                 </div>
