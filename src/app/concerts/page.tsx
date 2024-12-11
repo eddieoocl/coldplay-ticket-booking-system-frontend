@@ -4,9 +4,9 @@ import ConcertList from "@/app/components/ConcertList";
 
 const Concert = () => {
     return (
-        <div className="home-container">
-            <ConcertList />
+        <div className="concert-container">
             <Navbar />
+            <ConcertList />
         </div>
     );
 };
