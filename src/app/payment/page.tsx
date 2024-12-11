@@ -2,17 +2,16 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import "./page.css";
-import { useUpdateOrderStatusMutation } from "@/lib/api/apiSlice";
+import {
+    useGetOrderByIdQuery,
+    useUpdateOrderStatusMutation,
+} from "@/lib/api/apiSlice";
 
 export default function PaymentPage() {
     const router = useRouter();
     const searchParams = useSearchParams();
 
     const orderId = searchParams.get("orderId");
-
-    if (!orderId) {
-        return <div>Invalid order id</div>;
-    }
 
     const [paymentMethod, setPaymentMethod] = useState("");
     const [cardDetails, setCardDetails] = useState({
@@ -22,15 +21,25 @@ export default function PaymentPage() {
         paypalAccount: "",
     });
     const [paymentSuccess, setPaymentSuccess] = useState(false);
-    const [timeLeft, setTimeLeft] = useState(600); // 10 minutes in seconds
-    const [totalAmount, setTotalAmount] = useState(0); // Initialize total amount
 
     const cardNumberRegex = /^\d{16}$/;
     const expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/; // MM/YY
     const cvvRegex = /^\d{3}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Email format
 
+    const { data: order, isLoading: isLoadingOrder } = useGetOrderByIdQuery({
+        id: Number(orderId ?? 0),
+    });
+
     const [updateOrderStatus] = useUpdateOrderStatusMutation();
+
+    if (!orderId) {
+        return <div>Invalid order id</div>;
+    }
+
+    if (!order || isLoadingOrder) {
+        return <div>Loading...</div>;
+    }
 
     const handleUpdateOrderStatus = async (status: string) => {
         try {
@@ -66,11 +75,7 @@ export default function PaymentPage() {
         }
     };
 
-    const formatTime = (seconds: number) => {
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = seconds % 60;
-        return `${minutes}:${remainingSeconds < 10 ? "0" : ""}${remainingSeconds}`;
-    };
+    const { totalPrices } = order;
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen p-4 sm:p-10 paymentPage">
@@ -79,10 +84,7 @@ export default function PaymentPage() {
                 {/* Order details */}
                 <div className="mb-4">
                     <h2 className="text-lg font-semibold">Your order</h2>
-                    <p>
-                        Amount of money: $
-                        {totalAmount ? totalAmount.toFixed(2) : "0.00"}
-                    </p>
+                    <p>Amount of money: ${totalPrices}</p>
                 </div>
 
                 {/* Payment method selection */}
@@ -202,9 +204,6 @@ export default function PaymentPage() {
                 )}
 
                 {/* Submit button */}
-                <div className="mb-4 text-center">
-                    <p>Remaining Payment Time: {formatTime(timeLeft)}</p>
-                </div>
                 <button
                     className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
                     onClick={handlePayment}
@@ -220,14 +219,14 @@ export default function PaymentPage() {
                         <h2 className="text-lg font-bold mb-4">
                             Payment successful!
                         </h2>
-                        <p>Order No: 123456789</p>
+                        <p>Order No: {orderId}</p>
                         <p>
                             Payment method:{" "}
                             {paymentMethod === "creditCard"
                                 ? "Credit Cards Accepted"
                                 : "PayPal payment"}
                         </p>
-                        <p>Amount of money: ${totalAmount.toFixed(2)}</p>
+                        <p>Amount of money: ${totalPrices}</p>
                         <button
                             className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
                             onClick={() => {
