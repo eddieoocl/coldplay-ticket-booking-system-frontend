@@ -12,6 +12,7 @@ import {
     XAxis,
     YAxis,
 } from "recharts";
+import "./ConcertDetails.css";
 
 interface ConcertDetailsProps {
     concert: {
@@ -52,47 +53,47 @@ interface ConcertDetailsProps {
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884D8"];
 
 export default function ConcertDetails({
-    concert,
-    onClose,
-}: ConcertDetailsProps) {
+                                           concert,
+                                           onClose,
+                                       }: ConcertDetailsProps) {
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-gray-800 rounded-lg shadow-xl p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-                <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-2xl font-bold text-yellow-400">
-                        {concert.name} 详情
+        <div className="modal-overlay">
+            <div className="modal-container">
+                <div className="modal-header">
+                    <h2 className="modal-title">
+                        {concert.name} Details
                     </h2>
                     <button
                         onClick={onClose}
-                        className="text-gray-400 hover:text-white"
+                        className="close-button"
                     >
                         <XCircle />
                     </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid-layout">
                     <div>
-                        <h3 className="text-xl font-semibold mb-2 text-blue-300">
-                            基本信息
+                        <h3 className="section-title-blue">
+                            Basic Information
                         </h3>
-                        <p className="text-gray-300">日期: {concert.date}</p>
-                        <p className="text-gray-300">
-                            售出票数: {concert.ticketsSold}
+                        <p className="info-text">Date: {concert.date}</p>
+                        <p className="info-text">
+                            Tickets Sold: {concert.ticketsSold}
                         </p>
-                        <p className="text-gray-300">
-                            票务收入: ¥{concert.ticketRevenue}
+                        <p className="info-text">
+                            Ticket Revenue: ¥{concert.ticketRevenue}
                         </p>
-                        <p className="text-gray-300">
-                            周边收入: ¥{concert.merchandiseSales}
+                        <p className="info-text">
+                            Merchandise Sales: ¥{concert.merchandiseSales}
                         </p>
-                        <p className="text-gray-300">
-                            公益商品收入: ¥{concert.charitableSales}
+                        <p className="info-text">
+                            Charitable Sales: ¥{concert.charitableSales}
                         </p>
                     </div>
 
                     <div>
-                        <h3 className="text-xl font-semibold mb-2 text-green-300">
-                            观众年龄分布
+                        <h3 className="section-title-green">
+                            Audience Age Distribution
                         </h3>
                         <ResponsiveContainer width="100%" height={200}>
                             <PieChart>
@@ -111,11 +112,7 @@ export default function ConcertDetails({
                                         (entry, index) => (
                                             <Cell
                                                 key={`cell-${index}`}
-                                                fill={
-                                                    COLORS[
-                                                        index % COLORS.length
-                                                    ]
-                                                }
+                                                fill={COLORS[index % COLORS.length]}
                                             />
                                         )
                                     )}
@@ -126,9 +123,9 @@ export default function ConcertDetails({
                     </div>
                 </div>
 
-                <div className="mt-6">
-                    <h3 className="text-xl font-semibold mb-2 text-pink-300">
-                        粉丝地区分布
+                <div className="section-container">
+                    <h3 className="section-title-pink">
+                        Fan Distribution by Region
                     </h3>
                     <ResponsiveContainer width="100%" height={200}>
                         <PieChart>
@@ -155,9 +152,9 @@ export default function ConcertDetails({
                     </ResponsiveContainer>
                 </div>
 
-                <div className="mt-6">
-                    <h3 className="text-xl font-semibold mb-2 text-yellow-400">
-                        销售趋势
+                <div className="section-container">
+                    <h3 className="section-title-yellow">
+                        Sales Trend
                     </h3>
                     <ResponsiveContainer width="100%" height={300}>
                         <BarChart data={concert.salesTrend}>
@@ -166,67 +163,61 @@ export default function ConcertDetails({
                             <YAxis />
                             <Tooltip />
                             <Legend />
-                            <Bar dataKey="sales" fill="#8884d8" name="销售额" />
+                            <Bar dataKey="sales" fill="#8884d8" name="Sales" />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>
 
-                <div className="mt-6">
-                    <h3 className="text-xl font-semibold mb-2 text-pink-300">
-                        热销周边
+                <div className="section-container">
+                    <h3 className="section-title-pink">
+                        Top Selling Merchandise
                     </h3>
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-left">
+                    <div className="table-container">
+                        <table className="table">
                             <thead>
-                                <tr className="text-gray-400 border-b border-gray-700">
-                                    <th className="py-2 px-4">商品名称</th>
-                                    <th className="py-2 px-4">售出数量</th>
-                                    <th className="py-2 px-4">收入</th>
-                                </tr>
+                            <tr className="table-header">
+                                <th className="table-cell">Item Name</th>
+                                <th className="table-cell">Quantity Sold</th>
+                                <th className="table-cell">Revenue</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                {concert.topSellingItems.map((item, index) => (
-                                    <tr
-                                        key={index}
-                                        className="border-b border-gray-700"
-                                    >
-                                        <td className="py-2 px-4 text-white">
-                                            {item.name}
-                                        </td>
-                                        <td className="py-2 px-4 text-gray-400">
-                                            {item.quantity}
-                                        </td>
-                                        <td className="py-2 px-4 text-gray-400">
-                                            ¥{item.revenue}
-                                        </td>
-                                    </tr>
-                                ))}
+                            {concert.topSellingItems.map((item, index) => (
+                                <tr key={index} className="table-row">
+                                    <td className="table-cell-white">
+                                        {item.name}
+                                    </td>
+                                    <td className="table-cell-gray">
+                                        {item.quantity}
+                                    </td>
+                                    <td className="table-cell-gray">
+                                        ¥{item.revenue}
+                                    </td>
+                                </tr>
+                            ))}
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <div className="mt-6">
-                    <h3 className="text-xl font-semibold mb-2 text-yellow-400">
-                        公益绿色商品详情
+                <div className="section-container">
+                    <h3 className="section-title-yellow">
+                        Charitable Merchandise Details
                     </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="charitable-grid">
                         {concert.charitableItems.map((item, index) => (
-                            <div
-                                key={index}
-                                className="bg-gray-700 rounded-lg p-4"
-                            >
-                                <h4 className="text-lg font-medium text-white mb-2">
+                            <div key={index} className="charitable-item">
+                                <h4 className="charitable-title">
                                     {item.name}
                                 </h4>
-                                <p className="text-gray-300">
-                                    售出数量: {item.quantity}
+                                <p className="info-text">
+                                    Quantity Sold: {item.quantity}
                                 </p>
-                                <p className="text-gray-300">
-                                    收入: ¥{item.revenue}
+                                <p className="info-text">
+                                    Revenue: ¥{item.revenue}
                                 </p>
-                                <p className="text-green-400 mt-2">
-                                    影响: {item.impact}
+                                <p className="charitable-impact">
+                                    Impact: {item.impact}
                                 </p>
                             </div>
                         ))}

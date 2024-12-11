@@ -1,7 +1,7 @@
 /* scr/app/styles/Navbar.css */
 
 .navbar {
-    background: rgba(51, 51, 51, 0.9);
+    background: rgba(7, 13, 23, 0.6); /* Adjusted transparency */
     position: fixed;
     width: 100%;
     height: 70px;

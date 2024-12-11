@@ -29,8 +29,6 @@ const Navbar = () => {
     );
     const pathname = usePathname();
 
-    const playOnPaths = ["/concerts"];
-
     const menuItems: MenuItem[] = [
         {name: "Home", path: "/", color: "#FF6B6B"},
         {name: "Concert", path: "/concerts", color: "#FFD93D"},

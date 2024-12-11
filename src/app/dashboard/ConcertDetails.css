@@ -1,0 +1,95 @@
+.modal-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50;
+}
+
+.modal-container {
+    @apply bg-gray-800 rounded-lg shadow-xl p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto;
+}
+
+.modal-header {
+    @apply flex justify-between items-center mb-4;
+}
+
+.modal-title {
+    @apply text-2xl font-bold text-yellow-400;
+}
+
+.close-button {
+    @apply text-gray-400 hover:text-white;
+}
+
+.grid-layout {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+}
+
+.section-title {
+    @apply text-xl font-semibold mb-2;
+}
+
+.section-title-blue {
+    @apply text-xl font-semibold mb-2 text-blue-300;
+}
+
+.section-title-green {
+    @apply text-xl font-semibold mb-2 text-green-300;
+}
+
+.section-title-pink {
+    @apply text-xl font-semibold mb-2 text-pink-300;
+}
+
+.section-title-yellow {
+    @apply text-xl font-semibold mb-2 text-yellow-400;
+}
+
+.info-text {
+    @apply text-gray-300;
+}
+
+.section-container {
+    @apply mt-6;
+}
+
+.table-container {
+    @apply overflow-x-auto;
+}
+
+.table {
+    @apply w-full text-left;
+}
+
+.table-header {
+    @apply text-gray-400 border-b border-gray-700;
+}
+
+.table-cell {
+    @apply py-2 px-4;
+}
+
+.table-row {
+    @apply border-b border-gray-700;
+}
+
+.table-cell-white {
+    @apply py-2 px-4 text-white;
+}
+
+.table-cell-gray {
+    @apply py-2 px-4 text-gray-400;
+}
+
+.charitable-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-4;
+}
+
+.charitable-item {
+    @apply bg-gray-700 rounded-lg p-4;
+}
+
+.charitable-title {
+    @apply text-lg font-medium text-white mb-2;
+}
+
+.charitable-impact {
+    @apply text-green-400 mt-2;
+}
