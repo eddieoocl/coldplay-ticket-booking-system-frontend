@@ -1,7 +1,7 @@
 "use client";
 
-import React, {useContext, useEffect, useState} from "react";
-import {usePathname} from "next/navigation";
+import React, { useContext, useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import NavbarToggle from "./NavbarToggle";
 import NavbarMenu from "@/app/components/navbar/NarbarMenu";
 import LanguageSelector from "./LanguageSelector";
@@ -11,8 +11,7 @@ import Image from "next/image";
 
 export const UserInteractionContext = React.createContext({
     hasInteracted: false,
-    setHasInteracted: (value: boolean) => {
-    },
+    setHasInteracted: (value: boolean) => {},
 });
 
 interface MenuItem {
@@ -24,18 +23,16 @@ interface MenuItem {
 const Navbar = () => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const {hasInteracted, setHasInteracted} = useContext(
+    const { hasInteracted, setHasInteracted } = useContext(
         UserInteractionContext
     );
     const pathname = usePathname();
 
     const menuItems: MenuItem[] = [
-        {name: "Home", path: "/", color: "#FF6B6B"},
-        {name: "Concert", path: "/concerts", color: "#FFD93D"},
-        {name: "My tickets", path: "/my-tickets", color: "#6BCB77"},
-        {name: "News", path: "/news", color: "#4D96FF"},
-        {name: "Song list", path: "/song-list", color: "#FF9F9F"},
-        {name: "User Profile", path: "/profile", color: "#6FEDD6"},
+        { name: "Home", path: "/", color: "#FF6B6B" },
+        { name: "Concert", path: "/concerts", color: "#FFD93D" },
+        { name: "News", path: "/news", color: "#4D96FF" },
+        { name: "Song list", path: "/song-list", color: "#FF9F9F" },
     ];
 
     useEffect(() => {
@@ -53,7 +50,7 @@ const Navbar = () => {
 
     return (
         <UserInteractionContext.Provider
-            value={{hasInteracted, setHasInteracted}}
+            value={{ hasInteracted, setHasInteracted }}
         >
             <div onClick={handleGlobalClick}>
                 <NavbarToggle
@@ -64,7 +61,12 @@ const Navbar = () => {
                     <div className="navbar-container">
                         <div className="left-section">
                             <div className="navbar-logo">
-                                <Image src="/image/navbar-logo.png" alt="logo" width={150} height={0}/>
+                                <Image
+                                    src="/image/navbar-logo.png"
+                                    alt="logo"
+                                    width={150}
+                                    height={0}
+                                />
                             </div>
                             <NavbarMenu
                                 menuItems={menuItems}
@@ -74,9 +76,9 @@ const Navbar = () => {
                             />
                         </div>
                         <div className="right-section">
-                            <LanguageSelector/>
+                            <LanguageSelector />
                             {/*<AudioPlayer playOnPaths={playOnPaths}/>*/}
-                            <Login/>
+                            <Login />
                         </div>
                     </div>
                 </nav>

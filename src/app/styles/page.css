@@ -55,7 +55,7 @@
 
 .image-background {
     position: absolute;
-    top: 0;
+    top: 0px;
     left: 0;
     width: 100%;
     height: 100%;
@@ -126,6 +126,10 @@
     backdrop-filter: blur(5px);
 }
 
+.video-home-container {
+    border-radius: 0;
+}
+
 /* 添加響應式設計 */
 @media (max-width: 768px) {
     .hero-section {
@@ -141,13 +145,4 @@
     .image-background::after {
         height: 40%; /* 在手機上增加模糊區域 */
     }
-}
-
-body {
-    background-image: url('/image/bg2.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-
 }

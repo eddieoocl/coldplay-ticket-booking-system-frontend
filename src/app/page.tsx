@@ -17,7 +17,7 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="hero-section">
+            <section className="hero-section video-home-container">
                 <video autoPlay loop muted playsInline className="hero-video">
                     <source src="/video/coldplay.mp4" type="video/mp4" />
                 </video>
