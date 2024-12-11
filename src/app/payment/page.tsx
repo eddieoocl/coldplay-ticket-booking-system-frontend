@@ -1,14 +1,19 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import "./page.css";
 import { useUpdateOrderStatusMutation } from "@/lib/api/apiSlice";
 
-// TODO: remove this mock data
-const ticketID = "3";
-
 export default function PaymentPage() {
     const router = useRouter();
+    const searchParams = useSearchParams();
+
+    const orderId = searchParams.get("orderId");
+
+    if (!orderId) {
+        return <div>Invalid order id</div>;
+    }
+
     const [paymentMethod, setPaymentMethod] = useState("");
     const [cardDetails, setCardDetails] = useState({
         cardNumber: "",
@@ -30,7 +35,7 @@ export default function PaymentPage() {
     const handleUpdateOrderStatus = async (status: string) => {
         try {
             await updateOrderStatus({
-                id: ticketID,
+                id: orderId,
                 status: status,
             });
         } catch (error) {
@@ -227,7 +232,7 @@ export default function PaymentPage() {
                             className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
                             onClick={() => {
                                 setPaymentSuccess(false);
-                                window.open(`/ticket/${ticketID}`);
+                                window.open(`/ticket/${orderId}`);
                                 router.push("/");
                             }}
                         >
