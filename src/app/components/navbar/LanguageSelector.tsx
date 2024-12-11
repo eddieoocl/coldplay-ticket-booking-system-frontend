@@ -10,6 +10,7 @@ const LanguageSelector: React.FC = () => {
     return (
         <div className="language-selector">
             <select
+                className="language-select"
                 onChange={(e) => changeLanguage(e.target.value)}
                 defaultValue={i18n.language}
             >
