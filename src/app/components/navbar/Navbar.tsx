@@ -28,7 +28,7 @@ const Navbar = () => {
     );
     const pathname = usePathname();
 
-    const playOnPaths = ["/concerts", "/my-tickets"];
+    const playOnPaths = ["/concert"];
 
     const menuItems: MenuItem[] = [
         { name: "Home", path: "/", color: "#FF6B6B" },
@@ -69,9 +69,11 @@ const Navbar = () => {
                             setActiveIndex={setActiveIndex}
                             setIsMenuOpen={setIsMenuOpen}
                         />
-                        <LanguageSelector />
-                        <Login />
-                        <AudioPlayer playOnPaths={playOnPaths} />
+                        <div className="right-section">
+                            <LanguageSelector/>
+                            <AudioPlayer playOnPaths={playOnPaths}/>
+                            <Login/>
+                        </div>
                     </div>
                 </nav>
             </div>
