@@ -1,8 +1,14 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import "./page.css";
+import { useUpdateOrderStatusMutation } from "@/lib/api/apiSlice";
+
+// TODO: remove this mock data
+const ticketID = "3";
 
 export default function PaymentPage() {
+    const router = useRouter();
     const [paymentMethod, setPaymentMethod] = useState("");
     const [cardDetails, setCardDetails] = useState({
         cardNumber: "",
@@ -19,6 +25,19 @@ export default function PaymentPage() {
     const cvvRegex = /^\d{3}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Email format
 
+    const [updateOrderStatus] = useUpdateOrderStatusMutation();
+
+    const handleUpdateOrderStatus = async (status: string) => {
+        try {
+            await updateOrderStatus({
+                id: ticketID,
+                status: status,
+            });
+        } catch (error) {
+            console.error("Failed to update order status:", error);
+        }
+    };
+
     const handlePayment = () => {
         if (paymentMethod === "creditCard") {
             if (
@@ -26,6 +45,7 @@ export default function PaymentPage() {
                 expiryRegex.test(cardDetails.expiry) &&
                 cvvRegex.test(cardDetails.cvv)
             ) {
+                handleUpdateOrderStatus("PAID");
                 setPaymentSuccess(true);
             } else {
                 alert("Please provide valid credit card information");
@@ -41,7 +61,7 @@ export default function PaymentPage() {
         }
     };
 
-    const formatTime = (seconds) => {
+    const formatTime = (seconds: number) => {
         const minutes = Math.floor(seconds / 60);
         const remainingSeconds = seconds % 60;
         return `${minutes}:${remainingSeconds < 10 ? "0" : ""}${remainingSeconds}`;
@@ -205,9 +225,13 @@ export default function PaymentPage() {
                         <p>Amount of money: ${totalAmount.toFixed(2)}</p>
                         <button
                             className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-                            onClick={() => setPaymentSuccess(false)}
+                            onClick={() => {
+                                setPaymentSuccess(false);
+                                window.open(`/ticket/${ticketID}`);
+                                router.push("/");
+                            }}
                         >
-                            Return to homepage
+                            Go to Ticket
                         </button>
                     </div>
                 </div>
