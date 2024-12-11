@@ -5,7 +5,6 @@ import {usePathname} from "next/navigation";
 import NavbarToggle from "./NavbarToggle";
 import NavbarMenu from "@/app/components/navbar/NarbarMenu";
 import LanguageSelector from "./LanguageSelector";
-import AudioPlayer from "./AudioPlayer";
 import "../../styles/Navbar.css";
 import Login from "../Login";
 import Image from "next/image";
