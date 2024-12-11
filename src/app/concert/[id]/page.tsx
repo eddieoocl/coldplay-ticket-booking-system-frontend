@@ -80,7 +80,7 @@ export default function ConcertDetails() {
 
                             <div className="mt-8 flex justify-center">
                                 <Link
-                                    href={`/select-order/${concert.concertId}`}
+                                    href={`/select-order?concertId=${concert.concertId}`}
                                     className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 flex items-center"
                                 >
                                     <Ticket className="w-5 h-5 mr-2" />
