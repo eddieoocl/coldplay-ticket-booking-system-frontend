@@ -14,6 +14,7 @@ import {
 } from "@/lib/api/apiSlice";
 import type { OrderRequest } from "@/types/model/OrderRequest";
 import TotalCountMerchandise from "./TotalCountMerchandise";
+import { useRouter } from "next/navigation";
 
 const SelectTicketPage: React.FC<{
     concertId: string;
@@ -23,6 +24,8 @@ const SelectTicketPage: React.FC<{
     const { data: merchandises, isLoading: isLoadingMerchandise } =
         useGetMerchandiseByConcertIdQuery({ id: concertId });
     const [createOrderMutation] = useCreateOrderMutation();
+
+    const router = useRouter();
 
     const [orderRequest, setOrderRequest] = useState<OrderRequest>({
         userId: 1,
@@ -36,11 +39,11 @@ const SelectTicketPage: React.FC<{
         if (error) {
             return;
         }
-        redirect(`/confirm-order?orderId=${order.orderId}`);
+        router.push(`/confirm-order?orderId=${order.orderId}`);
     };
 
     function handleReturn() {
-        redirect(`/concert/${concertId}`);
+        router.back();
     }
 
     if (
