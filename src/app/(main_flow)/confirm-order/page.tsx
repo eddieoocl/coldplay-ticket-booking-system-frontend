@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import "../styles/page.css";
+import "../../styles/page.css";
 import ConfirmOrderPage from "@/app/components/ConfirmOrderPage";
 
 const ConfirmOrder = () => {

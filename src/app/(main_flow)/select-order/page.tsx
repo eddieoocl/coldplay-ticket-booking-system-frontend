@@ -1,6 +1,6 @@
 "use client";
 
-import "../styles/page.css";
+import "../../styles/page.css";
 import SelectTicketPage from "@/app/components/SelectTicketPage";
 import { useSearchParams } from "next/navigation";
 
