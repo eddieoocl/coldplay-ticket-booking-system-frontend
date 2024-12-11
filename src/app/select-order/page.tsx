@@ -1,8 +1,19 @@
+"use client";
+
 import "../styles/page.css";
-import SelectCommodityPage from "@/app/components/SelectCommodityPage";
+import SelectTicketPage from "@/app/components/SelectTicketPage";
+import { useSearchParams } from "next/navigation";
 
 const SelectOrder = () => {
-    return <SelectCommodityPage />;
+    const searchParams = useSearchParams();
+
+    const concertId = searchParams.get("concertId");
+
+    if (!concertId) {
+        return <div>Invalid concert id</div>;
+    }
+
+    return <SelectTicketPage concertId={concertId} />;
 };
 
 export default SelectOrder;

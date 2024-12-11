@@ -20,7 +20,7 @@ const ConcertDetail: React.FC = () => {
 
     const handleClick = () => {
         if (concert?.status !== "SOLD OUT") {
-            redirect(`/select-order?=concertId=${id}`);
+            redirect(`/select-order?concertId=${id}`);
         }
     };
 

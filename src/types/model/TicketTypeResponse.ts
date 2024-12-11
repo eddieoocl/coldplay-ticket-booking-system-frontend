@@ -1,5 +1,5 @@
 export default interface TicketTypeResponse {
-    id: string;
+    id: number;
     name: string;
     price: number;
 }

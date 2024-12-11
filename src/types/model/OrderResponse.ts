@@ -1,5 +1,5 @@
 interface OrderResponse {
-    orderId: string;
+    orderId: number;
     totalPrices: string;
     orderTime: string;
     orderStatus: string;
@@ -8,6 +8,7 @@ interface OrderResponse {
 }
 
 interface TicketInfo {
+    id: number;
     ticketType: string;
     moviegoer: string;
     ticketNumber: string;
@@ -15,6 +16,7 @@ interface TicketInfo {
 }
 
 interface MerchandiseInfo {
+    merchandiseId: number;
     merchandiseName: string;
     price: number;
     count: number;

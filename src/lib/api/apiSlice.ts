@@ -3,6 +3,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { Concert } from "@/types/model/Concert";
 import type { ConcertDetailData } from "@/types/model/ConcertDetailData";
 import type TicketTypeResponse from "@/types/model/TicketTypeResponse";
+import type { Merchandise } from "@/types/model/Merchandise";
+import type { OrderRequest } from "@/types/model/OrderRequest";
 
 export const apiSlice = createApi({
     reducerPath: "api",
@@ -26,13 +28,16 @@ export const apiSlice = createApi({
         getConcertById: builder.query<ConcertDetailData, { id: string }>({
             query: ({ id }) => `/concerts/${id}`,
         }),
-        getOrderById: builder.query<OrderResponse, { id: string }>({
+        getOrderById: builder.query<OrderResponse, { id: number }>({
             query: ({ id }) => `/orders/${id}`,
         }),
-        getTicketTypeById: builder.query<TicketTypeResponse, { id: string }>({
+        getTicketTypeById: builder.query<TicketTypeResponse[], { id: string }>({
             query: ({ id }) => `/ticket-types/concert/${id}`,
         }),
-        createOrder: builder.mutation<OrderResponse, Omit<OrderResponse, "id">>({
+        getMerchandiseByConcertId: builder.query<Merchandise[], { id: string }>(
+            { query: ({ id }) => `/merchandises/${id}` }
+        ),
+        createOrder: builder.mutation<OrderResponse, OrderRequest>({
             query: (body) => ({
                 url: "/orders",
                 method: "POST",
@@ -49,5 +54,6 @@ export const {
     useGetConcertByIdQuery,
     useGetOrderByIdQuery,
     useGetTicketTypeByIdQuery,
+    useGetMerchandiseByConcertIdQuery,
     useCreateOrderMutation,
 } = apiSlice;
