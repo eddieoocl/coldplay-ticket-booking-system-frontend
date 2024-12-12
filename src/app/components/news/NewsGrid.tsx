@@ -20,16 +20,35 @@ const NewsGrid = () => {
     const newsData: NewsGrid[] = [
         {
             id: 1,
-            date: "2024-12-10",
+            date: "2024-12-12",
             category: t("Press Release"),
-            title: "Coldplay Announces New Album Release",
+            title: "🔥 Coldplay Adds Emergency Concert Due to High Demand 🔥",
             description:
-                "Coldplay is set to release their highly anticipated new album, featuring a blend of classic and innovative sounds.",
-            image: "/image/coldplay-album.jpg",
+                "Due to overwhelming demand, Coldplay has announced an emergency additional concert on December 20, 2024. This unexpected event is a testament to the band's immense popularity and the dedication of their fans. Attendees can look forward to an unforgettable night filled with electrifying performances, stunning visuals, and an atmosphere charged with excitement and energy. The concert will feature a mix of Coldplay's classic hits and new tracks, ensuring a memorable experience for all. Don't miss this unique opportunity to see one of the world's most beloved bands live in action.",
+            image: "/image/coldplay-emergency-concert.jpg",
+            featured: true
         },
         {
             id: 2,
-            date: "2024-11-15",
+            date: "2024-11-20",
+            category: t("Blog"),
+            title: "Behind the Scenes: Making of the New Album",
+            description:
+                "Get an exclusive look at the creative process behind Coldplay's latest album.",
+            image: "/image/coldplay-studio.jpg",
+        },
+        {
+            id: 3,
+            date: "2024-11-08",
+            category: t("Blog"),
+            title: "Top 10 Coldplay Songs of All Time - Fan Picks",
+            description:
+                "A look at the most iconic and beloved songs from Coldplay's extensive discography.",
+            image: "/image/coldplay-top10.jpg",
+        },
+        {
+            id: 4,
+            date: "2024-11-02",
             category: t("Event"),
             title: "Coldplay World Tour 2024",
             description:
@@ -38,16 +57,7 @@ const NewsGrid = () => {
             featured: true
         },
         {
-            id: 3,
-            date: "2024-10-05",
-            category: t("Blog"),
-            title: "Behind the Scenes: Making of the New Album",
-            description:
-                "Get an exclusive look at the creative process behind Coldplay's latest album.",
-            image: "/image/coldplay-studio.jpg",
-        },
-        {
-            id: 4,
+            id: 5,
             date: "2024-09-20",
             category: t("Press Release"),
             title: "Coldplay Partners with Environmental Organizations",
@@ -55,15 +65,6 @@ const NewsGrid = () => {
                 "\"Coldplay announces a new partnership with leading environmental organizations to promote sustainability. This collaboration aims to support various environmental initiatives, focusing on reducing carbon footprints, promoting renewable energy, and raising awareness about climate change. Together, they plan to implement eco-friendly practices in their tours and productions, ensuring a greener future for the music industry and beyond.\"",
             image: "/image/coldplay-environment.jpg",
             featured: true,
-        },
-        {
-            id: 5,
-            date: "2024-08-30",
-            category: t("Blog"),
-            title: "Top 10 Coldplay Songs of All Time - Fan Picks",
-            description:
-                "A look at the most iconic and beloved songs from Coldplay's extensive discography.",
-            image: "/image/coldplay-top10.jpg",
         },
         {
             id: 6,

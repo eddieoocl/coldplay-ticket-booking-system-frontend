@@ -32,7 +32,7 @@ const SongListPage = () => {
     const [songs] = useState<Song[]>([
         {
             id: 1,
-            title: "Yellow",
+            title: "1. Yellow",
             album: "Parachutes",
             year: "2000",
             duration: "4:29",
@@ -41,7 +41,7 @@ const SongListPage = () => {
         },
         {
             id: 2,
-            title: "Fix You",
+            title: "2. Fix You",
             album: "X&Y",
             year: "2005",
             duration: "4:55",
@@ -50,7 +50,7 @@ const SongListPage = () => {
         },
         {
             id: 3,
-            title: "Viva La Vida",
+            title: "3. Viva La Vida",
             album: "Viva la Vida or Death and All His Friends",
             year: "2008",
             duration: "4:01",
@@ -59,7 +59,7 @@ const SongListPage = () => {
         },
         {
             id: 4,
-            title: "Clocks",
+            title: "4. Clocks",
             album: "A Rush of Blood to the Head",
             year: "2002",
             duration: "5:07",
@@ -68,7 +68,7 @@ const SongListPage = () => {
         },
         {
             id: 5,
-            title: "Paradise",
+            title: "5. Paradise",
             album: "Mylo Xyloto",
             year: "2011",
             duration: "4:38",
@@ -77,7 +77,7 @@ const SongListPage = () => {
         },
         {
             id: 6,
-            title: "The Scientist",
+            title: "6. The Scientist",
             album: "A Rush of Blood to the Head",
             year: "2002",
             duration: "5:09",
@@ -86,7 +86,7 @@ const SongListPage = () => {
         },
         {
             id: 7,
-            title: "Adventure of a Lifetime",
+            title: "7. Adventure of a Lifetime",
             album: "A Head Full of Dreams",
             year: "2015",
             duration: "4:23",
@@ -95,7 +95,7 @@ const SongListPage = () => {
         },
         {
             id: 8,
-            title: "Hymn for the Weekend",
+            title: "8. Hymn for the Weekend",
             album: "A Head Full of Dreams",
             year: "2015",
             duration: "4:18",
@@ -114,14 +114,16 @@ const SongListPage = () => {
             <div className="song-list-main">
                 <div className="song-list-header">
                     <div className="song-list-h1-title">
-                        <h1>Coldplay {t("Songs")}</h1>
+                        <h1>COLDPLAY ASiA TOUR 2025</h1>
                     </div>
                     <div className="song-list-filters">
                         <select className="filter-dropdown">
-                            <option value="">{t("All Albums")}</option>
-                            <option value="parachutes">Parachutes</option>
-                            <option value="x&y">X&Y</option>
-                            <option value="viva">Viva la Vida</option>
+                            <option value="">{t("Hong Kong")}</option>
+                        </select>
+                        <select className="filter-dropdown">
+                            <option value="">{t("March 13")}</option>
+                            <option value="parachutes">March 12</option>
+                            <option value="x&y">March 11</option>
                         </select>
                         <select className="filter-dropdown">
                             <option value="">{t("Sort by")}</option>

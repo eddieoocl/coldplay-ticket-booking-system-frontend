@@ -77,7 +77,6 @@ const Navbar = () => {
                         </div>
                         <div className="right-section">
                             <LanguageSelector />
-                            {/*<AudioPlayer playOnPaths={playOnPaths}/>*/}
                             <Login />
                         </div>
                     </div>
