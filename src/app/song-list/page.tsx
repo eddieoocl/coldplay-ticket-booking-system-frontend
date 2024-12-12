@@ -51,6 +51,51 @@ const SongListPage = () => {
             imageUrl: "/image/song-cover-viva-la-vida.jpg",
             audioUrl: "/audio/viva-la-vida.mp3"
         },
+        {
+            id: 4,
+            title: "Clocks",
+            album: "A Rush of Blood to the Head",
+            year: "2002",
+            duration: "5:07",
+            imageUrl: "/image/song-cover-clocks.jpg",
+            audioUrl: "/audio/clocks.mp3"
+        },
+        {
+            id: 5,
+            title: "Paradise",
+            album: "Mylo Xyloto",
+            year: "2011",
+            duration: "4:38",
+            imageUrl: "/image/song-cover-paradise.jpg",
+            audioUrl: "/audio/paradise.mp3"
+        },
+        {
+            id: 6,
+            title: "The Scientist",
+            album: "A Rush of Blood to the Head",
+            year: "2002",
+            duration: "5:09",
+            imageUrl: "/image/song-cover-the-scientist.jpg",
+            audioUrl: "/audio/the-scientist.mp3"
+        },
+        {
+            id: 7,
+            title: "Adventure of a Lifetime",
+            album: "A Head Full of Dreams",
+            year: "2015",
+            duration: "4:23",
+            imageUrl: "/image/song-cover-adventure-of-a-lifetime.jpg",
+            audioUrl: "/audio/adventure-of-a-lifetime.mp3"
+        },
+        {
+            id: 8,
+            title: "Hymn for the Weekend",
+            album: "A Head Full of Dreams",
+            year: "2015",
+            duration: "4:18",
+            imageUrl: "/image/song-cover-hymn-for-the-weekend.jpg",
+            audioUrl: "/audio/hymn-for-the-weekend.mp3"
+        }
     ]);
 
     const handleSongClick = (song: Song) => {
@@ -62,7 +107,9 @@ const SongListPage = () => {
             <Navigation />
             <div className="song-list-main">
                 <div className="song-list-header">
-                    <h1>Coldplay Songs</h1>
+                    <div className="title">
+                        <h1>Coldplay Songs</h1>
+                    </div>
                     <div className="song-list-filters">
                         <select className="filter-dropdown">
                             <option value="">All Albums</option>

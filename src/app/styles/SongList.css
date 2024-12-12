@@ -1,13 +1,30 @@
 /* src/app/styles/SongList.css */
+:root {
+    --primary-bg: rgba(17, 23, 33, 0.95);
+    --card-bg: linear-gradient(145deg, rgba(30, 34, 47, 0.9), rgba(25, 29, 40, 0.9));
+    --card-hover-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+    --text-primary: #e8e8e8;
+    --text-secondary: #b0b0b0;
+    --accent-color: #0b4966;  /* Darker blue */
+    --accent-gradient: linear-gradient(90deg, #4d7284, #043c54);  /* Darker blue gradient */
+    --hover-gradient: linear-gradient(90deg, #043c54, #0b4966);  /* Darker hover gradient */
+}
+
 .song-list-main {
-    padding: 4rem 0 0 0;
+    padding: 2rem 0 0 0;
     max-width: 1440px;
-    margin: auto;
+    margin: 100px auto 28px auto;
     width: 100%;
-    min-height: 80vh;
+    height: 90vh;
     border-radius: 0.5rem;
-    background: rgba(0, 0, 0, 0.4);
+    background: var(--primary-bg);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+
+.song-list-main::-webkit-scrollbar {
+    display: none;
+    width: 10px;
 }
 
 .song-list-header {
@@ -19,7 +36,7 @@
 }
 
 .song-list-header h1 {
-    color: #ffffff;
+    color: var(--text-primary);
     font-size: 2.5rem;
     font-weight: 700;
 }
@@ -30,9 +47,9 @@
 }
 
 .filter-dropdown {
-    background: rgba(51, 51, 51, 0.9);
+    background: rgba(30, 34, 47, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #ffffff;
+    color: var(--text-primary);
     padding: 10px 20px;
     border-radius: 8px;
     cursor: pointer;
@@ -40,8 +57,8 @@
 }
 
 .filter-dropdown:hover {
-    background: rgba(71, 71, 71, 0.9);
-    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(40, 44, 57, 0.9);
+    border-color: var(--accent-color);
 }
 
 .songs-grid {
@@ -52,27 +69,34 @@
 }
 
 .song-card {
-    background: rgba(51, 51, 51, 0.9);
-    border-radius: 12px;
+    background: var(--card-bg);
+    border-radius: 16px;
     overflow: hidden;
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
 }
 
 .song-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--card-hover-shadow);
+    border-color: var(--accent-color);
 }
 
 .song-card-image {
     width: 100%;
-    height: 200px;
+    height: 220px;
     background-size: cover;
     background-position: center;
     position: relative;
+    transition: all 0.3s ease;
+}
+
+.song-card:hover .song-card-image {
+    transform: scale(1.05);
 }
 
 .play-overlay {
@@ -81,12 +105,12 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .song-card:hover .play-overlay {
@@ -94,39 +118,107 @@
 }
 
 .play-icon {
-    color: #ffffff;
-    font-size: 3rem;
-    background: rgba(0, 0, 0, 0.6);
-    width: 60px;
-    height: 60px;
+    color: var(--text-primary);
+    font-size: 2.5rem;
+    background: linear-gradient(145deg, rgba(79, 70, 229, 0.3), rgba(124, 58, 237, 0.3));
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.song-card:hover .play-icon {
+    transform: translateY(0);
+    background: var(--accent-gradient);
 }
 
 .song-card-content {
-    padding: 20px;
+    padding: 24px;
+    background: linear-gradient(to top, rgba(30, 34, 47, 0.95), rgba(30, 34, 47, 0.8));
 }
 
 .song-title {
-    color: #ffffff;
-    font-size: 1.2rem;
+    color: var(--text-primary);
+    font-size: 1.3rem;
     font-weight: 600;
-    margin: 0 0 8px 0;
+    margin: 0 0 10px 0;
+    transition: color 0.3s ease;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.song-card:hover .song-title {
+    color: var(--accent-color);
+    text-shadow: 0 0 10px rgba(79, 70, 229, 0.3);
 }
 
 .song-album {
-    color: #cccccc;
-    font-size: 0.9rem;
-    margin: 0 0 12px 0;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 0 0 15px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.3s ease;
+}
+
+.song-card:hover .song-album {
+    color: var(--text-primary);
 }
 
 .song-meta {
     display: flex;
     justify-content: space-between;
-    color: #999999;
-    font-size: 0.8rem;
+    align-items: center;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.song-meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.title {
+    padding-left: 10px;
+    position: relative;
+    display: inline-block;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 10px;
+    width: 0;
+    height: 2px;
+    background: var(--accent-gradient);
+    transition: width 0.3s ease;
+}
+
+.title:hover {
+    color: var(--accent-color);
+    text-shadow: 0 0 10px rgba(79, 70, 229, 0.3);
+    transform: translateY(-2px);
+}
+
+.title:hover::after {
+    width: calc(100% - 10px);
 }
 
 @media (max-width: 768px) {
@@ -152,5 +244,17 @@
     .songs-grid {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 20px;
+    }
+
+    .song-card-image {
+        height: 180px;
+    }
+
+    .song-card-content {
+        padding: 20px;
+    }
+
+    .song-title {
+        font-size: 1.2rem;
     }
 }
