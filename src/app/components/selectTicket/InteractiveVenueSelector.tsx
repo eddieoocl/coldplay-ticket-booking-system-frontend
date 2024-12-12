@@ -221,7 +221,7 @@ export default function InteractiveVenueSelector({
                     >
                         <p>{hoveredSection.name}</p>
                         <p>
-                            {t("Price")}: ¥{hoveredSection.price}
+                            {t("Price")}: ${hoveredSection.price}
                         </p>
                         <p>
                             {t("Remaining")}: {hoveredSection.quantity}
@@ -263,7 +263,7 @@ export default function InteractiveVenueSelector({
                             {t("Selected Section")}: {currentSection.name}
                         </p>
                         <p>
-                            {t("Price")}: ¥{currentSection.price}
+                            {t("Price")}: ${currentSection.price}
                         </p>
                         <p>
                             {t("Remaining")}: {currentSection.quantity}
