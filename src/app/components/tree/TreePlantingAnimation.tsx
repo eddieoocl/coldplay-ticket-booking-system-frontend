@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useSpring, animated, config } from "react-spring";
 import TreeGrowthAnimation from "./TreeGrowthAnimation";
+import { useTranslation } from "react-i18next";
 
 interface TreePlantingAnimationProps {
     treePlanterRank: number;
@@ -17,6 +18,8 @@ export default function TreePlantingAnimation({
 }: TreePlantingAnimationProps) {
     const [show, setShow] = useState(false);
     const [showNumbers, setShowNumbers] = useState(false);
+
+    const { t } = useTranslation();
 
     const rankNumber = useSpring({
         number: showNumbers ? treePlanterRank : 0,
@@ -66,20 +69,20 @@ export default function TreePlantingAnimation({
                 {showNumbers && (
                     <>
                         <h2 className="text-4xl font-bold mb-8">
-                            感谢您的贡献！
+                            {t("Contribution")}
                         </h2>
                         <p className="text-2xl mb-4">
-                            您是第{" "}
+                            {t("Contribution Rank 1")}{" "}
                             <animated.span className="font-bold text-yellow-400 text-5xl mx-2">
                                 {rankNumber.number.to((n) => Math.floor(n))}
                             </animated.span>{" "}
-                            位种树的人
+                            {t("Contribution Rank 2")}
                         </p>
-                        <p className="text-2xl">目前我们已经累计种植了</p>
+                        <p className="text-2xl">{t("Current Tree 1")}</p>
                         <animated.span className="font-bold text-green-400 text-6xl block my-4">
                             {treesNumber.number.to((n) => Math.floor(n))}
                         </animated.span>
-                        <p className="text-2xl">棵树</p>
+                        <p className="text-2xl">{t("Current Tree 2")}</p>
                     </>
                 )}
             </div>

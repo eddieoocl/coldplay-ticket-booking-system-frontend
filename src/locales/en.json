@@ -67,5 +67,10 @@
     "Sort by": "Sort by",
     "Name": "Name",
     "Album": "Album",
-    "Year": "Year"
+    "Year": "Year",
+    "Contribution": "Thank you for your contribution!",
+    "Contribution Rank 1": "You are the",
+    "Contribution Rank 2": "st contributor!",
+    "Current Tree 1": "Currently we have already planted",
+    "Current Tree 2": "trees"
 }
