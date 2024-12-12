@@ -7,7 +7,6 @@ import NewsGrid from "../components/news/NewsGrid";
 import "../styles/page.css";
 import "../styles/NewsGrid.css";
 
-
 const Page = () => {
     const { t } = useTranslation();
 
@@ -18,7 +17,9 @@ const Page = () => {
             <main className="news-main">
                 <div className="news-header">
                     <div className="news-h1-title">
-                        <h1 className="news-h1-title-text">{t("Latest News")}</h1>
+                        <h1 className="news-h1-title-text">
+                            {t("Latest News")}
+                        </h1>
                     </div>
                 </div>
                 <NewsGrid />

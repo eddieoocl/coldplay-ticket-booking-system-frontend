@@ -25,7 +25,7 @@ const NewsGrid = () => {
             title: t("News 1 Title"),
             description: t("News 1 Description"),
             image: "/image/coldplay-emergency-concert.jpg",
-            featured: true
+            featured: true,
         },
         {
             id: 2,
@@ -51,7 +51,7 @@ const NewsGrid = () => {
             description: t("News 4 Description"),
             image: "/image/coldplay-environment.jpg",
             featured: true,
-        }
+        },
     ];
 
     return (
