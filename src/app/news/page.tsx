@@ -15,7 +15,7 @@ const Page = () => {
                         <h1 className="news-h1-title-text">Latest News</h1>
                     </div>
                 </div>
-                <NewsGrid/>
+                <NewsGrid />
             </main>
         </div>
     );

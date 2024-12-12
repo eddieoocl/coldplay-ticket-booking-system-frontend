@@ -26,7 +26,7 @@ const NewsGrid = () => {
             description:
                 "Due to overwhelming demand, Coldplay has announced an emergency additional concert on December 20, 2024. This unexpected event is a testament to the band's immense popularity and the dedication of their fans. Attendees can look forward to an unforgettable night filled with electrifying performances, stunning visuals, and an atmosphere charged with excitement and energy. The concert will feature a mix of Coldplay's classic hits and new tracks, ensuring a memorable experience for all. Don't miss this unique opportunity to see one of the world's most beloved bands live in action.",
             image: "/image/coldplay-emergency-concert.jpg",
-            featured: true
+            featured: true,
         },
         {
             id: 2,
@@ -54,7 +54,7 @@ const NewsGrid = () => {
             description:
                 "\"Join Coldplay on their highly anticipated world tour, where they will be performing in major cities across the globe. Experience the magic of their live performances, featuring a mix of their classic hits and new tracks from their latest album. Don't miss the chance to see one of the world's most iconic bands in action, creating unforgettable memories for fans everywhere.\"",
             image: "/image/coldplay-tour.png",
-            featured: true
+            featured: true,
         },
         {
             id: 5,
@@ -62,7 +62,7 @@ const NewsGrid = () => {
             category: t("Press Release"),
             title: "Coldplay Partners with Environmental Organizations",
             description:
-                "\"Coldplay announces a new partnership with leading environmental organizations to promote sustainability. This collaboration aims to support various environmental initiatives, focusing on reducing carbon footprints, promoting renewable energy, and raising awareness about climate change. Together, they plan to implement eco-friendly practices in their tours and productions, ensuring a greener future for the music industry and beyond.\"",
+                '"Coldplay announces a new partnership with leading environmental organizations to promote sustainability. This collaboration aims to support various environmental initiatives, focusing on reducing carbon footprints, promoting renewable energy, and raising awareness about climate change. Together, they plan to implement eco-friendly practices in their tours and productions, ensuring a greener future for the music industry and beyond."',
             image: "/image/coldplay-environment.jpg",
             featured: true,
         },

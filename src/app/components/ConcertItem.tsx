@@ -39,7 +39,9 @@ const ConcertItem: React.FC<ConcertItemProps> = ({ concert, onMoreDetail }) => {
                 >
                     {t("More Detail")}
                 </button>
-                <span className={concert.status === "SOLD OUT" ? "sold-out" : ""}>
+                <span
+                    className={concert.status === "SOLD OUT" ? "sold-out" : ""}
+                >
                     {concert.status}
                 </span>
             </div>

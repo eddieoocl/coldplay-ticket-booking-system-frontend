@@ -12,11 +12,10 @@ const Login: React.FC = () => {
     if (session) {
         return (
             <div className="flex justify-between items-center">
-                <div className="navbar-user-name text-gray-300">{session?.user?.name}</div>
-                <Link
-                    href={"/logout"}
-                    className="navbar-button"
-                >
+                <div className="navbar-user-name text-gray-300">
+                    {session?.user?.name}
+                </div>
+                <Link href={"/logout"} className="navbar-button">
                     {t("Logout")}
                 </Link>
             </div>
@@ -24,11 +23,7 @@ const Login: React.FC = () => {
     }
 
     return (
-        <Link
-            type="button"
-            className="navbar-button"
-            href={"/login"}
-        >
+        <Link type="button" className="navbar-button" href={"/login"}>
             {t("Login")}
         </Link>
     );

@@ -1,13 +1,21 @@
 /* src/app/styles/NewsGrid.css */
 :root {
     --primary-bg: rgba(17, 23, 33, 0.95);
-    --card-bg: linear-gradient(145deg, rgba(30, 34, 47, 0.9), rgba(25, 29, 40, 0.9));
+    --card-bg: linear-gradient(
+        145deg,
+        rgba(30, 34, 47, 0.9),
+        rgba(25, 29, 40, 0.9)
+    );
     --card-hover-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
     --text-primary: #e8e8e8;
     --text-secondary: #b0b0b0;
-    --accent-color: #b1acac;  /* Darker blue */
+    --accent-color: #b1acac; /* Darker blue */
     --accent-gradient: linear-gradient(90deg, #6fa3b6, #065a7a);
-    --hover-gradient: linear-gradient(90deg, #043c54, #0b4966);  /* Darker hover gradient */
+    --hover-gradient: linear-gradient(
+        90deg,
+        #043c54,
+        #0b4966
+    ); /* Darker hover gradient */
 }
 
 .news-main {
@@ -65,7 +73,11 @@
 .news-item-content {
     padding: 24px;
     flex: 1;
-    background: linear-gradient(to top, rgba(30, 34, 47, 0.95), rgba(30, 34, 47, 0.8));
+    background: linear-gradient(
+        to top,
+        rgba(30, 34, 47, 0.95),
+        rgba(30, 34, 47, 0.8)
+    );
 }
 
 .news-meta {
@@ -133,7 +145,7 @@
 }
 
 .news-image::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -195,7 +207,7 @@
 }
 
 .lasest-news::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -3px;
     left: 10px;
@@ -205,7 +217,7 @@
     transition: width 0.3s ease;
 }
 
-.news-header{
+.news-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -230,7 +242,7 @@
 }
 
 .news-h1-title::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -3px;
     left: 10px;
@@ -255,11 +267,12 @@
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 12px;
-    transition: color 0.3s ease, transform 0.3s ease;
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
 }
 
 .news-item:hover .news-title {
     color: var(--accent-color);
     transform: translateY(-2px);
 }
-
