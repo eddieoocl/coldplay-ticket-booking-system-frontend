@@ -1,12 +1,7 @@
-import type { Concert } from "./Concert";
-
 export interface Merchandise {
-    merchandiseId: number;
-    concert: Concert;
+    id: number;
     name: string;
-    description: string;
     price: number;
-    quantity: number;
-    availableQuantity: number;
-    imageUrl: string;
+    image: string;
+    isCharity: boolean;
 }

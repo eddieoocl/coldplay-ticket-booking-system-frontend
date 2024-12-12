@@ -8,6 +8,8 @@ import { SessionProvider, useSession } from "next-auth/react";
 import AudioPlayer from "./components/AudioPlayer";
 import { useState, createContext, useEffect } from "react";
 import { usePathname } from 'next/navigation';
+import Footer from "@/app/components/Footer";
+import Navbar from "@/app/components/navbar/Navbar";
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -66,6 +68,7 @@ export default function RootLayout({
                     <InnerLayout currentSong={currentSong} setCurrentSong={setCurrentSong}>
                         {children}
                     </InnerLayout>
+                    <Footer/>
                     </body>
                     </html>
                 </RootLayoutContext.Provider>

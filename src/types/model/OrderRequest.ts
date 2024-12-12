@@ -1,13 +1,12 @@
 export interface OrderRequest {
     userId: number;
-    phoneNumber: string;
     ticketInfo: TicketInfo[];
     merchandiseInfo: MerchandiseInfo[];
 }
 
 interface TicketInfo {
     ticketTypeId: number;
-    moviegoer: string;
+    count: number;
 }
 
 interface MerchandiseInfo {

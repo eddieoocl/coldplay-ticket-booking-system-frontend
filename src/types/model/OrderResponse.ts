@@ -1,23 +1,33 @@
 interface OrderResponse {
-    orderId: number;
-    totalPrices: string;
+    orderId: string;
+    concertId: string;
     orderTime: string;
-    orderStatus: string;
+    totalPrices: string;
+    paymentMethod: string;
+    paymentStatus: string;
     ticketInfo: TicketInfo[];
     merchandiseInfo: MerchandiseInfo[];
+    concertData: {
+        id: string;
+        name: string;
+        date: string;
+        time: string;
+        venue: string;
+        address: string;
+    };
 }
 
 interface TicketInfo {
-    id: number;
+    id: string;
     ticketType: string;
-    moviegoer: string;
-    ticketNumber: string;
-    price: number;
+    price: string;
+    seat: string;
 }
 
 interface MerchandiseInfo {
-    merchandiseId: number;
+    merchandiseId: string;
     merchandiseName: string;
     price: number;
     count: number;
+    isCharity: boolean;
 }
