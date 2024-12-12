@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import { CreditCard, Leaf, Package, Ticket } from "lucide-react";
 import ProgressBar from "@/app/components/ProgressBar";
@@ -9,6 +9,7 @@ import { useSearchParams } from "next/navigation";
 import { useGetOrderByIdQuery } from "@/lib/api/apiSlice";
 import Navbar from "@/app/components/navbar/Navbar";
 import { useTranslation } from "react-i18next";
+import TreePlantingAnimation from "@/app/components/tree/TreePlantingAnimation";
 
 export default function OrderConfirmation() {
     const params = useSearchParams();
@@ -28,6 +29,23 @@ export default function OrderConfirmation() {
         { name: t("Payment"), href: "", status: "complete" as const },
         { name: t("View Order"), href: "", status: "current" as const },
     ];
+
+    const [showAnimation, setShowAnimation] = useState(false);
+    const [treePlanterRank, setTreePlanterRank] = useState(0);
+    const [totalTreesPlanted, setTotalTreesPlanted] = useState(0);
+    useEffect(() => {
+        if (order) {
+            // const treePlantingItem = order.merchandiseInfo.find(item => item.isCharity);
+            const treePlantingItem = true;
+            console.log("treePlantingItem");
+            console.log(treePlantingItem);
+            if (treePlantingItem) {
+                setTreePlanterRank(12345); // Example rank
+                setTotalTreesPlanted(1000000); // Example total trees planted
+                setShowAnimation(true);
+            }
+        }
+    }, [order]);
 
     if (!order || isLoadingOrder) {
         return <div>Loading...</div>;
@@ -219,6 +237,13 @@ export default function OrderConfirmation() {
                         </button>
                     </div>
                 </div>
+                {showAnimation && (
+                    <TreePlantingAnimation
+                        treePlanterRank={treePlanterRank}
+                        totalTreesPlanted={totalTreesPlanted}
+                        onClose={() => setShowAnimation(false)}
+                    />
+                )}
             </div>
         </div>
     );
