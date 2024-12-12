@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useGetConcertsQuery } from "@/lib/api/apiSlice";
 import { useTranslation } from "react-i18next";
 import ConcertItem from "./ConcertItem";
+import CircularProgress from "@mui/material/CircularProgress";
 import "../styles/ConcertList.css";
 
 interface ConcertListProps {
@@ -17,7 +18,7 @@ const ConcertList: React.FC<ConcertListProps> = ({ className }) => {
     const { data: concerts, error, isLoading } = useGetConcertsQuery();
     const { t } = useTranslation();
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <CircularProgress sx={{ color: "#FFD93D" }} />;
     if (error) return <div>Error loading concerts</div>;
 
     const handleMoreDetail = (id: string) => {
