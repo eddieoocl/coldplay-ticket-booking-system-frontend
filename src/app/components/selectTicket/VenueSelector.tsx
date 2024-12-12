@@ -84,7 +84,7 @@ export default function VenueSelector({
                         </p>
                         <p>容量: {selectedArea.capacity}人</p>
                         <p>
-                            {t("Price")}: ¥{selectedArea.price}
+                            {t("Price")}: ${selectedArea.price}
                         </p>
                     </div>
                 ) : (

@@ -76,13 +76,13 @@ export default function ConcertDetails({
                             Tickets Sold: {concert.ticketsSold}
                         </p>
                         <p className="info-text">
-                            Ticket Revenue: ¥{concert.ticketRevenue}
+                            Ticket Revenue: ${concert.ticketRevenue}
                         </p>
                         <p className="info-text">
-                            Merchandise Sales: ¥{concert.merchandiseSales}
+                            Merchandise Sales: ${concert.merchandiseSales}
                         </p>
                         <p className="info-text">
-                            Charitable Sales: ¥{concert.charitableSales}
+                            Charitable Sales: ${concert.charitableSales}
                         </p>
                     </div>
 
@@ -190,7 +190,7 @@ export default function ConcertDetails({
                                             {item.quantity}
                                         </td>
                                         <td className="table-cell-gray">
-                                            ¥{item.revenue}
+                                            ${item.revenue}
                                         </td>
                                     </tr>
                                 ))}
@@ -213,7 +213,7 @@ export default function ConcertDetails({
                                     Quantity Sold: {item.quantity}
                                 </p>
                                 <p className="info-text">
-                                    Revenue: ¥{item.revenue}
+                                    Revenue: ${item.revenue}
                                 </p>
                                 <p className="charitable-impact">
                                     Impact: {item.impact}

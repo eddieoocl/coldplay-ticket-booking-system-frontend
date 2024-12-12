@@ -218,7 +218,7 @@ export default function TicketSelection() {
                                                 {ticket.section.name}
                                             </p>
                                             <p className="text-sm text-gray-300">
-                                                ¥{ticket.section.price}
+                                                ${ticket.section.price}
                                             </p>
                                         </div>
                                         <div className="flex items-center gap-2">
@@ -303,7 +303,7 @@ export default function TicketSelection() {
                                                     )}
                                                 </p>
                                                 <p className="text-sm text-gray-300">
-                                                    ¥{item.price}
+                                                    ${item.price}
                                                 </p>
                                                 {item.isCharity && (
                                                     <p className="text-xs text-green-300 mt-1">
@@ -342,7 +342,7 @@ export default function TicketSelection() {
                                                 )}
                                             </p>
                                             <p className="text-sm text-gray-300">
-                                                ¥{merch.item.price}
+                                                ${merch.item.price}
                                             </p>
                                             {merch.item.isCharity && (
                                                 <p className="text-xs text-green-300 mt-1">
@@ -398,7 +398,7 @@ export default function TicketSelection() {
                                     {t("Total")}
                                 </p>
                                 <p className="text-2xl font-bold text-white">
-                                    ¥{totalPrice}
+                                    ${totalPrice}
                                 </p>
                             </div>
 

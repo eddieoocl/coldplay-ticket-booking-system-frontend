@@ -206,7 +206,7 @@ export default function Dashboard() {
                     <StatCard
                         icon={<DollarSign />}
                         title="Total Revenue"
-                        value="¥1,500,000"
+                        value="$1,500,000"
                         change="+22%"
                     />
                     <StatCard
@@ -313,13 +313,13 @@ export default function Dashboard() {
                                             {concert.ticketsSold}
                                         </td>
                                         <td className="py-3 px-4 text-gray-400">
-                                            ¥{concert.ticketRevenue}
+                                            ${concert.ticketRevenue}
                                         </td>
                                         <td className="py-3 px-4 text-gray-400">
-                                            ¥{concert.merchandiseSales}
+                                            ${concert.merchandiseSales}
                                         </td>
                                         <td className="py-3 px-4 text-gray-400">
-                                            ¥{concert.charitableSales}
+                                            ${concert.charitableSales}
                                         </td>
                                         <td className="py-3 px-4">
                                             <button
@@ -376,7 +376,7 @@ export default function Dashboard() {
                                                 Quantity Sold: {item.quantity}
                                             </p>
                                             <p className="text-gray-300">
-                                                Revenue: ¥{item.revenue}
+                                                Revenue: ${item.revenue}
                                             </p>
                                             <p className="text-green-400 mt-2">
                                                 Impact: {item.impact}

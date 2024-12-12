@@ -63,7 +63,7 @@ export default function OrderConfirmation() {
                         </p>
                         <p className="text-white">
                             <span className="text-gray-400">{t("Total")}:</span>{" "}
-                            ¥{order.totalPrices}
+                            ${order.totalPrices}
                         </p>
                         <p className="text-white">
                             <span className="text-gray-400">
@@ -128,7 +128,7 @@ export default function OrderConfirmation() {
                                         {t("Seat")}: {t("Waiting for Payment")}
                                     </p>
                                     <p className="text-sm text-gray-300">
-                                        {t("Price")}: ¥{ticket.price}
+                                        {t("Price")}: ${ticket.price}
                                     </p>
                                 </div>
                             </div>
@@ -158,10 +158,10 @@ export default function OrderConfirmation() {
                                         {t("Quantity")}: {item.count}
                                     </p>
                                     <p className="text-sm text-gray-300">
-                                        {t("Unit Price")}: ¥{item.price}
+                                        {t("Unit Price")}: ${item.price}
                                     </p>
                                     <p className="text-sm font-semibold text-white">
-                                        {t("Total")}: ¥{item.price * item.count}
+                                        {t("Total")}: ${item.price * item.count}
                                     </p>
                                     {item.isCharity && (
                                         <p className="text-xs text-green-300 mt-1">
