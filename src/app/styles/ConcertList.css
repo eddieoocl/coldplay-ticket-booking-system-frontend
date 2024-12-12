@@ -18,7 +18,7 @@
 .concert-list-container {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 65%;
     margin: 20px auto 28px auto;
     background: var(--primary-bg);
     padding: 2rem;
