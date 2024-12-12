@@ -1,9 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@/app/styles/ConfirmOrderPage.css";
 import { useGetOrderByIdQuery } from "@/lib/api/apiSlice";
-import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
 
 //todo set timer

@@ -1,15 +1,14 @@
 // src/app/layout.tsx
-'use client';
+"use client";
 
 import localFont from "next/font/local";
 import "./globals.css";
 import StoreProvider from "./providers/StoreProvider";
 import { SessionProvider, useSession } from "next-auth/react";
 import AudioPlayer from "./components/AudioPlayer";
-import { useState, createContext, useEffect } from "react";
-import { usePathname } from 'next/navigation';
+import { useState, createContext, useEffect, Suspense } from "react";
+import { usePathname } from "next/navigation";
 import Footer from "@/app/components/Footer";
-import Navbar from "@/app/components/navbar/Navbar";
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -36,11 +35,13 @@ interface RootLayoutContextType {
     setCurrentSong: React.Dispatch<React.SetStateAction<Song | null>>;
 }
 
-export const RootLayoutContext = createContext<RootLayoutContextType | undefined>(undefined);
+export const RootLayoutContext = createContext<
+    RootLayoutContextType | undefined
+>(undefined);
 
 export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
+    children,
+}: Readonly<{
     children: React.ReactNode;
 }>) {
     const [currentSong, setCurrentSong] = useState<Song | null>(null);
@@ -55,22 +56,27 @@ export default function RootLayout({
         <StoreProvider>
             <SessionProvider>
                 <RootLayoutContext.Provider value={{ setCurrentSong }}>
-                    <html lang="en">
-                    <head>
-                        <link
-                            rel="stylesheet"
-                            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-                        />
-                    </head>
-                    <body
-                        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-                    >
-                    <InnerLayout currentSong={currentSong} setCurrentSong={setCurrentSong}>
-                        {children}
-                    </InnerLayout>
-                    <Footer/>
-                    </body>
-                    </html>
+                    <Suspense>
+                        <html lang="en">
+                            <head>
+                                <link
+                                    rel="stylesheet"
+                                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                                />
+                            </head>
+                            <body
+                                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                            >
+                                <InnerLayout
+                                    currentSong={currentSong}
+                                    setCurrentSong={setCurrentSong}
+                                >
+                                    {children}
+                                </InnerLayout>
+                                <Footer />
+                            </body>
+                        </html>
+                    </Suspense>
                 </RootLayoutContext.Provider>
             </SessionProvider>
         </StoreProvider>

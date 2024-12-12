@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use } from "react";
+import React from "react";
 import { CreditCard, Leaf, Package, Ticket } from "lucide-react";
 import ProgressBar from "@/app/components/ProgressBar";
 import { useRouter, useSearchParams } from "next/navigation";

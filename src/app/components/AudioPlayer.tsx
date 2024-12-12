@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React, { useEffect, useRef } from 'react';
-import '../styles/AudioPlayer.css';
+import React, { useEffect, useRef } from "react";
+import "../styles/AudioPlayer.css";
 
 interface Song {
     id: number;
@@ -35,11 +35,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ currentSong }) => {
 
     return (
         <div className="audio-player">
-            <audio
-                ref={audioRef}
-                controls
-                src={currentSong.audioUrl}
-            >
+            <audio ref={audioRef} controls src={currentSong.audioUrl}>
                 Your browser does not support the audio element.
             </audio>
         </div>

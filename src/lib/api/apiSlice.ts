@@ -1,10 +1,10 @@
-import type { Test } from "@/types/model/Test"
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import type { Concert } from "@/types/model/Concert"
-import type { ConcertDetailData } from "@/types/model/ConcertDetailData"
-import type TicketTypeResponse from "@/types/model/TicketTypeResponse"
-import type { Merchandise } from "@/types/model/Merchandise"
-import type { OrderRequest } from "@/types/model/OrderRequest"
+import type { Test } from "@/types/model/Test";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import type { Concert } from "@/types/model/Concert";
+import type { ConcertDetailData } from "@/types/model/ConcertDetailData";
+import type TicketTypeResponse from "@/types/model/TicketTypeResponse";
+import type { Merchandise } from "@/types/model/Merchandise";
+import type { OrderRequest } from "@/types/model/OrderRequest";
 
 export const apiSlice = createApi({
     reducerPath: "api",
@@ -44,7 +44,10 @@ export const apiSlice = createApi({
                 body,
             }),
         }),
-        updateOrderStatus: builder.mutation<OrderResponse, { id: string; status: string }>({
+        updateOrderStatus: builder.mutation<
+            OrderResponse,
+            { id: string; status: string }
+        >({
             query: ({ id, status }) => ({
                 url: `/orders/${id}/status`,
                 method: "PATCH",
@@ -52,7 +55,7 @@ export const apiSlice = createApi({
             }),
         }),
     }),
-})
+});
 
 export const {
     useGetTestQuery,
@@ -64,4 +67,4 @@ export const {
     useGetMerchandiseByConcertIdQuery,
     useCreateOrderMutation,
     useUpdateOrderStatusMutation,
-} = apiSlice
+} = apiSlice;

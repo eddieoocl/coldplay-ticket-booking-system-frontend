@@ -6,7 +6,6 @@ import PersonalInformationPage from "@/app/components/PersonalInformationPage";
 import TotalCountTicket from "@/app/components/TotalCountTicket";
 import Ticket from "@/app/components/Ticket";
 import Merchandise from "@/app/components/Merchandise";
-import { redirect } from "next/navigation";
 import {
     useCreateOrderMutation,
     useGetMerchandiseByConcertIdQuery,

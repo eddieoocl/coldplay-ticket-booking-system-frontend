@@ -53,20 +53,15 @@ interface ConcertDetailsProps {
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884D8"];
 
 export default function ConcertDetails({
-                                           concert,
-                                           onClose,
-                                       }: ConcertDetailsProps) {
+    concert,
+    onClose,
+}: ConcertDetailsProps) {
     return (
         <div className="modal-overlay">
             <div className="modal-container">
                 <div className="modal-header">
-                    <h2 className="modal-title">
-                        {concert.name} Details
-                    </h2>
-                    <button
-                        onClick={onClose}
-                        className="close-button"
-                    >
+                    <h2 className="modal-title">{concert.name} Details</h2>
+                    <button onClick={onClose} className="close-button">
                         <XCircle />
                     </button>
                 </div>
@@ -112,7 +107,11 @@ export default function ConcertDetails({
                                         (entry, index) => (
                                             <Cell
                                                 key={`cell-${index}`}
-                                                fill={COLORS[index % COLORS.length]}
+                                                fill={
+                                                    COLORS[
+                                                        index % COLORS.length
+                                                    ]
+                                                }
                                             />
                                         )
                                     )}
@@ -153,9 +152,7 @@ export default function ConcertDetails({
                 </div>
 
                 <div className="section-container">
-                    <h3 className="section-title-yellow">
-                        Sales Trend
-                    </h3>
+                    <h3 className="section-title-yellow">Sales Trend</h3>
                     <ResponsiveContainer width="100%" height={300}>
                         <BarChart data={concert.salesTrend}>
                             <CartesianGrid strokeDasharray="3 3" />
@@ -175,26 +172,28 @@ export default function ConcertDetails({
                     <div className="table-container">
                         <table className="table">
                             <thead>
-                            <tr className="table-header">
-                                <th className="table-cell">Item Name</th>
-                                <th className="table-cell">Quantity Sold</th>
-                                <th className="table-cell">Revenue</th>
-                            </tr>
+                                <tr className="table-header">
+                                    <th className="table-cell">Item Name</th>
+                                    <th className="table-cell">
+                                        Quantity Sold
+                                    </th>
+                                    <th className="table-cell">Revenue</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            {concert.topSellingItems.map((item, index) => (
-                                <tr key={index} className="table-row">
-                                    <td className="table-cell-white">
-                                        {item.name}
-                                    </td>
-                                    <td className="table-cell-gray">
-                                        {item.quantity}
-                                    </td>
-                                    <td className="table-cell-gray">
-                                        ¥{item.revenue}
-                                    </td>
-                                </tr>
-                            ))}
+                                {concert.topSellingItems.map((item, index) => (
+                                    <tr key={index} className="table-row">
+                                        <td className="table-cell-white">
+                                            {item.name}
+                                        </td>
+                                        <td className="table-cell-gray">
+                                            {item.quantity}
+                                        </td>
+                                        <td className="table-cell-gray">
+                                            ¥{item.revenue}
+                                        </td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>

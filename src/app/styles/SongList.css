@@ -1,13 +1,25 @@
 /* src/app/styles/SongList.css */
 :root {
     --primary-bg: rgba(17, 23, 33, 0.95);
-    --card-bg: linear-gradient(145deg, rgba(30, 34, 47, 0.9), rgba(25, 29, 40, 0.9));
+    --card-bg: linear-gradient(
+        145deg,
+        rgba(30, 34, 47, 0.9),
+        rgba(25, 29, 40, 0.9)
+    );
     --card-hover-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
     --text-primary: #e8e8e8;
     --text-secondary: #b0b0b0;
-    --accent-color: #0b4966;  /* Darker blue */
-    --accent-gradient: linear-gradient(90deg, #4d7284, #043c54);  /* Darker blue gradient */
-    --hover-gradient: linear-gradient(90deg, #043c54, #0b4966);  /* Darker hover gradient */
+    --accent-color: #0b4966; /* Darker blue */
+    --accent-gradient: linear-gradient(
+        90deg,
+        #4d7284,
+        #043c54
+    ); /* Darker blue gradient */
+    --hover-gradient: linear-gradient(
+        90deg,
+        #043c54,
+        #0b4966
+    ); /* Darker hover gradient */
 }
 
 .song-list-main {
@@ -120,7 +132,11 @@
 .play-icon {
     color: var(--text-primary);
     font-size: 2.5rem;
-    background: linear-gradient(145deg, rgba(79, 70, 229, 0.3), rgba(124, 58, 237, 0.3));
+    background: linear-gradient(
+        145deg,
+        rgba(79, 70, 229, 0.3),
+        rgba(124, 58, 237, 0.3)
+    );
     width: 55px;
     height: 55px;
     border-radius: 50%;
@@ -140,7 +156,11 @@
 
 .song-card-content {
     padding: 24px;
-    background: linear-gradient(to top, rgba(30, 34, 47, 0.95), rgba(30, 34, 47, 0.8));
+    background: linear-gradient(
+        to top,
+        rgba(30, 34, 47, 0.95),
+        rgba(30, 34, 47, 0.8)
+    );
 }
 
 .song-title {
@@ -201,7 +221,7 @@
 }
 
 .title::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -3px;
     left: 10px;

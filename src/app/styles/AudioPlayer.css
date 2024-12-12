@@ -17,7 +17,11 @@
 
 /* 自定義音頻播放器控制 */
 .audio-player audio::-webkit-media-controls-panel {
-    background: linear-gradient(145deg, rgba(30, 32, 40, 0.9), rgba(25, 27, 35, 0.9)); /* 調整顏色以增強對比 */
+    background: linear-gradient(
+        145deg,
+        rgba(30, 32, 40, 0.9),
+        rgba(25, 27, 35, 0.9)
+    ); /* 調整顏色以增強對比 */
     border-radius: 12px;
 }
 

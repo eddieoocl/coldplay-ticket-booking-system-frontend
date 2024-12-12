@@ -1,6 +1,6 @@
 "use client";
 
-import {useState} from "react";
+import { useState } from "react";
 import {
     Bar,
     BarChart,
@@ -14,17 +14,24 @@ import {
     XAxis,
     YAxis,
 } from "recharts";
-import {ChevronRight, DollarSign, Heart, Ticket, TrendingUp, Users,} from "lucide-react";
+import {
+    ChevronRight,
+    DollarSign,
+    Heart,
+    Ticket,
+    TrendingUp,
+    Users,
+} from "lucide-react";
 import ConcertDetails from "./ConcertDetails";
 import "./dashboard.css";
 
 // Updated mock data
 const fanDistributionData = [
-    {region: "East China", value: 35},
-    {region: "North China", value: 25},
-    {region: "South China", value: 20},
-    {region: "Southwest China", value: 10},
-    {region: "Others", value: 10},
+    { region: "East China", value: 35 },
+    { region: "North China", value: 25 },
+    { region: "South China", value: 20 },
+    { region: "Southwest China", value: 10 },
+    { region: "Others", value: 10 },
 ];
 
 const concertData = [
@@ -51,30 +58,30 @@ const concertData = [
             },
         ],
         topSellingItems: [
-            {name: "T-shirt", quantity: 2000, revenue: 60000},
-            {name: "Poster", quantity: 1500, revenue: 30000},
-            {name: "Badge", quantity: 3000, revenue: 15000},
+            { name: "T-shirt", quantity: 2000, revenue: 60000 },
+            { name: "Poster", quantity: 1500, revenue: 30000 },
+            { name: "Badge", quantity: 3000, revenue: 15000 },
         ],
         audienceDemographics: [
-            {age: "18-24", percentage: 30},
-            {age: "25-34", percentage: 40},
-            {age: "35-44", percentage: 20},
-            {age: "45+", percentage: 10},
+            { age: "18-24", percentage: 30 },
+            { age: "25-34", percentage: 40 },
+            { age: "35-44", percentage: 20 },
+            { age: "45+", percentage: 10 },
         ],
         salesTrend: [
-            {month: "July", sales: 50000},
-            {month: "August", sales: 75000},
-            {month: "September", sales: 100000},
-            {month: "October", sales: 150000},
-            {month: "November", sales: 200000},
-            {month: "December", sales: 250000},
+            { month: "July", sales: 50000 },
+            { month: "August", sales: 75000 },
+            { month: "September", sales: 100000 },
+            { month: "October", sales: 150000 },
+            { month: "November", sales: 200000 },
+            { month: "December", sales: 250000 },
         ],
         fanDistribution: [
-            {region: "East China", value: 40},
-            {region: "North China", value: 30},
-            {region: "South China", value: 15},
-            {region: "Southwest China", value: 10},
-            {region: "Others", value: 5},
+            { region: "East China", value: 40 },
+            { region: "North China", value: 30 },
+            { region: "South China", value: 15 },
+            { region: "Southwest China", value: 10 },
+            { region: "Others", value: 5 },
         ],
     },
     {
@@ -100,30 +107,30 @@ const concertData = [
             },
         ],
         topSellingItems: [
-            {name: "Glow Stick", quantity: 3000, revenue: 30000},
-            {name: "Hat", quantity: 1000, revenue: 25000},
-            {name: "Bracelet", quantity: 2000, revenue: 10000},
+            { name: "Glow Stick", quantity: 3000, revenue: 30000 },
+            { name: "Hat", quantity: 1000, revenue: 25000 },
+            { name: "Bracelet", quantity: 2000, revenue: 10000 },
         ],
         audienceDemographics: [
-            {age: "18-24", percentage: 45},
-            {age: "25-34", percentage: 35},
-            {age: "35-44", percentage: 15},
-            {age: "45+", percentage: 5},
+            { age: "18-24", percentage: 45 },
+            { age: "25-34", percentage: 35 },
+            { age: "35-44", percentage: 15 },
+            { age: "45+", percentage: 5 },
         ],
         salesTrend: [
-            {month: "March", sales: 30000},
-            {month: "April", sales: 50000},
-            {month: "May", sales: 80000},
-            {month: "June", sales: 120000},
-            {month: "July", sales: 180000},
-            {month: "August", sales: 250000},
+            { month: "March", sales: 30000 },
+            { month: "April", sales: 50000 },
+            { month: "May", sales: 80000 },
+            { month: "June", sales: 120000 },
+            { month: "July", sales: 180000 },
+            { month: "August", sales: 250000 },
         ],
         fanDistribution: [
-            {region: "East China", value: 35},
-            {region: "North China", value: 25},
-            {region: "South China", value: 20},
-            {region: "Southwest China", value: 15},
-            {region: "Others", value: 5},
+            { region: "East China", value: 35 },
+            { region: "North China", value: 25 },
+            { region: "South China", value: 20 },
+            { region: "Southwest China", value: 15 },
+            { region: "Others", value: 5 },
         ],
     },
     {
@@ -149,30 +156,30 @@ const concertData = [
             },
         ],
         topSellingItems: [
-            {name: "Band T-shirt", quantity: 1500, revenue: 45000},
-            {name: "Guitar Pick", quantity: 2000, revenue: 10000},
-            {name: "Rock Poster", quantity: 1000, revenue: 20000},
+            { name: "Band T-shirt", quantity: 1500, revenue: 45000 },
+            { name: "Guitar Pick", quantity: 2000, revenue: 10000 },
+            { name: "Rock Poster", quantity: 1000, revenue: 20000 },
         ],
         audienceDemographics: [
-            {age: "18-24", percentage: 25},
-            {age: "25-34", percentage: 30},
-            {age: "35-44", percentage: 30},
-            {age: "45+", percentage: 15},
+            { age: "18-24", percentage: 25 },
+            { age: "25-34", percentage: 30 },
+            { age: "35-44", percentage: 30 },
+            { age: "45+", percentage: 15 },
         ],
         salesTrend: [
-            {month: "April", sales: 40000},
-            {month: "May", sales: 60000},
-            {month: "June", sales: 90000},
-            {month: "July", sales: 130000},
-            {month: "August", sales: 180000},
-            {month: "September", sales: 240000},
+            { month: "April", sales: 40000 },
+            { month: "May", sales: 60000 },
+            { month: "June", sales: 90000 },
+            { month: "July", sales: 130000 },
+            { month: "August", sales: 180000 },
+            { month: "September", sales: 240000 },
         ],
         fanDistribution: [
-            {region: "East China", value: 30},
-            {region: "North China", value: 20},
-            {region: "South China", value: 25},
-            {region: "Southwest China", value: 15},
-            {region: "Others", value: 10},
+            { region: "East China", value: 30 },
+            { region: "North China", value: 20 },
+            { region: "South China", value: 25 },
+            { region: "Southwest China", value: 15 },
+            { region: "Others", value: 10 },
         ],
     },
 ];
@@ -191,25 +198,25 @@ export default function Dashboard() {
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                     <StatCard
-                        icon={<Users/>}
+                        icon={<Users />}
                         title="Total Users"
                         value="50,000"
                         change="+15%"
                     />
                     <StatCard
-                        icon={<DollarSign/>}
+                        icon={<DollarSign />}
                         title="Total Revenue"
                         value="¥1,500,000"
                         change="+22%"
                     />
                     <StatCard
-                        icon={<Ticket/>}
+                        icon={<Ticket />}
                         title="Tickets Sold"
                         value="25,000"
                         change="+18%"
                     />
                     <StatCard
-                        icon={<TrendingUp/>}
+                        icon={<TrendingUp />}
                         title="Conversion Rate"
                         value="5.2%"
                         change="+0.8%"
@@ -230,7 +237,7 @@ export default function Dashboard() {
                                     outerRadius={80}
                                     fill="#8884d8"
                                     dataKey="value"
-                                    label={({name, percent}) =>
+                                    label={({ name, percent }) =>
                                         `${name} ${(percent * 100).toFixed(0)}%`
                                     }
                                 >
@@ -241,7 +248,7 @@ export default function Dashboard() {
                                         />
                                     ))}
                                 </Pie>
-                                <Tooltip/>
+                                <Tooltip />
                             </PieChart>
                         </ResponsiveContainer>
                     </div>
@@ -252,11 +259,11 @@ export default function Dashboard() {
                         </h2>
                         <ResponsiveContainer width="100%" height={300}>
                             <BarChart data={concertData[0].salesTrend}>
-                                <CartesianGrid strokeDasharray="3 3"/>
-                                <XAxis dataKey="month"/>
-                                <YAxis/>
-                                <Tooltip/>
-                                <Legend/>
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="month" />
+                                <YAxis />
+                                <Tooltip />
+                                <Legend />
                                 <Bar
                                     dataKey="sales"
                                     fill="#8884d8"
@@ -274,53 +281,61 @@ export default function Dashboard() {
                     <div className="overflow-x-auto">
                         <table className="w-full text-left">
                             <thead>
-                            <tr className="text-gray-400 border-b border-gray-700">
-                                <th className="py-3 px-4">Concert Name</th>
-                                <th className="py-3 px-4">Date</th>
-                                <th className="py-3 px-4">Tickets Sold</th>
-                                <th className="py-3 px-4">Ticket Revenue</th>
-                                <th className="py-3 px-4">Merchandise Sales</th>
-                                <th className="py-3 px-4">Charitable Sales</th>
-                                <th className="py-3 px-4">Details</th>
-                            </tr>
+                                <tr className="text-gray-400 border-b border-gray-700">
+                                    <th className="py-3 px-4">Concert Name</th>
+                                    <th className="py-3 px-4">Date</th>
+                                    <th className="py-3 px-4">Tickets Sold</th>
+                                    <th className="py-3 px-4">
+                                        Ticket Revenue
+                                    </th>
+                                    <th className="py-3 px-4">
+                                        Merchandise Sales
+                                    </th>
+                                    <th className="py-3 px-4">
+                                        Charitable Sales
+                                    </th>
+                                    <th className="py-3 px-4">Details</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            {concertData.map((concert) => (
-                                <tr
-                                    key={concert.id}
-                                    className="border-b border-gray-700"
-                                >
-                                    <td className="py-3 px-4 text-white">
-                                        {concert.name}
-                                    </td>
-                                    <td className="py-3 px-4 text-gray-400">
-                                        {concert.date}
-                                    </td>
-                                    <td className="py-3 px-4 text-gray-400">
-                                        {concert.ticketsSold}
-                                    </td>
-                                    <td className="py-3 px-4 text-gray-400">
-                                        ¥{concert.ticketRevenue}
-                                    </td>
-                                    <td className="py-3 px-4 text-gray-400">
-                                        ¥{concert.merchandiseSales}
-                                    </td>
-                                    <td className="py-3 px-4 text-gray-400">
-                                        ¥{concert.charitableSales}
-                                    </td>
-                                    <td className="py-3 px-4">
-                                        <button
-                                            onClick={() =>
-                                                setSelectedConcert(concert.id)
-                                            }
-                                            className="text-blue-400 hover:text-blue-300 transition-colors"
-                                        >
-                                            View{" "}
-                                            <ChevronRight className="inline-block w-4 h-4"/>
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
+                                {concertData.map((concert) => (
+                                    <tr
+                                        key={concert.id}
+                                        className="border-b border-gray-700"
+                                    >
+                                        <td className="py-3 px-4 text-white">
+                                            {concert.name}
+                                        </td>
+                                        <td className="py-3 px-4 text-gray-400">
+                                            {concert.date}
+                                        </td>
+                                        <td className="py-3 px-4 text-gray-400">
+                                            {concert.ticketsSold}
+                                        </td>
+                                        <td className="py-3 px-4 text-gray-400">
+                                            ¥{concert.ticketRevenue}
+                                        </td>
+                                        <td className="py-3 px-4 text-gray-400">
+                                            ¥{concert.merchandiseSales}
+                                        </td>
+                                        <td className="py-3 px-4 text-gray-400">
+                                            ¥{concert.charitableSales}
+                                        </td>
+                                        <td className="py-3 px-4">
+                                            <button
+                                                onClick={() =>
+                                                    setSelectedConcert(
+                                                        concert.id
+                                                    )
+                                                }
+                                                className="text-blue-400 hover:text-blue-300 transition-colors"
+                                            >
+                                                View{" "}
+                                                <ChevronRight className="inline-block w-4 h-4" />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
@@ -352,7 +367,7 @@ export default function Dashboard() {
                                             className="bg-gray-700 rounded-lg p-4"
                                         >
                                             <div className="flex items-center mb-2">
-                                                <Heart className="text-pink-400 mr-2"/>
+                                                <Heart className="text-pink-400 mr-2" />
                                                 <h4 className="text-lg font-medium text-white">
                                                     {item.name}
                                                 </h4>
@@ -379,11 +394,11 @@ export default function Dashboard() {
 }
 
 function StatCard({
-                      icon,
-                      title,
-                      value,
-                      change,
-                  }: {
+    icon,
+    title,
+    value,
+    change,
+}: {
     icon: React.ReactNode;
     title: string;
     value: string;

@@ -17,7 +17,8 @@
 
 .from-black {
     --tw-gradient-from: #000000;
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(0 0 0 / 0));
+    --tw-gradient-stops: var(--tw-gradient-from),
+        var(--tw-gradient-to, rgb(0 0 0 / 0));
 }
 
 .to-gray-900 {
@@ -46,7 +47,7 @@
 }
 
 .text-yellow-400 {
-    color: #FBBF24;
+    color: #fbbf24;
 }
 
 .grid {
@@ -62,7 +63,7 @@
 }
 
 .bg-gray-800 {
-    background-color: #1F2937;
+    background-color: #1f2937;
 }
 
 .rounded-lg {
@@ -70,7 +71,9 @@
 }
 
 .shadow-xl {
-    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    box-shadow:
+        0 20px 25px -5px rgb(0 0 0 / 0.1),
+        0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
 .p-6 {
@@ -83,15 +86,15 @@
 }
 
 .text-blue-300 {
-    color: #93C5FD;
+    color: #93c5fd;
 }
 
 .text-green-300 {
-    color: #86EFAC;
+    color: #86efac;
 }
 
 .text-pink-300 {
-    color: #F9A8D4;
+    color: #f9a8d4;
 }
 
 .overflow-x-auto {
@@ -107,7 +110,7 @@
 }
 
 .text-gray-400 {
-    color: #9CA3AF;
+    color: #9ca3af;
 }
 
 .border-b {
@@ -129,19 +132,20 @@
 }
 
 .text-white {
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .text-blue-400 {
-    color: #60A5FA;
+    color: #60a5fa;
 }
 
 .hover\:text-blue-300:hover {
-    color: #93C5FD;
+    color: #93c5fd;
 }
 
 .transition-colors {
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-property: color, background-color, border-color,
+        text-decoration-color, fill, stroke;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
 }
@@ -180,7 +184,7 @@
 }
 
 .text-pink-400 {
-    color: #F472B6;
+    color: #f472b6;
 }
 
 .mr-2 {
@@ -197,11 +201,11 @@
 }
 
 .text-gray-300 {
-    color: #D1D5DB;
+    color: #d1d5db;
 }
 
 .text-green-400 {
-    color: #4ADE80;
+    color: #4ade80;
 }
 
 .mt-2 {
@@ -226,7 +230,7 @@
 }
 
 .text-red-400 {
-    color: #F87171;
+    color: #f87171;
 }
 
 .mt-4 {

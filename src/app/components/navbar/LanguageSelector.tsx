@@ -18,8 +18,12 @@ const LanguageSelector: React.FC = () => {
                     onChange={(e) => changeLanguage(e.target.value)}
                     defaultValue={i18n.language}
                 >
-                    <option className="custom-option" value="en">English</option>
-                    <option className="custom-option" value="zh">中文</option>
+                    <option className="custom-option" value="en">
+                        English
+                    </option>
+                    <option className="custom-option" value="zh">
+                        中文
+                    </option>
                 </select>
             </div>
         </div>
