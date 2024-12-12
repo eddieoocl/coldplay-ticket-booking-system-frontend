@@ -6,10 +6,13 @@ import { CalendarDays, MapPin, Music, Ticket } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useGetConcertByIdQuery } from "@/lib/api/apiSlice";
 import Navbar from "@/app/components/navbar/Navbar";
+import { useTranslation } from "react-i18next";
 
 export default function ConcertDetails() {
     const { id } = useParams();
     const { data: concert } = useGetConcertByIdQuery({ id: id as string });
+
+    const { t } = useTranslation();
 
     if (!concert) return null;
 
@@ -40,7 +43,7 @@ export default function ConcertDetails() {
                                     <div className="flex items-center text-blue-300">
                                         <CalendarDays className="w-6 h-6 mr-2" />
                                         <p className="text-xl">
-                                            {concert.date} at {concert.date}
+                                            {concert.date}
                                         </p>
                                     </div>
                                     <div className="flex items-center text-green-300">
@@ -59,7 +62,7 @@ export default function ConcertDetails() {
                                 <div className="bg-gray-700 rounded-lg p-6">
                                     <h2 className="text-2xl font-bold mb-4 text-yellow-400 flex items-center">
                                         <Music className="w-6 h-6 mr-2" />
-                                        Lineup
+                                        {t("Lineup")}
                                     </h2>
                                     <ul className="space-y-2">
                                         <li className="text-white hover:text-pink-300 transition-colors">
@@ -71,7 +74,7 @@ export default function ConcertDetails() {
 
                             <div className="mt-8">
                                 <h2 className="text-2xl font-bold mb-4 text-yellow-400">
-                                    Event Details
+                                    {t("Concert Detail")}
                                 </h2>
                                 <p className="text-gray-300 leading-relaxed">
                                     {concert.description}
@@ -84,7 +87,7 @@ export default function ConcertDetails() {
                                     className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 flex items-center"
                                 >
                                     <Ticket className="w-5 h-5 mr-2" />
-                                    Buy Tickets Now
+                                    {t("Buy Now")}
                                 </Link>
                             </div>
                         </div>

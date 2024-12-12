@@ -1,11 +1,12 @@
 // src/app/song-list/page.tsx
-'use client';
+"use client";
 
-import { useState, useContext } from 'react';
+import { useState, useContext } from "react";
 import Navigation from "../components/navbar/Navbar";
 import "../styles/page.css";
 import "../styles/SongList.css";
-import { RootLayoutContext } from '../layout';
+import { RootLayoutContext } from "../layout";
+import { useTranslation } from "react-i18next";
 
 interface Song {
     id: number;
@@ -20,9 +21,14 @@ interface Song {
 const SongListPage = () => {
     const rootLayoutContext = useContext(RootLayoutContext);
     if (!rootLayoutContext) {
-        throw new Error("RootLayoutContext must be used within a RootLayoutProvider");
+        throw new Error(
+            "RootLayoutContext must be used within a RootLayoutProvider"
+        );
     }
     const { setCurrentSong } = rootLayoutContext;
+
+    const { t } = useTranslation();
+
     const [songs] = useState<Song[]>([
         {
             id: 1,
@@ -31,7 +37,7 @@ const SongListPage = () => {
             year: "2000",
             duration: "4:29",
             imageUrl: "/image/song-cover-yellow.jpg",
-            audioUrl: "/audio/yellow.mp3"
+            audioUrl: "/audio/yellow.mp3",
         },
         {
             id: 2,
@@ -40,7 +46,7 @@ const SongListPage = () => {
             year: "2005",
             duration: "4:55",
             imageUrl: "/image/song-cover-fix-you.jpg",
-            audioUrl: "/audio/fix-you.mp3"
+            audioUrl: "/audio/fix-you.mp3",
         },
         {
             id: 3,
@@ -49,7 +55,7 @@ const SongListPage = () => {
             year: "2008",
             duration: "4:01",
             imageUrl: "/image/song-cover-viva-la-vida.jpg",
-            audioUrl: "/audio/viva-la-vida.mp3"
+            audioUrl: "/audio/viva-la-vida.mp3",
         },
         {
             id: 4,
@@ -58,7 +64,7 @@ const SongListPage = () => {
             year: "2002",
             duration: "5:07",
             imageUrl: "/image/song-cover-clocks.jpg",
-            audioUrl: "/audio/clocks.mp3"
+            audioUrl: "/audio/clocks.mp3",
         },
         {
             id: 5,
@@ -67,7 +73,7 @@ const SongListPage = () => {
             year: "2011",
             duration: "4:38",
             imageUrl: "/image/song-cover-paradise.jpg",
-            audioUrl: "/audio/paradise.mp3"
+            audioUrl: "/audio/paradise.mp3",
         },
         {
             id: 6,
@@ -76,7 +82,7 @@ const SongListPage = () => {
             year: "2002",
             duration: "5:09",
             imageUrl: "/image/song-cover-the-scientist.jpg",
-            audioUrl: "/audio/the-scientist.mp3"
+            audioUrl: "/audio/the-scientist.mp3",
         },
         {
             id: 7,
@@ -85,7 +91,7 @@ const SongListPage = () => {
             year: "2015",
             duration: "4:23",
             imageUrl: "/image/song-cover-adventure-of-a-lifetime.jpg",
-            audioUrl: "/audio/adventure-of-a-lifetime.mp3"
+            audioUrl: "/audio/adventure-of-a-lifetime.mp3",
         },
         {
             id: 8,
@@ -94,8 +100,8 @@ const SongListPage = () => {
             year: "2015",
             duration: "4:18",
             imageUrl: "/image/song-cover-hymn-for-the-weekend.jpg",
-            audioUrl: "/audio/hymn-for-the-weekend.mp3"
-        }
+            audioUrl: "/audio/hymn-for-the-weekend.mp3",
+        },
     ]);
 
     const handleSongClick = (song: Song) => {
@@ -108,20 +114,20 @@ const SongListPage = () => {
             <div className="song-list-main">
                 <div className="song-list-header">
                     <div className="title">
-                        <h1>Coldplay Songs</h1>
+                        <h1>Coldplay {t("Songs")}</h1>
                     </div>
                     <div className="song-list-filters">
                         <select className="filter-dropdown">
-                            <option value="">All Albums</option>
+                            <option value="">{t("All Albums")}</option>
                             <option value="parachutes">Parachutes</option>
                             <option value="x&y">X&Y</option>
                             <option value="viva">Viva la Vida</option>
                         </select>
                         <select className="filter-dropdown">
-                            <option value="">Sort By</option>
-                            <option value="name">Name</option>
-                            <option value="year">Year</option>
-                            <option value="album">Album</option>
+                            <option value="">{t("Sort by")}</option>
+                            <option value="name">{t("Name")}</option>
+                            <option value="year">{t("Year")}</option>
+                            <option value="album">{t("Album")}</option>
                         </select>
                     </div>
                 </div>
@@ -133,7 +139,12 @@ const SongListPage = () => {
                             className="song-card"
                             onClick={() => handleSongClick(song)}
                         >
-                            <div className="song-card-image" style={{ backgroundImage: `url(${song.imageUrl})` }}>
+                            <div
+                                className="song-card-image"
+                                style={{
+                                    backgroundImage: `url(${song.imageUrl})`,
+                                }}
+                            >
                                 <div className="play-overlay">
                                     <span className="play-icon">▶</span>
                                 </div>
@@ -142,8 +153,12 @@ const SongListPage = () => {
                                 <h3 className="song-title">{song.title}</h3>
                                 <p className="song-album">{song.album}</p>
                                 <div className="song-meta">
-                                    <span className="song-year">{song.year}</span>
-                                    <span className="song-duration">{song.duration}</span>
+                                    <span className="song-year">
+                                        {song.year}
+                                    </span>
+                                    <span className="song-duration">
+                                        {song.duration}
+                                    </span>
                                 </div>
                             </div>
                         </div>
