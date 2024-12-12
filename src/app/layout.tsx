@@ -73,7 +73,6 @@ export default function RootLayout({
                                 >
                                     {children}
                                 </InnerLayout>
-                                <Footer />
                             </Suspense>
                         </body>
                     </html>
