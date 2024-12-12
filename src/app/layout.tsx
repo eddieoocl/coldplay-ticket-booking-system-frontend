@@ -56,17 +56,17 @@ export default function RootLayout({
         <StoreProvider>
             <SessionProvider>
                 <RootLayoutContext.Provider value={{ setCurrentSong }}>
-                    <Suspense>
-                        <html lang="en">
-                            <head>
-                                <link
-                                    rel="stylesheet"
-                                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-                                />
-                            </head>
-                            <body
-                                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-                            >
+                    <html lang="en">
+                        <head>
+                            <link
+                                rel="stylesheet"
+                                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                            />
+                        </head>
+                        <body
+                            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                        >
+                            <Suspense>
                                 <InnerLayout
                                     currentSong={currentSong}
                                     setCurrentSong={setCurrentSong}
@@ -74,9 +74,9 @@ export default function RootLayout({
                                     {children}
                                 </InnerLayout>
                                 <Footer />
-                            </body>
-                        </html>
-                    </Suspense>
+                            </Suspense>
+                        </body>
+                    </html>
                 </RootLayoutContext.Provider>
             </SessionProvider>
         </StoreProvider>
