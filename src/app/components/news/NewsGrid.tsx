@@ -22,66 +22,66 @@ const NewsGrid = () => {
             id: 1,
             date: "2024-12-10",
             category: t("Press Release"),
-            title: "Company announces groundbreaking innovation",
+            title: "Coldplay Announces New Album Release",
             description:
-                "Leading the way in technological advancement with revolutionary new products.",
-            image: "/image/news-1.jpg",
-            featured: true,
+                "Coldplay is set to release their highly anticipated new album, featuring a blend of classic and innovative sounds.",
+            image: "/image/coldplay-album.jpg",
         },
         {
             id: 2,
             date: "2024-11-15",
             category: t("Event"),
-            title: "Annual Tech Conference 2024",
+            title: "Coldplay World Tour 2024",
             description:
-                "Join us for a day of insightful talks and networking with industry leaders.",
-            image: "/image/news-2.jpg",
+                "\"Join Coldplay on their highly anticipated world tour, where they will be performing in major cities across the globe. Experience the magic of their live performances, featuring a mix of their classic hits and new tracks from their latest album. Don't miss the chance to see one of the world's most iconic bands in action, creating unforgettable memories for fans everywhere.\"",
+            image: "/image/coldplay-tour.png",
+            featured: true
         },
         {
             id: 3,
             date: "2024-10-05",
             category: t("Blog"),
-            title: "The future of AI in everyday life",
+            title: "Behind the Scenes: Making of the New Album",
             description:
-                "Exploring how artificial intelligence is transforming our daily routines.",
-            image: "/image/news-1.jpg",
+                "Get an exclusive look at the creative process behind Coldplay's latest album.",
+            image: "/image/coldplay-studio.jpg",
         },
         {
             id: 4,
             date: "2024-09-20",
             category: t("Press Release"),
-            title: "New partnership with leading tech firm",
+            title: "Coldplay Partners with Environmental Organizations",
             description:
-                "Announcing a strategic partnership to drive innovation and growth.",
-            image: "/image/news-1.jpg",
+                "\"Coldplay announces a new partnership with leading environmental organizations to promote sustainability. This collaboration aims to support various environmental initiatives, focusing on reducing carbon footprints, promoting renewable energy, and raising awareness about climate change. Together, they plan to implement eco-friendly practices in their tours and productions, ensuring a greener future for the music industry and beyond.\"",
+            image: "/image/coldplay-environment.jpg",
             featured: true,
         },
         {
             id: 5,
             date: "2024-08-30",
             category: t("Blog"),
-            title: "Top 10 tech trends to watch in 2025",
+            title: "Top 10 Coldplay Songs of All Time - Fan Picks",
             description:
-                "A look at the most promising technologies set to shape the future.",
-            image: "/image/news-2.jpg",
+                "A look at the most iconic and beloved songs from Coldplay's extensive discography.",
+            image: "/image/coldplay-top10.jpg",
         },
         {
             id: 6,
             date: "2024-07-25",
             category: t("Event"),
-            title: "Startup Pitch Day 2024",
+            title: "Coldplay Fan Meetup 2024 - Los Angeles",
             description:
-                "Join us for an exciting day of pitches from the hottest new startups. ",
-            image: "/image/news-1.jpg",
+                "Join fellow Coldplay fans for a day of music, fun, and community at the annual fan meetup.",
+            image: "/image/coldplay-fans.jpg",
         },
         {
             id: 7,
             date: "2024-06-15",
             category: t("Press Release"),
-            title: "Company named among fastest-growing tech firms",
+            title: "Coldplay Wins Prestigious Music Award",
             description:
-                "Recognized for our rapid growth and innovation in the technology sector.",
-            image: "/image/news-2.jpg",
+                "Coldplay is honored with a prestigious award for their contributions to the music industry.",
+            image: "/image/coldplay-award.jpg",
         },
     ];
 

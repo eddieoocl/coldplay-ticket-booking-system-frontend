@@ -113,7 +113,7 @@ const SongListPage = () => {
             <Navigation />
             <div className="song-list-main">
                 <div className="song-list-header">
-                    <div className="title">
+                    <div className="song-list-h1-title">
                         <h1>Coldplay {t("Songs")}</h1>
                     </div>
                     <div className="song-list-filters">

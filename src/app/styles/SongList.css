@@ -43,7 +43,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 23px;
     padding: 0 20px;
 }
 
@@ -211,7 +211,7 @@
     gap: 5px;
 }
 
-.title {
+.song-list-h1-title {
     padding-left: 10px;
     position: relative;
     display: inline-block;
@@ -220,7 +220,7 @@
     transition: all 0.3s ease;
 }
 
-.title::after {
+.song-list-h1-title::after {
     content: "";
     position: absolute;
     bottom: -3px;
@@ -231,13 +231,13 @@
     transition: width 0.3s ease;
 }
 
-.title:hover {
+.song-list-h1-title:hover {
     color: var(--accent-color);
     text-shadow: 0 0 10px rgba(79, 70, 229, 0.3);
     transform: translateY(-2px);
 }
 
-.title:hover::after {
+.song-list-h1-title:hover::after {
     width: calc(100% - 10px);
 }
 
