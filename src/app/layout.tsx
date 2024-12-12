@@ -8,7 +8,6 @@ import { SessionProvider, useSession } from "next-auth/react";
 import AudioPlayer from "./components/AudioPlayer";
 import { useState, createContext, useEffect, Suspense } from "react";
 import { usePathname } from "next/navigation";
-import Footer from "@/app/components/Footer";
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
