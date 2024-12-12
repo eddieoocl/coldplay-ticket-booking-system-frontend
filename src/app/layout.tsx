@@ -52,6 +52,10 @@ export default function RootLayout({
         setCurrentSong(null); // 當路徑改變時，將 currentSong 設為 null
     }, [pathname]);
 
+    useEffect(() => {
+        document.title = "Coldplay Tix";
+    }, []);
+
     return (
         <StoreProvider>
             <SessionProvider>
