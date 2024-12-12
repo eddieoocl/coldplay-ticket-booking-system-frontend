@@ -18,6 +18,7 @@ import {
     useGetMerchandiseByConcertIdQuery,
 } from "@/lib/api/apiSlice";
 import Navbar from "@/app/components/navbar/Navbar";
+import { useTranslation } from "react-i18next";
 
 type TicketSelection = {
     section: Section;
@@ -37,13 +38,6 @@ type MerchandiseSelection = {
     quantity: number;
 };
 
-const steps = [
-    { name: "选择门票和周边", href: "#", status: "current" as const },
-    { name: "确认订单", href: "#", status: "upcoming" as const },
-    { name: "支付", href: "#", status: "upcoming" as const },
-    { name: "查看订单", href: "#", status: "upcoming" as const },
-];
-
 export default function TicketSelection() {
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -56,6 +50,19 @@ export default function TicketSelection() {
     const [selectedMerchandise, setSelectedMerchandise] = useState<
         MerchandiseSelection[]
     >([]);
+
+    const { t } = useTranslation();
+
+    const steps = [
+        { name: t("Select Order"), href: "", status: "current" as const },
+        {
+            name: t("Ticket Confirmation"),
+            href: "",
+            status: "upcoming" as const,
+        },
+        { name: t("Payment"), href: "", status: "upcoming" as const },
+        { name: t("View Order"), href: "", status: "upcoming" as const },
+    ];
 
     const { data: merchandiseItems = [], isLoading } =
         useGetMerchandiseByConcertIdQuery({ id: concertId });
@@ -164,7 +171,7 @@ export default function TicketSelection() {
                 console.error("Failed to create order:", error);
             }
         } else {
-            alert("请选择至少一张门票或一个周边商品");
+            alert(t("Select Item Error"));
         }
     };
 
@@ -180,7 +187,7 @@ export default function TicketSelection() {
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 pt-20">
-            <Navbar/>
+            <Navbar />
             <div className="container mx-auto px-4 py-16">
                 <div className="mb-8">
                     <ProgressBar steps={steps} />
@@ -198,7 +205,7 @@ export default function TicketSelection() {
                     <div className="lg:w-2/5">
                         <div className="bg-gray-800 rounded-lg shadow-xl p-8">
                             <h2 className="text-2xl font-bold mb-6 text-blue-300">
-                                已选门票
+                                {t("Selected Tickets")}
                             </h2>
                             <div className="space-y-4 mb-6">
                                 {selectedTickets.map((ticket) => (
@@ -211,7 +218,7 @@ export default function TicketSelection() {
                                                 {ticket.section.name}
                                             </p>
                                             <p className="text-sm text-gray-300">
-                                                ¥{ticket.section.price} / 张
+                                                ¥{ticket.section.price}
                                             </p>
                                         </div>
                                         <div className="flex items-center gap-2">
@@ -265,12 +272,13 @@ export default function TicketSelection() {
                                         onClick={addTicket}
                                         className="w-full bg-green-500 text-white px-4 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors mb-6"
                                     >
-                                        添加 {currentSection.name} 门票
+                                        {t("Add")} {currentSection.name}{" "}
+                                        {t("Ticket")}
                                     </button>
                                 )}
 
                             <h2 className="text-2xl font-bold mb-6 text-blue-300">
-                                周边商品
+                                {t("Merchandise")}
                             </h2>
                             <div className="space-y-4 mb-6">
                                 {merchandiseItems.map((item) => (
@@ -299,7 +307,7 @@ export default function TicketSelection() {
                                                 </p>
                                                 {item.isCharity && (
                                                     <p className="text-xs text-green-300 mt-1">
-                                                        公益产品
+                                                        {t("Charity Item")}
                                                     </p>
                                                 )}
                                             </div>
@@ -308,14 +316,14 @@ export default function TicketSelection() {
                                             onClick={() => addMerchandise(item)}
                                             className={`${item.isCharity ? "bg-green-500 hover:bg-green-600" : "bg-blue-500 hover:bg-blue-600"} text-white px-3 py-1 rounded-lg font-semibold transition-colors`}
                                         >
-                                            添加
+                                            {t("Add")}
                                         </button>
                                     </div>
                                 ))}
                             </div>
 
                             <h2 className="text-2xl font-bold mb-6 text-blue-300">
-                                已选周边
+                                {t("Selected Merchandise")}
                             </h2>
                             <div className="space-y-4 mb-6">
                                 {selectedMerchandise.map((merch) => (
@@ -334,11 +342,11 @@ export default function TicketSelection() {
                                                 )}
                                             </p>
                                             <p className="text-sm text-gray-300">
-                                                ¥{merch.item.price} / 件
+                                                ¥{merch.item.price}
                                             </p>
                                             {merch.item.isCharity && (
                                                 <p className="text-xs text-green-300 mt-1">
-                                                    公益产品
+                                                    {t("Charity Item")}
                                                 </p>
                                             )}
                                         </div>
@@ -386,7 +394,9 @@ export default function TicketSelection() {
                             </div>
 
                             <div className="text-right mb-6">
-                                <p className="text-lg text-gray-300">总价</p>
+                                <p className="text-lg text-gray-300">
+                                    {t("Total")}
+                                </p>
                                 <p className="text-2xl font-bold text-white">
                                     ¥{totalPrice}
                                 </p>
@@ -402,7 +412,7 @@ export default function TicketSelection() {
                                     className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <ShoppingBagIcon className="w-5 h-5 mr-2" />
-                                    提交订单
+                                    {t("Submit Order")}
                                 </button>
                             </form>
                         </div>

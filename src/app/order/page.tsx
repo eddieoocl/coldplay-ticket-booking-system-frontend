@@ -8,13 +8,7 @@ import Barcode from "react-barcode";
 import { useSearchParams } from "next/navigation";
 import { useGetOrderByIdQuery } from "@/lib/api/apiSlice";
 import Navbar from "@/app/components/navbar/Navbar";
-
-const steps = [
-    { name: "选择门票和周边", href: "#", status: "complete" as const },
-    { name: "购票成功", href: "#", status: "complete" as const },
-    { name: "支付", href: "#", status: "complete" as const },
-    { name: "查看订单", href: "#", status: "current" as const },
-];
+import { useTranslation } from "react-i18next";
 
 export default function OrderConfirmation() {
     const params = useSearchParams();
@@ -22,6 +16,18 @@ export default function OrderConfirmation() {
     const { data: order, isLoading: isLoadingOrder } = useGetOrderByIdQuery({
         id: orderId ? Number(orderId) : 0,
     });
+    const { t } = useTranslation();
+
+    const steps = [
+        { name: t("Select Order"), href: "", status: "complete" as const },
+        {
+            name: t("Ticket Confirmation"),
+            href: "",
+            status: "complete" as const,
+        },
+        { name: t("Payment"), href: "", status: "complete" as const },
+        { name: t("View Order"), href: "", status: "current" as const },
+    ];
 
     if (!order || isLoadingOrder) {
         return <div>Loading...</div>;
@@ -41,58 +47,74 @@ export default function OrderConfirmation() {
             <div className="container mx-auto px-4 py-16">
                 <ProgressBar steps={steps} />
                 <h1 className="text-4xl font-bold mb-8 text-center text-yellow-400">
-                    订单确认
+                    {t("Order Confirmed")}
                 </h1>
 
                 <div className="bg-gray-800 rounded-lg shadow-xl p-8 mb-8">
                     <h2 className="text-2xl font-bold mb-4 text-blue-300 flex items-center">
-                        <CreditCard className="mr-2" /> 订单信息
+                        <CreditCard className="mr-2" /> {t("Order Information")}
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <p className="text-white">
-                            <span className="text-gray-400">订单号:</span>{" "}
+                            <span className="text-gray-400">
+                                {t("Order Id")}:
+                            </span>{" "}
                             {order.orderId}
                         </p>
                         <p className="text-white">
-                            <span className="text-gray-400">日期:</span>{" "}
+                            <span className="text-gray-400">{t("Date")}:</span>{" "}
                             {order.orderTime}
                         </p>
                         <p className="text-white">
-                            <span className="text-gray-400">总价:</span> ¥
-                            {order.totalPrices}
+                            <span className="text-gray-400">{t("Total")}:</span>{" "}
+                            ¥{order.totalPrices}
                         </p>
                         <p className="text-white">
-                            <span className="text-gray-400">活动:</span>{" "}
+                            <span className="text-gray-400">
+                                {t("Activity")}:
+                            </span>{" "}
                             {order.concertData.name}
                         </p>
                         <p className="text-white">
-                            <span className="text-gray-400">支付方式:</span>{" "}
+                            <span className="text-gray-400">
+                                {t("Payment Method")}:
+                            </span>{" "}
                             {order.paymentMethod}
                         </p>
                         <p className="text-white">
-                            <span className="text-gray-400">支付状态:</span>{" "}
+                            <span className="text-gray-400">
+                                {t("Payment Status")}:
+                            </span>{" "}
                             {order.paymentStatus}
                         </p>
                     </div>
                     <div className="mt-4 bg-gray-700 p-4 rounded-lg">
                         <h3 className="text-xl font-semibold mb-2 text-yellow-400">
-                            演唱会详情
+                            {t("Concert Detail")}
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             <p className="text-white">
-                                <span className="text-gray-400">日期:</span>{" "}
+                                <span className="text-gray-400">
+                                    {t("Date")}:
+                                </span>{" "}
                                 {order.concertData.date}
                             </p>
                             <p className="text-white">
-                                <span className="text-gray-400">时间:</span>{" "}
+                                <span className="text-gray-400">
+                                    {t("Time")}:
+                                </span>{" "}
                                 {order.concertData.time}
                             </p>
                             <p className="text-white">
-                                <span className="text-gray-400">地点:</span>{" "}
+                                <span className="text-gray-400">
+                                    {t("Venue")}:
+                                </span>{" "}
                                 {order.concertData.venue}
                             </p>
                             <p className="text-white">
-                                <span className="text-gray-400">地址:</span>{" "}
+                                <span className="text-gray-400">
+                                    {t("Location")}:
+                                </span>{" "}
                                 {order.concertData.address}
                             </p>
                         </div>
@@ -102,7 +124,8 @@ export default function OrderConfirmation() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="bg-gray-800 rounded-lg shadow-xl p-8">
                         <h2 className="text-2xl font-bold mb-4 text-green-300 flex items-center">
-                            <Ticket className="mr-2" /> 门票信息
+                            <Ticket className="mr-2" />{" "}
+                            {t("Ticket Information")}
                         </h2>
                         {order.ticketInfo.map((ticket) => (
                             <div
@@ -111,13 +134,13 @@ export default function OrderConfirmation() {
                             >
                                 <div>
                                     <p className="text-lg font-semibold text-white">
-                                        {ticket.ticketType} 票
+                                        {ticket.ticketType}
                                     </p>
                                     <p className="text-sm text-gray-300">
-                                        座位: {ticket.seat}
+                                        {t("Seat")}: {ticket.seat}
                                     </p>
                                     <p className="text-sm text-gray-300">
-                                        价格: ¥{ticket.price}
+                                        {t("Price")}: ¥{ticket.price}
                                     </p>
                                 </div>
                                 <div>
@@ -134,7 +157,7 @@ export default function OrderConfirmation() {
 
                     <div className="bg-gray-800 rounded-lg shadow-xl p-8">
                         <h2 className="text-2xl font-bold mb-4 text-pink-300 flex items-center">
-                            <Package className="mr-2" /> 周边商品
+                            <Package className="mr-2" /> {t("Merchandise")}
                         </h2>
                         {order.merchandiseInfo.map((item) => (
                             <div
@@ -152,17 +175,17 @@ export default function OrderConfirmation() {
                                         )}
                                     </p>
                                     <p className="text-sm text-gray-300">
-                                        数量: {item.count}
+                                        {t("Quantity")}: {item.count}
                                     </p>
                                     <p className="text-sm text-gray-300">
-                                        单价: ¥{item.price}
+                                        {t("Unit Price")}: ¥{item.price}
                                     </p>
                                     <p className="text-sm font-semibold text-white">
-                                        总价: ¥{item.price * item.count}
+                                        {t("Total")}: ¥{item.price * item.count}
                                     </p>
                                     {item.isCharity && (
                                         <p className="text-xs text-green-300 mt-1">
-                                            公益产品
+                                            {t("Charity Item")}
                                         </p>
                                     )}
                                 </div>
@@ -180,21 +203,19 @@ export default function OrderConfirmation() {
                 </div>
 
                 <div className="mt-8 text-center">
-                    <p className="text-gray-400 mb-2">
-                        请在演唱会当天出示门票二维码
-                    </p>
+                    <p className="text-gray-400 mb-2">{t("Show QR Code")}</p>
                     <div className="flex justify-center space-x-4">
                         <button
                             onClick={handlePrint}
                             className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105"
                         >
-                            下载电子门票
+                            {t("Download e-Ticket")}
                         </button>
                         <button
                             onClick={handleknow}
                             className="bg-gradient-to-r from-blue-500 to-green-500 text-white px-6 py-3 rounded-full font-semibold hover:from-blue-600 hover:to-green-600 transition-all duration-300 transform hover:scale-105"
                         >
-                            我知道了
+                            {t("Back to Home Page")}
                         </button>
                     </div>
                 </div>
