@@ -56,7 +56,7 @@ export default function ConcertDetail() {
                             <div className="bg-gray-700 rounded-lg p-6">
                                 <h2 className="text-2xl font-bold mb-4 text-yellow-400 flex items-center">
                                     <Music className="w-6 h-6 mr-2" />
-                                    演出阵容
+                                    Lineup
                                 </h2>
                                 <ul className="space-y-2">
                                     <li className="text-white hover:text-pink-300 transition-colors">
@@ -68,7 +68,7 @@ export default function ConcertDetail() {
 
                         <div className="mt-8">
                             <h2 className="text-2xl font-bold mb-4 text-yellow-400">
-                                活动详情
+                                Event Details
                             </h2>
                             <p className="text-gray-300 leading-relaxed">
                                 {concert.description}
@@ -81,7 +81,7 @@ export default function ConcertDetail() {
                                 className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 flex items-center"
                             >
                                 <Ticket className="w-5 h-5 mr-2" />
-                                立即购票
+                                Buy Tickets Now
                             </Link>
                         </div>
                     </div>
