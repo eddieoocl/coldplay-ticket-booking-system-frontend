@@ -16,10 +16,13 @@ import {
 import { useGetAllOrdersQuery } from "@/lib/api/apiSlice";
 import { useRouter } from "next/navigation";
 import Navbar from "@/app/components/navbar/Navbar";
+import { useTranslation } from "react-i18next";
 
 export default function OrdersPage() {
     const router = useRouter();
     const { data: orders, error, isLoading } = useGetAllOrdersQuery();
+
+    const { t } = useTranslation();
 
     const handleViewDetails = (order: OrderResponse) => {
         if (order.paymentStatus === "PENDING") {
@@ -45,12 +48,27 @@ export default function OrdersPage() {
             <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 pt-20">
                 <div className="container mx-auto px-4 py-16">
                     <h1 className="text-4xl font-bold mb-8 text-center text-yellow-400">
-                        我的订单
+                        {t("My Order")}
                     </h1>
-                    <div className="text-center text-white">暂无订单</div>
+                    <div className="text-center text-white">
+                        {t("No Order")}
+                    </div>
                 </div>
             </div>
         );
+    }
+
+    function getStatusText(status: string) {
+        switch (status) {
+            case "PAID":
+                return t("Paid");
+            case "PENDING":
+                return t("Pending");
+            case "completed":
+                return t("Completed");
+            default:
+                return t("Unknown");
+        }
     }
 
     return (
@@ -58,7 +76,7 @@ export default function OrdersPage() {
             <Navbar />
             <div className="container mx-auto px-4 py-16">
                 <h1 className="text-4xl font-bold mb-8 text-center text-yellow-400">
-                    我的订单
+                    {t("My Order")}
                 </h1>
                 <div className="grid gap-6">
                     {orders?.map((order) => (
@@ -68,7 +86,7 @@ export default function OrdersPage() {
                         >
                             <CardHeader className="flex flex-row items-center justify-between">
                                 <CardTitle className="text-xl text-white">
-                                    订单 #{order.orderId}
+                                    {t("Order")} #{order.orderId}
                                 </CardTitle>
                                 <span
                                     className={`text-sm px-2 py-1 rounded ${getStatusColor(order.paymentStatus)}`}
@@ -85,15 +103,16 @@ export default function OrdersPage() {
                                     <div className="flex items-center text-gray-300">
                                         <CalendarIcon className="mr-2 h-4 w-4" />
                                         <span>
-                                            {new Date(
-                                                order.concertData.date
-                                            ).toLocaleString("zh-CN", {
-                                                year: "numeric",
-                                                month: "long",
-                                                day: "numeric",
-                                                hour: "numeric",
-                                                minute: "numeric",
-                                            })}
+                                            {new Date(order.concertData.date)
+                                                .toLocaleString("en-GB", {
+                                                    year: "numeric",
+                                                    month: "2-digit",
+                                                    day: "2-digit",
+                                                    hour: "2-digit",
+                                                    minute: "2-digit",
+                                                    hour12: false,
+                                                })
+                                                .replace(",", "")}
                                         </span>
                                     </div>
                                     <div className="flex items-center text-gray-300">
@@ -104,12 +123,13 @@ export default function OrdersPage() {
                                         <div className="flex items-center text-gray-300">
                                             <TicketIcon className="mr-2 h-4 w-4" />
                                             <span>
-                                                {getTicketCount(order)} 张票
+                                                {t("Number of Ticket")}:{" "}
+                                                {getTicketCount(order)}
                                             </span>
                                             <ShoppingBagIcon className="ml-4 mr-2 h-4 w-4" />
                                             <span>
+                                                {t("Number of Merchandise")}:{" "}
                                                 {getMerchandiseCount(order)}{" "}
-                                                件周边
                                             </span>
                                         </div>
                                         <button
@@ -118,7 +138,7 @@ export default function OrdersPage() {
                                                 handleViewDetails(order)
                                             }
                                         >
-                                            查看详情
+                                            {t("Details")}
                                         </button>
                                     </div>
                                 </div>
@@ -141,18 +161,5 @@ function getStatusColor(status: string) {
             return "bg-green-600 text-white";
         default:
             return "bg-gray-600 text-white";
-    }
-}
-
-function getStatusText(status: string) {
-    switch (status) {
-        case "PAID":
-            return "已支付，待观演";
-        case "PENDING":
-            return "待支付";
-        case "completed":
-            return "已完成";
-        default:
-            return "未知状态";
     }
 }

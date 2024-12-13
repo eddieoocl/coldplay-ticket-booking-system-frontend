@@ -33,6 +33,7 @@ const Navbar = () => {
         { name: "Concert", path: "/concerts", color: "#FFD93D" },
         { name: "News", path: "/news", color: "#4D96FF" },
         { name: "Song list", path: "/song-list", color: "#FF9F9F" },
+        { name: "My order", path: "/orders", color: "#6A5ACD" },
     ];
 
     useEffect(() => {

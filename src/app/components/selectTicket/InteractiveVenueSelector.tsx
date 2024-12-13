@@ -20,13 +20,13 @@ type SubSection = {
 };
 
 const sectionData = [
-    { id: 1, name: "VIP", price: 3680.0, quantity: 50 },
     { id: 2, name: "Gold", price: 2780.0, quantity: 15 },
+    { id: 1, name: "VIP", price: 3680.0, quantity: 50 },
     { id: 3, name: "Silver", price: 2250.0, quantity: 0 },
     { id: 4, name: "General", price: 1980.0, quantity: 14 },
     { id: 5, name: "Regular", price: 1680.0, quantity: 90 },
-    { id: 6, name: "Economy", price: 1360.0, quantity: 80 },
     { id: 7, name: "Back Row", price: 1099.0, quantity: 60 },
+    { id: 6, name: "Economy", price: 1360.0, quantity: 80 },
 ];
 
 const generateSections = (): Section[] => {
