@@ -36,7 +36,7 @@ export default function OrderConfirmation() {
     useEffect(() => {
         if (order) {
             // const treePlantingItem = order.merchandiseInfo.find(item => item.isCharity);
-            const treePlantingItem = true;
+            let treePlantingItem = true;
             console.log("treePlantingItem");
             console.log(treePlantingItem);
             if (treePlantingItem) {

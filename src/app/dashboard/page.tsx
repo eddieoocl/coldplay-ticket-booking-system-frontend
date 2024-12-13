@@ -1,12 +1,15 @@
 "use client";
 
-import { useState } from "react";
 import {
+    Area,
+    AreaChart,
     Bar,
     BarChart,
     CartesianGrid,
     Cell,
     Legend,
+    Line,
+    LineChart,
     Pie,
     PieChart,
     ResponsiveContainer,
@@ -14,380 +17,857 @@ import {
     XAxis,
     YAxis,
 } from "recharts";
+import { DollarSign, Ticket, TrendingUp, Users } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "../components/databoard/card";
+import { ChartContainer } from "../components/databoard/chart";
+
 import {
-    ChevronRight,
-    DollarSign,
-    Heart,
-    Ticket,
-    TrendingUp,
-    Users,
-} from "lucide-react";
-import ConcertDetails from "./ConcertDetails";
-import "./dashboard.css";
+    charityContributionTrend,
+    charityImpactRanking,
+    charityTrafficTrend,
+    futureConcertProfitForecast,
+    merchandisePricingAnalysis,
+    merchandiseProfitShareTrend,
+    merchandiseProfitTrend,
+    profitShare,
+    regionalFanbase,
+    regionalProfitability,
+    ticketPricingAnalysis,
+} from "../mockdata/mockData";
 
-// Updated mock data
-const fanDistributionData = [
-    { region: "East China", value: 35 },
-    { region: "North China", value: 25 },
-    { region: "South China", value: 20 },
-    { region: "Southwest China", value: 10 },
-    { region: "Others", value: 10 },
+const COLORS = [
+    "#0088FE",
+    "#00C49F",
+    "#FFBB28",
+    "#FF8042",
+    "#8884D8",
+    "#82ca9d",
 ];
-
-const concertData = [
-    {
-        id: 1,
-        name: "Tokyo Anime Music Festival",
-        date: "2023-12-15",
-        ticketsSold: 5000,
-        ticketRevenue: 500000,
-        merchandiseSales: 150000,
-        charitableSales: 50000,
-        charitableItems: [
-            {
-                name: "Plant a Tree in the Desert",
-                quantity: 500,
-                revenue: 25000,
-                impact: "500 trees will be planted",
-            },
-            {
-                name: "Buy Breakfast for a Poor Child",
-                quantity: 1000,
-                revenue: 25000,
-                impact: "1000 children will receive breakfast",
-            },
-        ],
-        topSellingItems: [
-            { name: "T-shirt", quantity: 2000, revenue: 60000 },
-            { name: "Poster", quantity: 1500, revenue: 30000 },
-            { name: "Badge", quantity: 3000, revenue: 15000 },
-        ],
-        audienceDemographics: [
-            { age: "18-24", percentage: 30 },
-            { age: "25-34", percentage: 40 },
-            { age: "35-44", percentage: 20 },
-            { age: "45+", percentage: 10 },
-        ],
-        salesTrend: [
-            { month: "July", sales: 50000 },
-            { month: "August", sales: 75000 },
-            { month: "September", sales: 100000 },
-            { month: "October", sales: 150000 },
-            { month: "November", sales: 200000 },
-            { month: "December", sales: 250000 },
-        ],
-        fanDistribution: [
-            { region: "East China", value: 40 },
-            { region: "North China", value: 30 },
-            { region: "South China", value: 15 },
-            { region: "Southwest China", value: 10 },
-            { region: "Others", value: 5 },
-        ],
-    },
-    {
-        id: 2,
-        name: "Summer Electronic Music Party",
-        date: "2023-08-20",
-        ticketsSold: 4500,
-        ticketRevenue: 450000,
-        merchandiseSales: 100000,
-        charitableSales: 30000,
-        charitableItems: [
-            {
-                name: "Beach Cleaning Project",
-                quantity: 300,
-                revenue: 15000,
-                impact: "300 meters of beach cleaned",
-            },
-            {
-                name: "Reforestation Plan",
-                quantity: 600,
-                revenue: 15000,
-                impact: "600 trees planted",
-            },
-        ],
-        topSellingItems: [
-            { name: "Glow Stick", quantity: 3000, revenue: 30000 },
-            { name: "Hat", quantity: 1000, revenue: 25000 },
-            { name: "Bracelet", quantity: 2000, revenue: 10000 },
-        ],
-        audienceDemographics: [
-            { age: "18-24", percentage: 45 },
-            { age: "25-34", percentage: 35 },
-            { age: "35-44", percentage: 15 },
-            { age: "45+", percentage: 5 },
-        ],
-        salesTrend: [
-            { month: "March", sales: 30000 },
-            { month: "April", sales: 50000 },
-            { month: "May", sales: 80000 },
-            { month: "June", sales: 120000 },
-            { month: "July", sales: 180000 },
-            { month: "August", sales: 250000 },
-        ],
-        fanDistribution: [
-            { region: "East China", value: 35 },
-            { region: "North China", value: 25 },
-            { region: "South China", value: 20 },
-            { region: "Southwest China", value: 15 },
-            { region: "Others", value: 5 },
-        ],
-    },
-    {
-        id: 3,
-        name: "Rock Music Festival",
-        date: "2023-09-10",
-        ticketsSold: 4200,
-        ticketRevenue: 420000,
-        merchandiseSales: 80000,
-        charitableSales: 20000,
-        charitableItems: [
-            {
-                name: "Music Education Fund",
-                quantity: 200,
-                revenue: 10000,
-                impact: "200 students will be funded to learn music",
-            },
-            {
-                name: "Eco-friendly Music Equipment",
-                quantity: 400,
-                revenue: 10000,
-                impact: "4 schools will be provided with eco-friendly music equipment",
-            },
-        ],
-        topSellingItems: [
-            { name: "Band T-shirt", quantity: 1500, revenue: 45000 },
-            { name: "Guitar Pick", quantity: 2000, revenue: 10000 },
-            { name: "Rock Poster", quantity: 1000, revenue: 20000 },
-        ],
-        audienceDemographics: [
-            { age: "18-24", percentage: 25 },
-            { age: "25-34", percentage: 30 },
-            { age: "35-44", percentage: 30 },
-            { age: "45+", percentage: 15 },
-        ],
-        salesTrend: [
-            { month: "April", sales: 40000 },
-            { month: "May", sales: 60000 },
-            { month: "June", sales: 90000 },
-            { month: "July", sales: 130000 },
-            { month: "August", sales: 180000 },
-            { month: "September", sales: 240000 },
-        ],
-        fanDistribution: [
-            { region: "East China", value: 30 },
-            { region: "North China", value: 20 },
-            { region: "South China", value: 25 },
-            { region: "Southwest China", value: 15 },
-            { region: "Others", value: 10 },
-        ],
-    },
-];
-
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884D8"];
 
 export default function Dashboard() {
-    const [selectedConcert, setSelectedConcert] = useState<number | null>(null);
-
     return (
         <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 pt-20">
-            <div className="container">
+            <div className="container mx-auto px-4 py-16">
                 <h1 className="text-4xl font-bold mb-8 text-center text-yellow-400">
-                    Business Data Dashboard
+                    业务数据看板
                 </h1>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                     <StatCard
                         icon={<Users />}
-                        title="Total Users"
+                        title="总用户数"
                         value="50,000"
                         change="+15%"
                     />
                     <StatCard
                         icon={<DollarSign />}
-                        title="Total Revenue"
-                        value="$1,500,000"
+                        title="总收入"
+                        value="¥1,500,000"
                         change="+22%"
                     />
                     <StatCard
                         icon={<Ticket />}
-                        title="Tickets Sold"
+                        title="售出票数"
                         value="25,000"
                         change="+18%"
                     />
                     <StatCard
                         icon={<TrendingUp />}
-                        title="Conversion Rate"
+                        title="转化率"
                         value="5.2%"
                         change="+0.8%"
                     />
                 </div>
 
-                <div className="grid lg:grid-cols-2 gap-8 mb-8">
-                    <div className="bg-gray-800 rounded-lg shadow-xl p-6">
-                        <h2 className="text-2xl font-bold mb-4 text-blue-300">
-                            Fan Distribution by Region
-                        </h2>
-                        <ResponsiveContainer width="100%" height={300}>
-                            <PieChart>
-                                <Pie
-                                    data={fanDistributionData}
-                                    cx="50%"
-                                    cy="50%"
-                                    outerRadius={80}
-                                    fill="#8884d8"
-                                    dataKey="value"
-                                    label={({ name, percent }) =>
-                                        `${name} ${(percent * 100).toFixed(0)}%`
-                                    }
+                <section id="predictions" className="mb-16">
+                    <h2 className="text-3xl font-bold mb-8 text-blue-300">
+                        预测分析
+                    </h2>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <Card className="bg-gray-800 border-0">
+                            <CardHeader>
+                                <CardTitle className="text-white">
+                                    票价与需求分析
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <ChartContainer
+                                    config={{
+                                        demand: {
+                                            label: "需求",
+                                            color: "#0088FE",
+                                        },
+                                        revenue: {
+                                            label: "收入",
+                                            color: "#00C49F",
+                                        },
+                                    }}
+                                    className="h-[300px]"
                                 >
-                                    {fanDistributionData.map((entry, index) => (
-                                        <Cell
-                                            key={`cell-${index}`}
-                                            fill={COLORS[index % COLORS.length]}
-                                        />
-                                    ))}
-                                </Pie>
-                                <Tooltip />
-                            </PieChart>
-                        </ResponsiveContainer>
-                    </div>
-
-                    <div className="bg-gray-800 rounded-lg shadow-xl p-6">
-                        <h2 className="text-2xl font-bold mb-4 text-green-300">
-                            Concert Sales Trend
-                        </h2>
-                        <ResponsiveContainer width="100%" height={300}>
-                            <BarChart data={concertData[0].salesTrend}>
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="month" />
-                                <YAxis />
-                                <Tooltip />
-                                <Legend />
-                                <Bar
-                                    dataKey="sales"
-                                    fill="#8884d8"
-                                    name="Sales"
-                                />
-                            </BarChart>
-                        </ResponsiveContainer>
-                    </div>
-                </div>
-
-                <div className="bg-gray-800 rounded-lg shadow-xl p-6 mb-8">
-                    <h2 className="text-2xl font-bold mb-4 text-pink-300">
-                        Concert Overview
-                    </h2>
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-left">
-                            <thead>
-                                <tr className="text-gray-400 border-b border-gray-700">
-                                    <th className="py-3 px-4">Concert Name</th>
-                                    <th className="py-3 px-4">Date</th>
-                                    <th className="py-3 px-4">Tickets Sold</th>
-                                    <th className="py-3 px-4">
-                                        Ticket Revenue
-                                    </th>
-                                    <th className="py-3 px-4">
-                                        Merchandise Sales
-                                    </th>
-                                    <th className="py-3 px-4">
-                                        Charitable Sales
-                                    </th>
-                                    <th className="py-3 px-4">Details</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {concertData.map((concert) => (
-                                    <tr
-                                        key={concert.id}
-                                        className="border-b border-gray-700"
+                                    <ResponsiveContainer
+                                        width="100%"
+                                        height={300}
                                     >
-                                        <td className="py-3 px-4 text-white">
-                                            {concert.name}
-                                        </td>
-                                        <td className="py-3 px-4 text-gray-400">
-                                            {concert.date}
-                                        </td>
-                                        <td className="py-3 px-4 text-gray-400">
-                                            {concert.ticketsSold}
-                                        </td>
-                                        <td className="py-3 px-4 text-gray-400">
-                                            ${concert.ticketRevenue}
-                                        </td>
-                                        <td className="py-3 px-4 text-gray-400">
-                                            ${concert.merchandiseSales}
-                                        </td>
-                                        <td className="py-3 px-4 text-gray-400">
-                                            ${concert.charitableSales}
-                                        </td>
-                                        <td className="py-3 px-4">
-                                            <button
-                                                onClick={() =>
-                                                    setSelectedConcert(
-                                                        concert.id
-                                                    )
-                                                }
-                                                className="text-blue-400 hover:text-blue-300 transition-colors"
-                                            >
-                                                View{" "}
-                                                <ChevronRight className="inline-block w-4 h-4" />
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                                        <LineChart data={ticketPricingAnalysis}>
+                                            <CartesianGrid
+                                                strokeDasharray="3 3"
+                                                vertical={false}
+                                            />
+                                            <XAxis
+                                                dataKey="price"
+                                                label={{
+                                                    value: "价格 (¥)",
+                                                    position: "insideBottom",
+                                                    offset: -5,
+                                                }}
+                                            />
+                                            <YAxis
+                                                yAxisId="left"
+                                                label={{
+                                                    value: "需求 (人数)",
+                                                    angle: -90,
+                                                    position: "insideLeft",
+                                                }}
+                                            />
+                                            <YAxis
+                                                yAxisId="right"
+                                                orientation="right"
+                                                label={{
+                                                    value: "收入 (¥)",
+                                                    angle: 90,
+                                                    position: "insideRight",
+                                                }}
+                                            />
+                                            <Tooltip
+                                                content={<CustomTooltip />}
+                                            />
+                                            <Line
+                                                yAxisId="left"
+                                                type="monotone"
+                                                dataKey="demand"
+                                                stroke="var(--color-demand)"
+                                                name="需求"
+                                                dot={false}
+                                            />
+                                            <Line
+                                                yAxisId="right"
+                                                type="monotone"
+                                                dataKey="revenue"
+                                                stroke="var(--color-revenue)"
+                                                name="收入"
+                                                dot={false}
+                                            />
+                                        </LineChart>
+                                    </ResponsiveContainer>
+                                </ChartContainer>
+                            </CardContent>
+                        </Card>
 
-                {selectedConcert && (
-                    <ConcertDetails
-                        concert={
-                            concertData.find((c) => c.id === selectedConcert)!
-                        }
-                        onClose={() => setSelectedConcert(null)}
-                    />
-                )}
-
-                <div className="bg-gray-800 rounded-lg shadow-xl p-6">
-                    <h2 className="text-2xl font-bold mb-4 text-yellow-400">
-                        Charitable Merchandise Sales Details
-                    </h2>
-                    {concertData.map((concert) => (
-                        <div key={concert.id} className="mb-6 last:mb-0">
-                            <h3 className="text-xl font-semibold mb-2 text-blue-300">
-                                {concert.name}
-                            </h3>
-                            <div className="grid md:grid-cols-2 gap-4">
-                                {concert.charitableItems.map(
-                                    (item, itemIndex) => (
-                                        <div
-                                            key={itemIndex}
-                                            className="bg-gray-700 rounded-lg p-4"
+                        <Card className="bg-gray-800 border-0">
+                            <CardHeader>
+                                <CardTitle className="text-white">
+                                    周边均价分析
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <ChartContainer
+                                    config={{
+                                        demand: {
+                                            label: "需求",
+                                            color: "#0088FE",
+                                        },
+                                        revenue: {
+                                            label: "收入",
+                                            color: "#00C49F",
+                                        },
+                                    }}
+                                    className="h-[300px]"
+                                >
+                                    <ResponsiveContainer
+                                        width="100%"
+                                        height={300}
+                                    >
+                                        <LineChart
+                                            data={merchandisePricingAnalysis}
                                         >
-                                            <div className="flex items-center mb-2">
-                                                <Heart className="text-pink-400 mr-2" />
-                                                <h4 className="text-lg font-medium text-white">
-                                                    {item.name}
-                                                </h4>
-                                            </div>
-                                            <p className="text-gray-300">
-                                                Quantity Sold: {item.quantity}
-                                            </p>
-                                            <p className="text-gray-300">
-                                                Revenue: ${item.revenue}
-                                            </p>
-                                            <p className="text-green-400 mt-2">
-                                                Impact: {item.impact}
-                                            </p>
-                                        </div>
-                                    )
-                                )}
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                                            <CartesianGrid
+                                                strokeDasharray="3 3"
+                                                vertical={false}
+                                            />
+                                            <XAxis
+                                                dataKey="price"
+                                                label={{
+                                                    value: "价格 (¥)",
+                                                    position: "insideBottom",
+                                                    offset: -5,
+                                                }}
+                                            />
+                                            <YAxis
+                                                yAxisId="left"
+                                                label={{
+                                                    value: "需求 (件数)",
+                                                    angle: -90,
+                                                    position: "insideLeft",
+                                                }}
+                                            />
+                                            <YAxis
+                                                yAxisId="right"
+                                                orientation="right"
+                                                label={{
+                                                    value: "收入 (¥)",
+                                                    angle: 90,
+                                                    position: "insideRight",
+                                                }}
+                                            />
+                                            <Tooltip
+                                                content={<CustomTooltip />}
+                                            />
+                                            <Line
+                                                yAxisId="left"
+                                                type="monotone"
+                                                dataKey="demand"
+                                                stroke="var(--color-demand)"
+                                                name="需求"
+                                                dot={false}
+                                            />
+                                            <Line
+                                                yAxisId="right"
+                                                type="monotone"
+                                                dataKey="revenue"
+                                                stroke="var(--color-revenue)"
+                                                name="收入"
+                                                dot={false}
+                                            />
+                                        </LineChart>
+                                    </ResponsiveContainer>
+                                </ChartContainer>
+                            </CardContent>
+                        </Card>
+
+                        <Card className="bg-gray-800 border-0 lg:col-span-2">
+                            <CardHeader>
+                                <CardTitle className="text-white">
+                                    未来每场演唱会盈利预测
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <ChartContainer
+                                    config={{
+                                        profit: {
+                                            label: "预测盈利",
+                                            color: "#0088FE",
+                                        },
+                                    }}
+                                    className="h-[300px] w-full"
+                                >
+                                    <ResponsiveContainer
+                                        width="100%"
+                                        height={300}
+                                    >
+                                        <BarChart
+                                            data={futureConcertProfitForecast}
+                                        >
+                                            <CartesianGrid
+                                                strokeDasharray="3 3"
+                                                vertical={false}
+                                            />
+                                            <XAxis dataKey="concert" />
+                                            <YAxis
+                                                label={{
+                                                    value: "预测盈利 (¥)",
+                                                    angle: -90,
+                                                    position: "insideLeft",
+                                                }}
+                                            />
+                                            <Tooltip
+                                                content={<CustomTooltip />}
+                                            />
+                                            <Bar
+                                                dataKey="profit"
+                                                fill="var(--color-profit)"
+                                                name="预测盈利"
+                                            />
+                                        </BarChart>
+                                    </ResponsiveContainer>
+                                </ChartContainer>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </section>
+
+                <section id="merchandise" className="mb-16">
+                    <h2 className="text-3xl font-bold mb-8 text-green-300">
+                        周边分析
+                    </h2>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <Card className="bg-gray-800 border-0">
+                            <CardHeader>
+                                <CardTitle className="text-white">
+                                    盈利占比
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <ChartContainer
+                                    config={{
+                                        share: {
+                                            label: "占比",
+                                            color: "#0088FE",
+                                        },
+                                    }}
+                                    className="h-[300px]"
+                                >
+                                    <ResponsiveContainer
+                                        width="100%"
+                                        height={300}
+                                    >
+                                        <PieChart>
+                                            <Pie
+                                                data={profitShare}
+                                                cx="50%"
+                                                cy="50%"
+                                                outerRadius={80}
+                                                fill="#8884d8"
+                                                dataKey="share"
+                                                label={({ name, percent }) =>
+                                                    `${name} ${(percent * 100).toFixed(0)}%`
+                                                }
+                                            >
+                                                {profitShare.map(
+                                                    (entry, index) => (
+                                                        <Cell
+                                                            key={`cell-${index}`}
+                                                            fill={
+                                                                COLORS[
+                                                                    index %
+                                                                        COLORS.length
+                                                                ]
+                                                            }
+                                                        />
+                                                    )
+                                                )}
+                                            </Pie>
+                                            <Tooltip
+                                                content={<CustomTooltip />}
+                                            />
+                                        </PieChart>
+                                    </ResponsiveContainer>
+                                </ChartContainer>
+                            </CardContent>
+                        </Card>
+
+                        <Card className="bg-gray-800 border-0">
+                            <CardHeader>
+                                <CardTitle className="text-white">
+                                    周边盈利趋势
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <ChartContainer
+                                    config={{
+                                        profit: {
+                                            label: "盈利额",
+                                            color: "#0088FE",
+                                        },
+                                        share: {
+                                            label: "占比",
+                                            color: "#00C49F",
+                                        },
+                                    }}
+                                    className="h-[300px]"
+                                >
+                                    <ResponsiveContainer
+                                        width="100%"
+                                        height={300}
+                                    >
+                                        <LineChart
+                                            data={merchandiseProfitTrend}
+                                        >
+                                            <CartesianGrid
+                                                strokeDasharray="3 3"
+                                                vertical={false}
+                                            />
+                                            <XAxis dataKey="month" />
+                                            <YAxis
+                                                yAxisId="left"
+                                                label={{
+                                                    value: "盈利额 (¥)",
+                                                    angle: -90,
+                                                    position: "insideLeft",
+                                                }}
+                                            />
+                                            <YAxis
+                                                yAxisId="right"
+                                                orientation="right"
+                                                label={{
+                                                    value: "占比 (%)",
+                                                    angle: 90,
+                                                    position: "insideRight",
+                                                }}
+                                            />
+                                            <Tooltip
+                                                content={<CustomTooltip />}
+                                            />
+                                            <Line
+                                                yAxisId="left"
+                                                type="monotone"
+                                                dataKey="profit"
+                                                stroke="var(--color-profit)"
+                                                name="盈利额"
+                                                dot={false}
+                                            />
+                                            <Line
+                                                yAxisId="right"
+                                                type="monotone"
+                                                dataKey="share"
+                                                stroke="var(--color-share)"
+                                                name="占比"
+                                                dot={false}
+                                            />
+                                        </LineChart>
+                                    </ResponsiveContainer>
+                                </ChartContainer>
+                            </CardContent>
+                        </Card>
+
+                        <Card className="bg-gray-800 border-0 col-span-full">
+                            <CardHeader>
+                                <CardTitle className="text-white">
+                                    各周边盈利占比趋势
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="h-[500px]">
+                                <ChartContainer
+                                    config={{
+                                        "T-shirts": {
+                                            label: "T恤",
+                                            color: "#0088FE",
+                                        },
+                                        Posters: {
+                                            label: "海报",
+                                            color: "#00C49F",
+                                        },
+                                        Figurines: {
+                                            label: "手办",
+                                            color: "#FFBB28",
+                                        },
+                                        Keychains: {
+                                            label: "钥匙扣",
+                                            color: "#FF8042",
+                                        },
+                                        Other: {
+                                            label: "其他",
+                                            color: "#8884D8",
+                                        },
+                                    }}
+                                    className="h-full w-full"
+                                >
+                                    <ResponsiveContainer
+                                        width="100%"
+                                        height="100%"
+                                    >
+                                        <AreaChart
+                                            data={merchandiseProfitShareTrend}
+                                        >
+                                            <CartesianGrid
+                                                strokeDasharray="3 3"
+                                                vertical={false}
+                                            />
+                                            <XAxis dataKey="month" />
+                                            <YAxis
+                                                label={{
+                                                    value: "占比 (%)",
+                                                    angle: -90,
+                                                    position: "insideLeft",
+                                                }}
+                                            />
+                                            <Tooltip
+                                                content={<CustomTooltip />}
+                                            />
+                                            <Area
+                                                type="monotone"
+                                                dataKey="T-shirts"
+                                                stackId="1"
+                                                stroke="var(--color-T-shirts)"
+                                                fill="var(--color-T-shirts)"
+                                                name="T恤"
+                                            />
+                                            <Area
+                                                type="monotone"
+                                                dataKey="Posters"
+                                                stackId="1"
+                                                stroke="var(--color-Posters)"
+                                                fill="var(--color-Posters)"
+                                                name="海报"
+                                            />
+                                            <Area
+                                                type="monotone"
+                                                dataKey="Figurines"
+                                                stackId="1"
+                                                stroke="var(--color-Figurines)"
+                                                fill="var(--color-Figurines)"
+                                                name="手办"
+                                            />
+                                            <Area
+                                                type="monotone"
+                                                dataKey="Keychains"
+                                                stackId="1"
+                                                stroke="var(--color-Keychains)"
+                                                fill="var(--color-Keychains)"
+                                                name="钥匙扣"
+                                            />
+                                            <Area
+                                                type="monotone"
+                                                dataKey="Other"
+                                                stackId="1"
+                                                stroke="var(--color-Other)"
+                                                fill="var(--color-Other)"
+                                                name="其他"
+                                            />
+                                            <Legend />
+                                        </AreaChart>
+                                    </ResponsiveContainer>
+                                </ChartContainer>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </section>
+
+                <section id="regional" className="mb-16">
+                    <h2 className="text-3xl font-bold mb-8 text-pink-300">
+                        地区分析
+                    </h2>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <Card className="bg-gray-800 border-0">
+                            <CardHeader>
+                                <CardTitle className="text-white">
+                                    不同地区的粉丝群体数量
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <ChartContainer
+                                    config={{
+                                        fans: {
+                                            label: "粉丝数量",
+                                            color: "#0088FE",
+                                        },
+                                    }}
+                                    className="h-[300px]"
+                                >
+                                    <ResponsiveContainer
+                                        width="100%"
+                                        height={300}
+                                    >
+                                        <PieChart>
+                                            <Pie
+                                                data={regionalFanbase}
+                                                cx="50%"
+                                                cy="50%"
+                                                outerRadius={80}
+                                                fill="#8884d8"
+                                                dataKey="fans"
+                                                label={({ name, percent }) =>
+                                                    `${name} ${(percent * 100).toFixed(0)}%`
+                                                }
+                                            >
+                                                {regionalFanbase.map(
+                                                    (entry, index) => (
+                                                        <Cell
+                                                            key={`cell-${index}`}
+                                                            fill={
+                                                                COLORS[
+                                                                    index %
+                                                                        COLORS.length
+                                                                ]
+                                                            }
+                                                        />
+                                                    )
+                                                )}
+                                            </Pie>
+                                            <Tooltip
+                                                content={<CustomTooltip />}
+                                            />
+                                        </PieChart>
+                                    </ResponsiveContainer>
+                                </ChartContainer>
+                            </CardContent>
+                        </Card>
+
+                        <Card className="bg-gray-800 border-0">
+                            <CardHeader>
+                                <CardTitle className="text-white">
+                                    各地区支出收入转化率
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <ChartContainer
+                                    config={{
+                                        conversionRate: {
+                                            label: "转化率",
+                                            color: "#0088FE",
+                                        },
+                                    }}
+                                    className="h-[300px]"
+                                >
+                                    <ResponsiveContainer
+                                        width="100%"
+                                        height={300}
+                                    >
+                                        <BarChart data={regionalProfitability}>
+                                            <CartesianGrid
+                                                strokeDasharray="3 3"
+                                                vertical={false}
+                                            />
+                                            <XAxis dataKey="region" />
+                                            <YAxis
+                                                label={{
+                                                    value: "转化率",
+                                                    angle: -90,
+                                                    position: "insideLeft",
+                                                }}
+                                            />
+                                            <Tooltip
+                                                content={<CustomTooltip />}
+                                            />
+                                            <Bar
+                                                dataKey="conversionRate"
+                                                fill="var(--color-conversionRate)"
+                                                name="转化率"
+                                            />
+                                        </BarChart>
+                                    </ResponsiveContainer>
+                                </ChartContainer>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </section>
+
+                <section id="charity" className="mb-16">
+                    <h2 className="text-3xl font-bold mb-8 text-purple-300">
+                        公益分析
+                    </h2>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <Card className="bg-gray-800 border-0">
+                            <CardHeader>
+                                <CardTitle className="text-white">
+                                    公益贡献总额趋势
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <ChartContainer
+                                    config={{
+                                        contribution: {
+                                            label: "贡献总额",
+                                            color: "#0088FE",
+                                        },
+                                    }}
+                                    className="h-[300px]"
+                                >
+                                    <ResponsiveContainer
+                                        width="100%"
+                                        height={300}
+                                    >
+                                        <LineChart
+                                            data={charityContributionTrend}
+                                        >
+                                            <CartesianGrid
+                                                strokeDasharray="3 3"
+                                                vertical={false}
+                                            />
+                                            <XAxis dataKey="month" />
+                                            <YAxis
+                                                label={{
+                                                    value: "贡献总额 (¥)",
+                                                    angle: -90,
+                                                    position: "insideLeft",
+                                                }}
+                                            />
+                                            <Tooltip
+                                                content={<CustomTooltip />}
+                                            />
+                                            <Line
+                                                type="monotone"
+                                                dataKey="contribution"
+                                                stroke="var(--color-contribution)"
+                                                name="贡献总额"
+                                                dot={false}
+                                            />
+                                        </LineChart>
+                                    </ResponsiveContainer>
+                                </ChartContainer>
+                            </CardContent>
+                        </Card>
+
+                        <Card className="bg-gray-800 border-0">
+                            <CardHeader>
+                                <CardTitle className="text-white">
+                                    公益组织影响力排名趋势
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <ChartContainer
+                                    config={{
+                                        Coldplay: {
+                                            label: "Coldplay",
+                                            color: "#0088FE",
+                                        },
+                                        WWF: {
+                                            label: "WWF",
+                                            color: "#00C49F",
+                                        },
+                                        UNICEF: {
+                                            label: "UNICEF",
+                                            color: "#FFBB28",
+                                        },
+                                        Greenpeace: {
+                                            label: "Greenpeace",
+                                            color: "#FF8042",
+                                        },
+                                        "Red Cross": {
+                                            label: "Red Cross",
+                                            color: "#8884D8",
+                                        },
+                                    }}
+                                    className="h-[300px]"
+                                >
+                                    <ResponsiveContainer
+                                        width="100%"
+                                        height={300}
+                                    >
+                                        <LineChart data={charityImpactRanking}>
+                                            <CartesianGrid
+                                                strokeDasharray="3 3"
+                                                vertical={false}
+                                            />
+                                            <XAxis dataKey="month" />
+                                            <YAxis
+                                                reversed
+                                                label={{
+                                                    value: "排名",
+                                                    angle: -90,
+                                                    position: "insideLeft",
+                                                }}
+                                            />
+                                            <Tooltip
+                                                content={<CustomTooltip />}
+                                            />
+                                            <Line
+                                                type="monotone"
+                                                dataKey="Coldplay"
+                                                stroke="var(--color-Coldplay)"
+                                                name="Coldplay"
+                                                dot={false}
+                                            />
+                                            <Line
+                                                type="monotone"
+                                                dataKey="WWF"
+                                                stroke="var(--color-WWF)"
+                                                name="WWF"
+                                                dot={false}
+                                            />
+                                            <Line
+                                                type="monotone"
+                                                dataKey="UNICEF"
+                                                stroke="var(--color-UNICEF)"
+                                                name="UNICEF"
+                                                dot={false}
+                                            />
+                                            <Line
+                                                type="monotone"
+                                                dataKey="Greenpeace"
+                                                stroke="var(--color-Greenpeace)"
+                                                name="Greenpeace"
+                                                dot={false}
+                                            />
+                                            <Line
+                                                type="monotone"
+                                                dataKey="Red Cross"
+                                                stroke="var(--color-Red Cross)"
+                                                name="Red Cross"
+                                                dot={false}
+                                            />
+                                            <Legend />
+                                        </LineChart>
+                                    </ResponsiveContainer>
+                                </ChartContainer>
+                            </CardContent>
+                        </Card>
+
+                        <Card className="bg-gray-800 border-0 col-span-full">
+                            <CardHeader>
+                                <CardTitle className="text-white">
+                                    公益组织引流数据趋势
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <ChartContainer
+                                    config={{
+                                        Instagram: {
+                                            label: "Instagram",
+                                            color: "#0088FE",
+                                        },
+                                        Twitter: {
+                                            label: "Twitter",
+                                            color: "#00C49F",
+                                        },
+                                        Website: {
+                                            label: "官网",
+                                            color: "#FFBB28",
+                                        },
+                                    }}
+                                    className="h-[300px] w-full"
+                                >
+                                    <ResponsiveContainer
+                                        width="100%"
+                                        height={300}
+                                    >
+                                        <AreaChart data={charityTrafficTrend}>
+                                            <CartesianGrid
+                                                strokeDasharray="3 3"
+                                                vertical={false}
+                                            />
+                                            <XAxis dataKey="month" />
+                                            <YAxis
+                                                label={{
+                                                    value: "引流人数",
+                                                    angle: -90,
+                                                    position: "insideLeft",
+                                                }}
+                                            />
+                                            <Tooltip
+                                                content={<CustomTooltip />}
+                                            />
+                                            <Area
+                                                type="monotone"
+                                                dataKey="Instagram"
+                                                stackId="1"
+                                                stroke="var(--color-Instagram)"
+                                                fill="var(--color-Instagram)"
+                                                name="Instagram"
+                                            />
+                                            <Area
+                                                type="monotone"
+                                                dataKey="Twitter"
+                                                stackId="1"
+                                                stroke="var(--color-Twitter)"
+                                                fill="var(--color-Twitter)"
+                                                name="Twitter"
+                                            />
+                                            <Area
+                                                type="monotone"
+                                                dataKey="Website"
+                                                stackId="1"
+                                                stroke="var(--color-Website)"
+                                                fill="var(--color-Website)"
+                                                name="官网"
+                                            />
+                                            <Legend />
+                                        </AreaChart>
+                                    </ResponsiveContainer>
+                                </ChartContainer>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </section>
             </div>
         </div>
     );
@@ -420,4 +900,21 @@ function StatCard({
             </div>
         </div>
     );
+}
+
+function CustomTooltip({ active, payload, label }: any) {
+    if (active && payload && payload.length) {
+        return (
+            <div className="bg-white p-4 rounded shadow-lg">
+                <p className="text-gray-700">{`${label}`}</p>
+                {payload.map((pld: any, index: number) => (
+                    <p key={index} className="text-gray-600">
+                        {`${pld.name}: ${pld.value}`}
+                    </p>
+                ))}
+            </div>
+        );
+    }
+
+    return null;
 }

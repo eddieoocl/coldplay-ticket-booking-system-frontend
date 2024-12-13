@@ -40,7 +40,8 @@
         "react-router-dom": "^7.0.2",
         "react-select": "^5.8.3",
         "react-spring": "^9.7.5",
-        "recharts": "^2.14.1"
+        "recharts": "^2.14.1",
+        "tailwind-merge": "^2.5.5"
     },
     "devDependencies": {
         "@types/node": "^20",

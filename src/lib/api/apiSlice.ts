@@ -54,6 +54,9 @@ export const apiSlice = createApi({
                 body: { status: status },
             }),
         }),
+        getAllOrders: builder.query<OrderResponse[], void>({
+            query: () => "/orders",
+        }),
     }),
 });
 
@@ -67,4 +70,5 @@ export const {
     useGetMerchandiseByConcertIdQuery,
     useCreateOrderMutation,
     useUpdateOrderStatusMutation,
+    useGetAllOrdersQuery,
 } = apiSlice;
