@@ -600,7 +600,7 @@ export default function Dashboard() {
                         <Card className="bg-gray-800 border-0">
                             <CardHeader>
                                 <CardTitle className="text-white">
-                                    Each Region's Conversion Rate
+                                    Each Region&apos;s Conversion Rate
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>

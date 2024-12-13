@@ -1,6 +1,5 @@
 import * as React from "react";
-import { ChartTooltipProps } from "recharts";
-
+import type { ChartTooltipProps } from "recharts";
 import { cn } from "@/lib/utils";
 
 interface ChartContainerProps extends React.HTMLAttributes<HTMLDivElement> {
