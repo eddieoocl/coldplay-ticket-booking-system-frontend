@@ -18,7 +18,12 @@ import {
     YAxis,
 } from "recharts";
 import { DollarSign, Ticket, TrendingUp, Users } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "../components/databoard/card";
+import {
+    Card,
+    CardContent,
+    CardHeader,
+    CardTitle,
+} from "../components/databoard/card";
 import { ChartContainer } from "../components/databoard/chart";
 
 import {
@@ -49,31 +54,31 @@ export default function Dashboard() {
         <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 pt-20">
             <div className="container mx-auto px-4 py-16">
                 <h1 className="text-4xl font-bold mb-8 text-center text-yellow-400">
-                    业务数据看板
+                    Dashboard
                 </h1>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                     <StatCard
                         icon={<Users />}
-                        title="总用户数"
+                        title="Total User"
                         value="50,000"
                         change="+15%"
                     />
                     <StatCard
                         icon={<DollarSign />}
-                        title="总收入"
-                        value="¥1,500,000"
+                        title="Total Revenue"
+                        value="$1,500,000"
                         change="+22%"
                     />
                     <StatCard
                         icon={<Ticket />}
-                        title="售出票数"
+                        title="Sold Tickets"
                         value="25,000"
                         change="+18%"
                     />
                     <StatCard
                         icon={<TrendingUp />}
-                        title="转化率"
+                        title="Conversion Rate"
                         value="5.2%"
                         change="+0.8%"
                     />
@@ -81,24 +86,24 @@ export default function Dashboard() {
 
                 <section id="predictions" className="mb-16">
                     <h2 className="text-3xl font-bold mb-8 text-blue-300">
-                        预测分析
+                        Prediction Analysis
                     </h2>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <Card className="bg-gray-800 border-0">
                             <CardHeader>
                                 <CardTitle className="text-white">
-                                    票价与需求分析
+                                    Ticket Price and Demand Analysis
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <ChartContainer
                                     config={{
                                         demand: {
-                                            label: "需求",
+                                            label: "Demand",
                                             color: "#0088FE",
                                         },
                                         revenue: {
-                                            label: "收入",
+                                            label: "Input",
                                             color: "#00C49F",
                                         },
                                     }}
@@ -116,7 +121,7 @@ export default function Dashboard() {
                                             <XAxis
                                                 dataKey="price"
                                                 label={{
-                                                    value: "价格 (¥)",
+                                                    value: "Price ($)",
                                                     position: "insideBottom",
                                                     offset: -5,
                                                 }}
@@ -124,7 +129,7 @@ export default function Dashboard() {
                                             <YAxis
                                                 yAxisId="left"
                                                 label={{
-                                                    value: "需求 (人数)",
+                                                    value: "Demand (Person)",
                                                     angle: -90,
                                                     position: "insideLeft",
                                                 }}
@@ -133,7 +138,7 @@ export default function Dashboard() {
                                                 yAxisId="right"
                                                 orientation="right"
                                                 label={{
-                                                    value: "收入 (¥)",
+                                                    value: "Income ($)",
                                                     angle: 90,
                                                     position: "insideRight",
                                                 }}
@@ -146,7 +151,7 @@ export default function Dashboard() {
                                                 type="monotone"
                                                 dataKey="demand"
                                                 stroke="var(--color-demand)"
-                                                name="需求"
+                                                name="Demand"
                                                 dot={false}
                                             />
                                             <Line
@@ -154,7 +159,7 @@ export default function Dashboard() {
                                                 type="monotone"
                                                 dataKey="revenue"
                                                 stroke="var(--color-revenue)"
-                                                name="收入"
+                                                name="Income"
                                                 dot={false}
                                             />
                                         </LineChart>
@@ -166,18 +171,18 @@ export default function Dashboard() {
                         <Card className="bg-gray-800 border-0">
                             <CardHeader>
                                 <CardTitle className="text-white">
-                                    周边均价分析
+                                    Merchantise Price Analysis
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <ChartContainer
                                     config={{
                                         demand: {
-                                            label: "需求",
+                                            label: "Demand",
                                             color: "#0088FE",
                                         },
                                         revenue: {
-                                            label: "收入",
+                                            label: "Input",
                                             color: "#00C49F",
                                         },
                                     }}
@@ -197,7 +202,7 @@ export default function Dashboard() {
                                             <XAxis
                                                 dataKey="price"
                                                 label={{
-                                                    value: "价格 (¥)",
+                                                    value: "Price ($)",
                                                     position: "insideBottom",
                                                     offset: -5,
                                                 }}
@@ -205,7 +210,7 @@ export default function Dashboard() {
                                             <YAxis
                                                 yAxisId="left"
                                                 label={{
-                                                    value: "需求 (件数)",
+                                                    value: "Demand",
                                                     angle: -90,
                                                     position: "insideLeft",
                                                 }}
@@ -214,7 +219,7 @@ export default function Dashboard() {
                                                 yAxisId="right"
                                                 orientation="right"
                                                 label={{
-                                                    value: "收入 (¥)",
+                                                    value: "Income ($)",
                                                     angle: 90,
                                                     position: "insideRight",
                                                 }}
@@ -227,7 +232,7 @@ export default function Dashboard() {
                                                 type="monotone"
                                                 dataKey="demand"
                                                 stroke="var(--color-demand)"
-                                                name="需求"
+                                                name="Demand"
                                                 dot={false}
                                             />
                                             <Line
@@ -235,7 +240,7 @@ export default function Dashboard() {
                                                 type="monotone"
                                                 dataKey="revenue"
                                                 stroke="var(--color-revenue)"
-                                                name="收入"
+                                                name="Income"
                                                 dot={false}
                                             />
                                         </LineChart>
@@ -247,14 +252,14 @@ export default function Dashboard() {
                         <Card className="bg-gray-800 border-0 lg:col-span-2">
                             <CardHeader>
                                 <CardTitle className="text-white">
-                                    未来每场演唱会盈利预测
+                                    Future Concert Profit Prediction
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <ChartContainer
                                     config={{
                                         profit: {
-                                            label: "预测盈利",
+                                            label: "Predicted Profit",
                                             color: "#0088FE",
                                         },
                                     }}
@@ -274,7 +279,7 @@ export default function Dashboard() {
                                             <XAxis dataKey="concert" />
                                             <YAxis
                                                 label={{
-                                                    value: "预测盈利 (¥)",
+                                                    value: "Predicted Profit ($)",
                                                     angle: -90,
                                                     position: "insideLeft",
                                                 }}
@@ -285,7 +290,7 @@ export default function Dashboard() {
                                             <Bar
                                                 dataKey="profit"
                                                 fill="var(--color-profit)"
-                                                name="预测盈利"
+                                                name="Predicted Profit"
                                             />
                                         </BarChart>
                                     </ResponsiveContainer>
@@ -297,20 +302,20 @@ export default function Dashboard() {
 
                 <section id="merchandise" className="mb-16">
                     <h2 className="text-3xl font-bold mb-8 text-green-300">
-                        周边分析
+                        Merchantise Analysis
                     </h2>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <Card className="bg-gray-800 border-0">
                             <CardHeader>
                                 <CardTitle className="text-white">
-                                    盈利占比
+                                    Profit Percentage
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <ChartContainer
                                     config={{
                                         share: {
-                                            label: "占比",
+                                            label: "Percentage",
                                             color: "#0088FE",
                                         },
                                     }}
@@ -358,18 +363,18 @@ export default function Dashboard() {
                         <Card className="bg-gray-800 border-0">
                             <CardHeader>
                                 <CardTitle className="text-white">
-                                    周边盈利趋势
+                                    Merchantise Profit Trend
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <ChartContainer
                                     config={{
                                         profit: {
-                                            label: "盈利额",
+                                            label: "Profile",
                                             color: "#0088FE",
                                         },
                                         share: {
-                                            label: "占比",
+                                            label: "Percentage",
                                             color: "#00C49F",
                                         },
                                     }}
@@ -390,7 +395,7 @@ export default function Dashboard() {
                                             <YAxis
                                                 yAxisId="left"
                                                 label={{
-                                                    value: "盈利额 (¥)",
+                                                    value: "Profit ($)",
                                                     angle: -90,
                                                     position: "insideLeft",
                                                 }}
@@ -399,7 +404,7 @@ export default function Dashboard() {
                                                 yAxisId="right"
                                                 orientation="right"
                                                 label={{
-                                                    value: "占比 (%)",
+                                                    value: "Percentage (%)",
                                                     angle: 90,
                                                     position: "insideRight",
                                                 }}
@@ -412,7 +417,7 @@ export default function Dashboard() {
                                                 type="monotone"
                                                 dataKey="profit"
                                                 stroke="var(--color-profit)"
-                                                name="盈利额"
+                                                name="Profit"
                                                 dot={false}
                                             />
                                             <Line
@@ -420,7 +425,7 @@ export default function Dashboard() {
                                                 type="monotone"
                                                 dataKey="share"
                                                 stroke="var(--color-share)"
-                                                name="占比"
+                                                name="Percentage"
                                                 dot={false}
                                             />
                                         </LineChart>
@@ -432,30 +437,30 @@ export default function Dashboard() {
                         <Card className="bg-gray-800 border-0 col-span-full">
                             <CardHeader>
                                 <CardTitle className="text-white">
-                                    各周边盈利占比趋势
+                                    Each Merchantise Profit Share Trend
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="h-[500px]">
                                 <ChartContainer
                                     config={{
                                         "T-shirts": {
-                                            label: "T恤",
+                                            label: "T-shirts",
                                             color: "#0088FE",
                                         },
                                         Posters: {
-                                            label: "海报",
+                                            label: "Posters",
                                             color: "#00C49F",
                                         },
                                         Figurines: {
-                                            label: "手办",
+                                            label: "Figurines",
                                             color: "#FFBB28",
                                         },
                                         Keychains: {
-                                            label: "钥匙扣",
+                                            label: "Keychains",
                                             color: "#FF8042",
                                         },
                                         Other: {
-                                            label: "其他",
+                                            label: "Other",
                                             color: "#8884D8",
                                         },
                                     }}
@@ -475,7 +480,7 @@ export default function Dashboard() {
                                             <XAxis dataKey="month" />
                                             <YAxis
                                                 label={{
-                                                    value: "占比 (%)",
+                                                    value: "Percentage (%)",
                                                     angle: -90,
                                                     position: "insideLeft",
                                                 }}
@@ -489,7 +494,7 @@ export default function Dashboard() {
                                                 stackId="1"
                                                 stroke="var(--color-T-shirts)"
                                                 fill="var(--color-T-shirts)"
-                                                name="T恤"
+                                                name="T-shirts"
                                             />
                                             <Area
                                                 type="monotone"
@@ -497,7 +502,7 @@ export default function Dashboard() {
                                                 stackId="1"
                                                 stroke="var(--color-Posters)"
                                                 fill="var(--color-Posters)"
-                                                name="海报"
+                                                name="Poster"
                                             />
                                             <Area
                                                 type="monotone"
@@ -505,7 +510,7 @@ export default function Dashboard() {
                                                 stackId="1"
                                                 stroke="var(--color-Figurines)"
                                                 fill="var(--color-Figurines)"
-                                                name="手办"
+                                                name="Figurines"
                                             />
                                             <Area
                                                 type="monotone"
@@ -513,7 +518,7 @@ export default function Dashboard() {
                                                 stackId="1"
                                                 stroke="var(--color-Keychains)"
                                                 fill="var(--color-Keychains)"
-                                                name="钥匙扣"
+                                                name="Keychains"
                                             />
                                             <Area
                                                 type="monotone"
@@ -521,7 +526,7 @@ export default function Dashboard() {
                                                 stackId="1"
                                                 stroke="var(--color-Other)"
                                                 fill="var(--color-Other)"
-                                                name="其他"
+                                                name="Others"
                                             />
                                             <Legend />
                                         </AreaChart>
@@ -534,20 +539,20 @@ export default function Dashboard() {
 
                 <section id="regional" className="mb-16">
                     <h2 className="text-3xl font-bold mb-8 text-pink-300">
-                        地区分析
+                        Regional Analysis
                     </h2>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <Card className="bg-gray-800 border-0">
                             <CardHeader>
                                 <CardTitle className="text-white">
-                                    不同地区的粉丝群体数量
+                                    Number of fans from different regions
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <ChartContainer
                                     config={{
                                         fans: {
-                                            label: "粉丝数量",
+                                            label: "Number of Fans",
                                             color: "#0088FE",
                                         },
                                     }}
@@ -595,14 +600,14 @@ export default function Dashboard() {
                         <Card className="bg-gray-800 border-0">
                             <CardHeader>
                                 <CardTitle className="text-white">
-                                    各地区支出收入转化率
+                                    Each Region's Conversion Rate
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <ChartContainer
                                     config={{
                                         conversionRate: {
-                                            label: "转化率",
+                                            label: "Conversion Rate",
                                             color: "#0088FE",
                                         },
                                     }}
@@ -620,7 +625,7 @@ export default function Dashboard() {
                                             <XAxis dataKey="region" />
                                             <YAxis
                                                 label={{
-                                                    value: "转化率",
+                                                    value: "Conversion Rate",
                                                     angle: -90,
                                                     position: "insideLeft",
                                                 }}
@@ -631,7 +636,7 @@ export default function Dashboard() {
                                             <Bar
                                                 dataKey="conversionRate"
                                                 fill="var(--color-conversionRate)"
-                                                name="转化率"
+                                                name="Conversion Rate"
                                             />
                                         </BarChart>
                                     </ResponsiveContainer>
@@ -643,20 +648,20 @@ export default function Dashboard() {
 
                 <section id="charity" className="mb-16">
                     <h2 className="text-3xl font-bold mb-8 text-purple-300">
-                        公益分析
+                        Charity Analysis
                     </h2>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <Card className="bg-gray-800 border-0">
                             <CardHeader>
                                 <CardTitle className="text-white">
-                                    公益贡献总额趋势
+                                    Charity Contribution Trend
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <ChartContainer
                                     config={{
                                         contribution: {
-                                            label: "贡献总额",
+                                            label: "Total Contribution",
                                             color: "#0088FE",
                                         },
                                     }}
@@ -676,7 +681,7 @@ export default function Dashboard() {
                                             <XAxis dataKey="month" />
                                             <YAxis
                                                 label={{
-                                                    value: "贡献总额 (¥)",
+                                                    value: "Total Contribution",
                                                     angle: -90,
                                                     position: "insideLeft",
                                                 }}
@@ -688,7 +693,7 @@ export default function Dashboard() {
                                                 type="monotone"
                                                 dataKey="contribution"
                                                 stroke="var(--color-contribution)"
-                                                name="贡献总额"
+                                                name="Total Contribution"
                                                 dot={false}
                                             />
                                         </LineChart>
@@ -700,7 +705,7 @@ export default function Dashboard() {
                         <Card className="bg-gray-800 border-0">
                             <CardHeader>
                                 <CardTitle className="text-white">
-                                    公益组织影响力排名趋势
+                                    Charity Organization Impact Ranking
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
@@ -742,7 +747,7 @@ export default function Dashboard() {
                                             <YAxis
                                                 reversed
                                                 label={{
-                                                    value: "排名",
+                                                    value: "Rank",
                                                     angle: -90,
                                                     position: "insideLeft",
                                                 }}
@@ -795,7 +800,7 @@ export default function Dashboard() {
                         <Card className="bg-gray-800 border-0 col-span-full">
                             <CardHeader>
                                 <CardTitle className="text-white">
-                                    公益组织引流数据趋势
+                                    Charity Organization Traffic Trend
                                 </CardTitle>
                             </CardHeader>
                             <CardContent>
@@ -810,7 +815,7 @@ export default function Dashboard() {
                                             color: "#00C49F",
                                         },
                                         Website: {
-                                            label: "官网",
+                                            label: "Official Website",
                                             color: "#FFBB28",
                                         },
                                     }}
@@ -828,7 +833,7 @@ export default function Dashboard() {
                                             <XAxis dataKey="month" />
                                             <YAxis
                                                 label={{
-                                                    value: "引流人数",
+                                                    value: "Person",
                                                     angle: -90,
                                                     position: "insideLeft",
                                                 }}
@@ -858,7 +863,7 @@ export default function Dashboard() {
                                                 stackId="1"
                                                 stroke="var(--color-Website)"
                                                 fill="var(--color-Website)"
-                                                name="官网"
+                                                name="Official Website"
                                             />
                                             <Legend />
                                         </AreaChart>

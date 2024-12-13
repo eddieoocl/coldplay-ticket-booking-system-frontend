@@ -1,6 +1,11 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "../components/databoard/card";
+import {
+    Card,
+    CardContent,
+    CardHeader,
+    CardTitle,
+} from "../components/databoard/card";
 import {
     CalendarIcon,
     CreditCardIcon,
@@ -24,7 +29,8 @@ export default function OrdersPage() {
         }
     };
 
-    const getTicketCount = (order: OrderResponse) => order.ticketInfo?.length || 0;
+    const getTicketCount = (order: OrderResponse) =>
+        order.ticketInfo?.length || 0;
     const getMerchandiseCount = (order: OrderResponse) =>
         order.merchandiseInfo?.reduce(
             (sum, item) => sum + (item.count || 0),
@@ -49,7 +55,7 @@ export default function OrdersPage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 pt-20">
-            <Navbar/>
+            <Navbar />
             <div className="container mx-auto px-4 py-16">
                 <h1 className="text-4xl font-bold mb-8 text-center text-yellow-400">
                     我的订单
@@ -92,7 +98,7 @@ export default function OrdersPage() {
                                     </div>
                                     <div className="flex items-center text-gray-300">
                                         <CreditCardIcon className="mr-2 h-4 w-4" />
-                                        <span>¥{order.totalPrices}</span>
+                                        <span>${order.totalPrices}</span>
                                     </div>
                                     <div className="flex items-center justify-between">
                                         <div className="flex items-center text-gray-300">
@@ -108,7 +114,9 @@ export default function OrdersPage() {
                                         </div>
                                         <button
                                             className="bg-blue-600 text-white hover:bg-blue-700 transition-colors px-4 py-2 rounded"
-                                            onClick={() => handleViewDetails(order)}
+                                            onClick={() =>
+                                                handleViewDetails(order)
+                                            }
                                         >
                                             查看详情
                                         </button>
