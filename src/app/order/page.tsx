@@ -44,7 +44,7 @@ export default function OrderConfirmation() {
             console.log("treePlantingItem");
             console.log(treePlantingItem);
             if (treePlantingItem) {
-                setTreePlanterRank(12345); // Example rank
+                setTreePlanterRank(9999); // Example rank
                 setTotalTreesPlanted(1000000); // Example total trees planted
                 setShowAnimation(true);
             }
