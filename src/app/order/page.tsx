@@ -14,6 +14,10 @@ import TreePlantingAnimation from "@/app/components/tree/TreePlantingAnimation";
 export default function OrderConfirmation() {
     const params = useSearchParams();
     const orderId = params.get("orderId");
+    const shouldAnimate = Boolean(
+        params.get("animation") ? params.get("animation") === "true" : true
+    );
+    console.log(shouldAnimate);
     const { data: order, isLoading: isLoadingOrder } = useGetOrderByIdQuery({
         id: orderId ? Number(orderId) : 0,
     });
@@ -237,7 +241,7 @@ export default function OrderConfirmation() {
                         </button>
                     </div>
                 </div>
-                {showAnimation && (
+                {shouldAnimate && showAnimation && (
                     <TreePlantingAnimation
                         treePlanterRank={treePlanterRank}
                         totalTreesPlanted={totalTreesPlanted}

@@ -28,7 +28,7 @@ export default function OrdersPage() {
         if (order.paymentStatus === "PENDING") {
             router.push(`/confirm-order?orderId=${order.orderId}`);
         } else {
-            router.push(`/order?orderId=${order.orderId}`);
+            router.push(`/order?orderId=${order.orderId}&animation=false`);
         }
     };
 
